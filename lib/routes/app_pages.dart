@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import '../views/Onboarding/onboarding_screen.dart';
 import '../views/auth/login_page.dart';
 import '../views/auth/signup_page.dart';
 import '../views/home/home_page.dart';
@@ -9,5 +10,6 @@ class AppPages {
     GetPage(name: AppRoutes.LOGIN, page: () => LoginPage()),
     GetPage(name: AppRoutes.SIGNUP, page: () => SignupPage()),
     GetPage(name: AppRoutes.HOME, page: () => HomePage()),
+    GetPage(name: AppRoutes.ONBOARDING, page: () => OnboardingScreen()),
   ];
 }

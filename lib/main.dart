@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter App with GetX',
-      initialRoute: AppRoutes.LOGIN,
+      initialRoute: AppRoutes.ONBOARDING,
       getPages: AppPages.pages,
       theme: ThemeData(
         primarySwatch: Colors.blue,

@@ -15,7 +15,7 @@ class CustomTextFormField extends StatefulWidget {
   final ValueChanged<String>? onChanged;
   final TextInputType keyboardType;
   final TextCapitalization textCapitalization;
-  final FocusNode? focusNode; // Added focusNode parameter
+  final FocusNode? focusNode;
 
   const CustomTextFormField({
     super.key,
@@ -31,7 +31,7 @@ class CustomTextFormField extends StatefulWidget {
     this.onChanged,
     this.keyboardType = TextInputType.text,
     this.textCapitalization = TextCapitalization.none,
-    this.focusNode, // Include focusNode in constructor
+    this.focusNode,
   });
 
   @override
@@ -49,71 +49,71 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: widget.controller,
-      obscureText: _obscureText,
-      onChanged: widget.onChanged,
-      validator: widget.validator,
-      focusNode: widget.focusNode, // Pass focusNode to TextFormField
-      textCapitalization: widget.textCapitalization,
-      keyboardType: widget.keyboardType,
-      inputFormatters: widget.keyboardType == TextInputType.phone
-          ? [FilteringTextInputFormatter.digitsOnly]
-          : null,
-      decoration: InputDecoration(
-        hintText: widget.hintText,
-        hintStyle: const TextStyle(
-          color: AppColors.grey,
-          fontSize: 15,
-        ),
-        prefixIcon: widget.prefixIcon != null
-            ? Icon(
-                widget.prefixIcon,
-                color: widget.prefixIconColor ?? AppColors.primaryColor,
-              )
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(widget.borderRadius ?? 5),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.2), // Light shadow color
+            spreadRadius: 2,
+            blurRadius: 5,
+            offset: const Offset(0, 3), // Shadow position
+          ),
+        ],
+      ),
+      child: TextFormField(
+        controller: widget.controller,
+        obscureText: _obscureText,
+        onChanged: widget.onChanged,
+        validator: widget.validator,
+        focusNode: widget.focusNode,
+        textCapitalization: widget.textCapitalization,
+        keyboardType: widget.keyboardType,
+        inputFormatters: widget.keyboardType == TextInputType.phone
+            ? [FilteringTextInputFormatter.digitsOnly]
             : null,
-        suffixIcon: widget.suffixIcon != null
-            ? IconButton(
-                icon: Icon(
-                  _obscureText ? widget.suffixIcon : Icons.visibility_off,
-                ),
-                onPressed: () {
-                  setState(() {
-                    _obscureText = !_obscureText;
-                  });
-                },
-              )
-            : null,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(widget.borderRadius ?? 5),
+        decoration: InputDecoration(
+          filled: true, // Needed for shadow to appear correctly
+          fillColor: Colors.white, // Ensures field is visible over shadow
+          hintText: widget.hintText,
+          hintStyle: const TextStyle(
+            color: AppColors.grey,
+            fontSize: 15,
+            fontFamily: "poppins",
           ),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            width: 1,
-            color: AppColors.lightGrey,
+          prefixIcon: widget.prefixIcon != null
+              ? Icon(
+            widget.prefixIcon,
+            color: widget.prefixIconColor ?? AppColors.primaryColor,
+          )
+              : null,
+          suffixIcon: widget.obscureText
+              ? IconButton(
+            icon: Icon(
+              _obscureText ? Icons.visibility : Icons.visibility_off,
+              color: AppColors.grey,
+            ),
+            onPressed: () {
+              setState(() {
+                _obscureText = !_obscureText;
+              });
+            },
+          )
+              : null,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(widget.borderRadius ?? 15),
+            ),
+            borderSide: BorderSide.none, // Removes default border
           ),
-          borderRadius: BorderRadius.all(
-            Radius.circular(widget.borderRadius ?? 5),
+          contentPadding: widget.contentPadding ??
+              const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
+          errorMaxLines: 4,
+          errorStyle: const TextStyle(
+            fontSize: 12.0,
+            color: AppColors.red,
+            height: 1.2,
           ),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            width: 1.5,
-            color: AppColors.primaryColor,
-          ),
-          borderRadius: BorderRadius.all(
-            Radius.circular(widget.borderRadius ?? 5),
-          ),
-        ),
-        contentPadding: widget.contentPadding ??
-            const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-        errorMaxLines: 4,
-        errorStyle: const TextStyle(
-          fontSize: 12.0,
-          color: AppColors.red,
-          height: 1.2,
         ),
       ),
     );

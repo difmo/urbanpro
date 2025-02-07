@@ -100,8 +100,8 @@ class CustomButton extends StatelessWidget {
                           style: TextStyle(
                             color: textColor ?? AppColors.white,
                             fontFamily: fontFamily ?? 'Poppins',
-                            fontWeight: fontWeight ?? FontWeight.w500,
-                            fontSize: fontSize ?? 14.0,
+                            fontWeight: fontWeight ?? FontWeight.w600,
+                            fontSize: fontSize ?? 16.0,
                           ),
                         ),
                         if (suffixIcon != null) ...[

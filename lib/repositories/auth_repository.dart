@@ -1,7 +1,7 @@
-import 'package:urbanpro/models/user_model.dart';
 
 import '../api/api_client.dart';
 import '../api/endpoints.dart';
+import '../models/user_model.dart';
 
 class AuthRepository {
   final ApiClient _apiClient = ApiClient();

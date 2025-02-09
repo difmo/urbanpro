@@ -1,6 +1,6 @@
+import 'package:URBANPRO/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:urbanpro/routes/app_routes.dart';
 import 'routes/app_pages.dart';
 import 'bindings/initial_bindings.dart';
 

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'package:get/get.dart';
-import 'package:urbanpro/routes/app_routes.dart';
-import 'package:urbanpro/utils/colors.dart';
+
 
 import '../../routes/app_pages.dart';
+import '../../utils/colors.dart';
 
 class SplashScreen extends StatefulWidget {
   @override

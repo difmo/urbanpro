@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import '../../routes/app_routes.dart';
 import '../../utils/colors.dart';
@@ -7,6 +6,8 @@ import '../../utils/orientation_lock.dart';
 import 'onboarding_controller.dart';
 
 class OnboardingScreen extends StatefulWidget {
+  const OnboardingScreen({super.key});
+
   @override
   State<OnboardingScreen> createState() => _OnboardingScreenState();
 }
@@ -52,25 +53,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         backgroundColor: AppColors.white,
         body: Stack(
           children: [
-            // _setBackgroundImage(),
             _buildPageView(),
             _buildIndicator(),
-            // _buildBackgroundCircle(),
             _buildBottomButtons(),
           ],
         ),
       ),
     );
   }
-
-  // Widget _setBackgroundImage() {
-  //   return Positioned.fill(
-  //     child: Image.asset(
-  //       'assets/images/blockimg.jpg',
-  //       fit: BoxFit.cover,
-  //     ),
-  //   );
-  // }
 
   Widget _buildPageView() {
     return PageView.builder(
@@ -125,24 +115,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     );
   }
 
-  // Widget _buildBackgroundCircle() {
-  //   return Positioned(
-  //     left: -400,
-  //     right: -400,
-  //     bottom: -500,
-  //     child: Center(
-  //       child: Container(
-  //         width: 800,
-  //         height: 700,
-  //         decoration: BoxDecoration(
-  //           color: AppColors.backgroundCircle,
-  //           shape: BoxShape.circle,
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
-
   Widget _buildBottomButtons() {
     return Positioned(
       left: 0,
@@ -166,25 +138,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   backgroundColor: AppColors.primaryColor,
                   borderRadius: const BorderRadius.all(
                     Radius.circular(15),
-                    // bottomLeft: Radius.circular(15),
                   ),
                   onPressed: () {
-                    Get.toNamed(AppRoutes.LOGINSIGNUP);
+                    Get.toNamed(AppRoutes.LOGIN);
                   },
                 ),
-                // _buildButton(
-                //   icon: Icons.person_add,
-                //   text: 'Sign Up',
-                //   textColor: AppColors.white,
-                //   backgroundColor: AppColors.secondaryColor,
-                //   borderRadius: const BorderRadius.only(
-                //     topRight: Radius.circular(15),
-                //     bottomRight: Radius.circular(15),
-                //   ),
-                //   onPressed: () {
-                //     Get.toNamed(AppRoutes.SIGNUP);
-                //   },
-                // ),
               ],
             ),
           ),
@@ -202,17 +160,17 @@ Widget _buildButton({
   required BorderRadius borderRadius,
   required VoidCallback onPressed,
 }) {
-  final ValueNotifier<bool> _isScaling = ValueNotifier<bool>(false);
+  final ValueNotifier<bool> isScaling = ValueNotifier<bool>(false);
 
   return Expanded(
     child: ValueListenableBuilder<bool>(
-      valueListenable: _isScaling,
+      valueListenable: isScaling,
       builder: (context, scaling, child) {
         return InkWell(
           onTap: () {
-            _isScaling.value = true;
+            isScaling.value = true;
             Future.delayed(const Duration(milliseconds: 200), () {
-              _isScaling.value = false;
+              isScaling.value = false;
               onPressed(); // Navigate after the animation
             });
           },
@@ -262,19 +220,20 @@ class OnboardingPage extends StatelessWidget {
   final String description;
 
   const OnboardingPage({
-    Key? key,
+    super.key,
     required this.image,
     required this.title,
     required this.description,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-            Positioned(
-                left: MediaQuery.of(context).size.width * 0.15, // Adjusts dynamically
-                top:150,
+        Positioned(
+            left:
+                MediaQuery.of(context).size.width * 0.15, // Adjusts dynamically
+            top: 150,
             child: TweenAnimationBuilder(
               tween: Tween<Offset>(begin: Offset(0, 1), end: Offset(0, 0)),
               duration: Duration(seconds: 2),
@@ -285,8 +244,7 @@ class OnboardingPage extends StatelessWidget {
                   child: Image.asset(image, width: 300, height: 300),
                 );
               },
-            )
-            ),
+            )),
         SizedBox(height: 20),
         Positioned(
           top: MediaQuery.of(context).size.height * 0.5, // Adjusts dynamically

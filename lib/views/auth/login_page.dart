@@ -1,255 +1,169 @@
-// import 'package:flutter/material.dart';
-// import 'package:urbanpro/utils/colors.dart';
-// import 'package:urbanpro/views/widgets/custom_button.dart';
-// import 'package:urbanpro/views/widgets/custom_text_form_field.dart';
-//
-// class LoginPage extends StatelessWidget {
-//   final TextEditingController appIdController = TextEditingController();
-//   final TextEditingController studentIdController = TextEditingController();
-//   final TextEditingController passwordController = TextEditingController();
-//
-//   LoginPage({super.key});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       backgroundColor: AppColors.white,
-//       // appBar: AppBar(title: const Text('')),
-//       body: SafeArea(
-//         child: Padding(
-//           padding: const EdgeInsets.all(16.0),
-//           child: Form(
-//             child: SingleChildScrollView(
-//               child: Column(
-//                 crossAxisAlignment: CrossAxisAlignment.center,
-//                 children: [
-//                   // App ID Field
-//                   // Logo
-//                   Image.asset(
-//                     'assets/images/Logo.png', // Update with your actual logo path
-//                     height: 220,
-//                     width: 220,
-//                   ),
-//                   // const SizedBox(height: 10),
-//                   Padding(
-//                     padding: const EdgeInsets.only(bottom: 18.0),
-//                     child: Text(
-//                       'Login with Mobile Number',
-//                       style: TextStyle(
-//                           fontSize: 20,
-//                           // fontStyle: FontStyle.normal,
-//                           fontWeight: FontWeight.bold,
-//                           color: AppColors.primaryColor),
-//                     ),
-//                   ),
-//                   // const SizedBox(height: 16),
-//                   // CustomTextFormField(
-//                   //   controller: appIdController,
-//                   //   hintText: 'Enter App ID',
-//                   //   keyboardType: TextInputType.number,
-//                   //   validator: (value) {
-//                   //     if (value == null || value.isEmpty) {
-//                   //       return 'App ID cannot be empty';
-//                   //     }
-//                   //     return null;
-//                   //   },
-//                   //   prefixIcon: Icons.person,
-//                   // ),
-//                   const SizedBox(height: 16),
-//
-//                   // Student ID Field
-//                   CustomTextFormField(
-//                     controller: studentIdController,
-//                     hintText: 'Enter Mobile No.',
-//                     keyboardType: TextInputType.number,
-//                     validator: (value) {
-//                       if (value == null || value.isEmpty) {
-//                         return 'Student ID cannot be empty';
-//                       }
-//                       return null;
-//                     },
-//                     prefixIcon: Icons.phone,
-//                   ),
-//                   const SizedBox(height: 16),
-//
-//                   // Password Field
-//                   CustomTextFormField(
-//                     controller: passwordController,
-//                     hintText: 'Enter your password',
-//                     obscureText: true,
-//                     validator: (value) {
-//                       if (value == null || value.isEmpty) {
-//                         return 'Password cannot be empty';
-//                       }
-//                       if (value.length < 6) {
-//                         return 'Password must be at least 6 characters';
-//                       }
-//                       return null;
-//                     },
-//                     prefixIcon: Icons.lock,
-//                   ),
-//                   const SizedBox(height: 24),
-//
-//                   // Login Button
-//                   CustomButton(
-//                     text: 'Login',
-//                     isLoading: false, // Update dynamically in your logic
-//                     onPressed: () {
-//                       final appId = appIdController.text.trim();
-//                       final studentId = studentIdController.text.trim();
-//                       final password = passwordController.text.trim();
-//
-//                       if (appId.isNotEmpty &&
-//                           studentId.isNotEmpty &&
-//                           password.isNotEmpty) {
-//                         print(
-//                             'Login with App ID: $appId, Student ID: $studentId, Password: $password');
-//                         // Add your login logic here
-//                       } else {
-//                         // Show a dialog or snackbar for missing fields
-//                         ScaffoldMessenger.of(context).showSnackBar(
-//                           const SnackBar(content: Text('All fields are required')),
-//                         );
-//                       }
-//                     },
-//                   ),
-//                 ],
-//               ),
-//             ),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
-
+import 'package:URBANPRO/routes/app_routes.dart';
+import 'package:URBANPRO/utils/user_role.dart';
+import 'package:URBANPRO/views/widgets/custom_dropdown.dart';
+import 'package:URBANPRO/views/widgets/phone_number_input.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../utils/colors.dart';
 import '../widgets/custom_button.dart';
-import '../widgets/custom_text_form_field.dart';
 
-class LoginPage extends StatelessWidget {
-  final TextEditingController appIdController = TextEditingController();
-  final TextEditingController studentIdController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
-  LoginPage({super.key});
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final TextEditingController roleController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // resizeToAvoidBottomInset: false, // Prevents UI from shifting
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: Column(
-          children: [
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 70.0, bottom: 40),
-                  child: Image.asset("assets/images/Logo.png", height: 120),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 12.0, bottom: 20),
-                  child: Text(
-                    'Login with Mobile Number',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.primaryColor,
-                      fontFamily: "poppins",
-                    ),
-                  ),
-                ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const SizedBox(height: 60),
 
-                const SizedBox(height: 10),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: const Text(
-                    "Education is the passport to the future\nkeep learning, keep growing.",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      fontFamily: 'Poppins',
-                    ),
-                  ),
+              // Logo
+              Image.asset("assets/images/Logo.png", height: 100),
+
+              const SizedBox(height: 30),
+
+              // Title
+              Text(
+                'Login with Your',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.primaryColor,
+                  fontFamily: "Poppins",
                 ),
-              ],
-            ),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 18.0, vertical: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              ),
+
+              const SizedBox(height: 10),
+
+              // Subtitle
+              Text(
+                "Education is the passport to the future\nKeep learning, keep growing.",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                  fontFamily: 'Poppins',
+                  color: Colors.grey.shade700,
+                ),
+              ),
+
+              const SizedBox(height: 30),
+
+              // Dropdown for User Role
+              _buildDropdown(),
+
+              const SizedBox(height: 20),
+
+              // Name Input
+              CommonTextField(
+                inputType: InputType.name,
+                label: "Full Name",
+                hint: "Enter your full name",
+                controller: nameController,
+                onChanged: (value) => print("Name: $value"),
+              ),
+
+              const SizedBox(height: 20),
+
+              // Phone Input
+              CommonTextField(
+                inputType: InputType.phone,
+                label: "Phone Number",
+                hint: "Enter your phone number",
+                controller: phoneController,
+                onChanged: (value) => print("Phone: $value"),
+              ),
+
+              const SizedBox(height: 10),
+
+              const SizedBox(height: 20),
+
+              // Sign In Button
+              SizedBox(
+                width: double.infinity,
+                child: CustomButton(
+                  text: 'SIGN IN',
+                  onPressed: () async {
+                    Get.toNamed(AppRoutes.STUDENTDASHBOARD);
+                  },
+                ),
+              ),
+
+              const SizedBox(height: 30),
+
+              // Don't have an account? Sign Up
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const SizedBox(height: 16), // Now it works properly
-
-                  CustomTextFormField(
-                    controller: studentIdController,
-                    hintText: 'Enter Mobile No.',
-                    keyboardType: TextInputType.number,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Student ID cannot be empty';
-                      }
-                      return null;
-                    },
-                    prefixIcon: Icons.phone,
+                  Text(
+                    "Not registered?",
+                    style: TextStyle(fontSize: 14, color: Colors.black),
                   ),
-                  const SizedBox(height: 36),
-
-                  CustomTextFormField(
-                    controller: passwordController,
-                    hintText: 'Enter your password',
-                    obscureText: true,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Password cannot be empty';
-                      }
-                      if (value.length < 6) {
-                        return 'Password must be at least 6 characters';
-                      }
-                      return null;
-                    },
-                    prefixIcon: Icons.lock,
-                  ),
-                  const SizedBox(height: 30),
-
-                  // Login Button
-                  CustomButton(
-                    suffixIcon: Icons.login,
-
-                    text: 'Login',
-                    isLoading: false, // Update dynamically in your logic
+                  TextButton(
                     onPressed: () {
-                      final appId = appIdController.text.trim();
-                      final studentId = studentIdController.text.trim();
-                      final password = passwordController.text.trim();
-
-                      if (appId.isNotEmpty &&
-                          studentId.isNotEmpty &&
-                          password.isNotEmpty) {
-                        print(
-                            'Login with App ID: $appId, Student ID: $studentId, Password: $password');
-                        // Add your login logic here
-                      } else {
-                        // Show a dialog or snackbar for missing fields
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                              content: Text('All fields are required')),
-                        );
-                      }
+                      Get.toNamed(AppRoutes.SIGNUP);
                     },
+                    child: Text(
+                      "Sign Up",
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.primaryColor,
+                      ),
+                    ),
                   ),
                 ],
               ),
-            ),
-          ],
+
+              const SizedBox(height: 20),
+            ],
+          ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildDropdown() {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color: AppColors.primaryColor,
+          width: 1,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.primaryColor.withOpacity(0.15),
+            spreadRadius: 2,
+            blurRadius: 10,
+            offset: const Offset(0, 3),
+          ),
+        ],
+      ),
+      child: CustomDropdown<String>(
+        itemDescriptions: roleDescriptions,
+        selectedValue: userRole.first,
+        onChanged: (String? value) {
+          roleController.text = value!;
+        },
       ),
     );
   }

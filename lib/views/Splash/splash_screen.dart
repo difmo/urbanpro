@@ -3,23 +3,23 @@ import 'dart:async';
 
 import 'package:get/get.dart';
 
-
 import '../../routes/app_pages.dart';
 import '../../utils/colors.dart';
 
 class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   @override
   void initState() {
     super.initState();
     // Wait for 3 seconds before navigating to the home screen
     Timer(Duration(seconds: 3), () {
-     Get.toNamed('/onboarding');
+      Get.toNamed('/onboarding');
       // getPages: AppPages.pages;
     });
   }
@@ -32,12 +32,12 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Container(
+            SizedBox(
               height: 250,
               width: 250,
               child: Image.asset(
-                'assets/images/Logo.png'  // You can use a custom icon here if needed
-              ),
+                  'assets/images/Logo.png' // You can use a custom icon here if needed
+                  ),
             ),
             Text(
               'Welcome to Urban Pro',

@@ -1,128 +1,167 @@
+import 'package:URBANPRO/routes/app_routes.dart';
+import 'package:URBANPRO/utils/user_role.dart';
+import 'package:URBANPRO/views/widgets/custom_dropdown.dart';
+import 'package:URBANPRO/views/widgets/phone_number_input.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import '../../utils/colors.dart';
 import '../widgets/custom_button.dart';
-import '../widgets/custom_text_form_field.dart';
 
-class SignupPage extends StatelessWidget {
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+class SignupPage extends StatefulWidget {
+  const SignupPage({super.key});
 
-  SignupPage({super.key});
+  @override
+  State<SignupPage> createState() => _SignupPageState();
+}
+
+class _SignupPageState extends State<SignupPage> {
+  final TextEditingController roleController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // resizeToAvoidBottomInset: false, // Prevents UI from shifting
-
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.center,
+              const SizedBox(height: 60),
+
+              // Logo
+              Image.asset("assets/images/Logo.png", height: 100),
+
+              const SizedBox(height: 30),
+
+              // Title
+              Text(
+                'Sign Up with your',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.primaryColor,
+                  fontFamily: "Poppins",
+                ),
+              ),
+              const SizedBox(height: 10),
+              // Subtitle
+              Text(
+                "Education is the passport to the future\nKeep learning, keep growing.",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                  fontFamily: 'Poppins',
+                  color: Colors.grey.shade700,
+                ),
+              ),
+
+              const SizedBox(height: 30),
+
+              // Dropdown for User Role
+              _buildDropdown(),
+
+              const SizedBox(height: 20),
+
+              // Name Input
+              CommonTextField(
+                inputType: InputType.name,
+                label: "Full Name",
+                hint: "Enter your full name",
+                controller: nameController,
+                onChanged: (value) => print("Name: $value"),
+              ),
+
+              const SizedBox(height: 20),
+
+              // Phone Input
+              CommonTextField(
+                inputType: InputType.phone,
+                label: "Phone Number",
+                hint: "Enter your phone number",
+                controller: phoneController,
+                onChanged: (value) => print("Phone: $value"),
+              ),
+
+              const SizedBox(height: 10),
+
+              const SizedBox(height: 20),
+              // Sign In Button
+              SizedBox(
+                width: double.infinity,
+                child: CustomButton(
+                  text: 'SIGN UP',
+                  onPressed: () async {
+                    print("Logging In...");
+                  },
+                ),
+              ),
+              const SizedBox(height: 30),
+              // Don't have an account? Sign Up
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 70.0, bottom: 40),
-                    child: Image.asset("assets/images/Logo.png", height: 120),
+                  Text(
+                    "If you have already registered?",
+                    style: TextStyle(fontSize: 14, color: Colors.black),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 12.0, bottom:20 ),
+                  TextButton(
+                    onPressed: () {
+                      Get.toNamed(AppRoutes.LOGIN);
+                    },
                     child: Text(
-                      'Login with Email',
+                      "Sign In",
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 14,
                         fontWeight: FontWeight.bold,
                         color: AppColors.primaryColor,
-                        fontFamily: "poppins",
-                      ),
-                    ),
-                  ),
-
-                  const SizedBox(height: 10),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                    child: const Text(
-                      "Education is the passport to the future\nkeep learning, keep growing.",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                        fontFamily: 'Poppins',
                       ),
                     ),
                   ),
                 ],
               ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 18.0, vertical: 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  // Align text to the left
-                  children: [
-                    const SizedBox(height: 16), // Now it works properly
-          
-                    CustomTextFormField(
-                      controller: emailController,
-                      hintText: 'Email',
-                      keyboardType: TextInputType.emailAddress,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Email cannot be empty';
-                        }
-                        return null;
-                      },
-                      prefixIcon: Icons.email,
-                    ),
-                    const SizedBox(height: 36),
-          
-                    CustomTextFormField(
-                      controller: passwordController,
-                      hintText: 'Enter your password',
-                      obscureText: true,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Password cannot be empty';
-                        }
-                        if (value.length < 6) {
-                          return 'Password must be at least 6 characters';
-                        }
-                        return null;
-                      },
-                      prefixIcon: Icons.lock,
-                    ),
-                    const SizedBox(height: 30),
-          
-                    // Login Button
-                    CustomButton(
-                      suffixIcon: Icons.login,
-                      text: 'Login',
-                      isLoading: false, // Update dynamically in your logic
-                      onPressed: () {
-                        final email = emailController.text.trim();
-                        final password = passwordController.text.trim();
-          
-                        if (email.isNotEmpty && password.isNotEmpty) {
-                          print('Login with Email: $email, Password: $password');
-                          // Add your login logic here
-                        } else {
-                          // Show a dialog or snackbar for missing fields
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                                content: Text('All fields are required')),
-                          );
-                        }
-                      },
-                    ),
-                  ],
-                ),
-              ),
+
+              const SizedBox(height: 20),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildDropdown() {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color: AppColors.primaryColor,
+          width: 1,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.primaryColor.withOpacity(0.15),
+            spreadRadius: 2,
+            blurRadius: 10,
+            offset: const Offset(0, 3),
+          ),
+        ],
+      ),
+      child: CustomDropdown<String>(
+        itemDescriptions: roleDescriptions,
+        selectedValue: userRole.first,
+        onChanged: (String? value) {
+          // Handle selection
+          print("$value");
+          roleController.text = value!;
+        },
       ),
     );
   }

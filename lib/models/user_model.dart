@@ -20,7 +20,7 @@ class UserModel {
   final String branchLogo;
   final String currentSessionYear;
   final String errorMessage;
-  final String? otp; // Nullable as it can be null in the JSON.
+  final String? otp;
 
   UserModel({
     required this.branchID,

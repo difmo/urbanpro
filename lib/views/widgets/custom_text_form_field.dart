@@ -50,71 +50,69 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(widget.borderRadius ?? 5),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.2), // Light shadow color
-            spreadRadius: 2,
-            blurRadius: 5,
-            offset: const Offset(0, 3), // Shadow position
-          ),
-        ],
-      ),
-      child: TextFormField(
-        controller: widget.controller,
-        obscureText: _obscureText,
-        onChanged: widget.onChanged,
-        validator: widget.validator,
-        focusNode: widget.focusNode,
-        textCapitalization: widget.textCapitalization,
-        keyboardType: widget.keyboardType,
-        inputFormatters: widget.keyboardType == TextInputType.phone
-            ? [FilteringTextInputFormatter.digitsOnly]
+    return TextFormField(
+      controller: widget.controller,
+      obscureText: _obscureText,
+      onChanged: widget.onChanged,
+      validator: widget.validator,
+      focusNode: widget.focusNode,
+      textCapitalization: widget.textCapitalization,
+      keyboardType: widget.keyboardType,
+      inputFormatters: widget.keyboardType == TextInputType.phone
+          ? [FilteringTextInputFormatter.digitsOnly]
+          : null,
+      decoration: InputDecoration(
+        filled: true,
+        fillColor: Colors.white,
+        hintText: widget.hintText,
+        hintStyle: const TextStyle(
+          color: AppColors.grey,
+          fontSize: 15,
+          fontFamily: "poppins",
+        ),
+        prefixIcon: widget.prefixIcon != null
+            ? Icon(
+                widget.prefixIcon,
+                color: widget.prefixIconColor ?? AppColors.primaryColor,
+              )
             : null,
-        decoration: InputDecoration(
-          filled: true, // Needed for shadow to appear correctly
-          fillColor: Colors.white, // Ensures field is visible over shadow
-          hintText: widget.hintText,
-          hintStyle: const TextStyle(
-            color: AppColors.grey,
-            fontSize: 15,
-            fontFamily: "poppins",
-          ),
-          prefixIcon: widget.prefixIcon != null
-              ? Icon(
-            widget.prefixIcon,
-            color: widget.prefixIconColor ?? AppColors.primaryColor,
-          )
-              : null,
-          suffixIcon: widget.obscureText
-              ? IconButton(
-            icon: Icon(
-              _obscureText ? Icons.visibility : Icons.visibility_off,
-              color: AppColors.grey,
-            ),
-            onPressed: () {
-              setState(() {
-                _obscureText = !_obscureText;
-              });
-            },
-          )
-              : null,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.all(
-              Radius.circular(widget.borderRadius ?? 15),
-            ),
-            borderSide: BorderSide.none, // Removes default border
-          ),
-          contentPadding: widget.contentPadding ??
-              const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
-          errorMaxLines: 4,
-          errorStyle: const TextStyle(
-            fontSize: 12.0,
-            color: AppColors.red,
-            height: 1.2,
-          ),
+        suffixIcon: widget.obscureText
+            ? IconButton(
+                icon: Icon(
+                  _obscureText ? Icons.visibility : Icons.visibility_off,
+                  color: AppColors.grey,
+                ),
+                onPressed: () {
+                  setState(() {
+                    _obscureText = !_obscureText;
+                  });
+                },
+              )
+            : null,
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(widget.borderRadius ?? 8),
+          borderSide:
+              BorderSide(color: Colors.grey.shade300), // Light Grey Border
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(widget.borderRadius ?? 8),
+          borderSide: BorderSide(color: AppColors.primaryColor, width: 2),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(widget.borderRadius ?? 8),
+          borderSide: BorderSide(color: AppColors.red),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(widget.borderRadius ?? 8),
+          borderSide: BorderSide(color: AppColors.red, width: 2),
+        ),
+        contentPadding: widget.contentPadding ??
+            const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
+        errorMaxLines: 4,
+        errorStyle: const TextStyle(
+          fontSize: 12.0,
+          color: AppColors.red,
+          height: 1.2,
         ),
       ),
     );

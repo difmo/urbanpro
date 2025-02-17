@@ -1,3 +1,7 @@
+import 'package:URBANPRO/models/otp_sucess_response.dart';
+import 'package:URBANPRO/models/send_otp_response.dart';
+import 'package:URBANPRO/routes/app_routes.dart';
+import 'package:URBANPRO/utils/storage_service.dart';
 import 'package:get/get.dart';
 import '../repositories/auth_repository.dart';
 
@@ -5,29 +9,59 @@ class AuthController extends GetxController {
   final AuthRepository _authRepository = AuthRepository();
 
   var isLoading = false.obs;
-
-  Future<void> login(String email, String password) async {
+  final StorageService storageService = StorageService();
+  Future<OtpGetResponse> sendOtpcontroller(
+      String mobile, String email, String name, String role) async {
     isLoading.value = true;
     try {
-      final user = await _authRepository.login(email, password);
-      // Save user data or navigate
-      Get.toNamed('/home');
+      final responsedata =
+          await _authRepository.sendOtpRepo(mobile, email, name, role);
+      Get.snackbar('Success', responsedata.message);
+      print(responsedata.otpData.mobileOtp);
+      Get.toNamed(AppRoutes.OTPSCREEN, arguments: {
+        'mobile': mobile,
+        'email': email,
+        'name': name,
+        'role': role,
+        'otp': responsedata.otpData.mobileOtp
+      });
+      return responsedata;
     } catch (e) {
       Get.snackbar('Error', e.toString());
+      rethrow;
     } finally {
       isLoading.value = false;
     }
   }
 
-  Future<void> signup(String email, String password) async {
+  Future<OtpSuccessResponse> OtpSuccesscontroller(
+      String mobile, String email, int otp, String name, String role) async {
     isLoading.value = true;
     try {
-      await _authRepository.signup(email, password);
-      Get.snackbar('Success', 'Signup successful');
+      final responsedata =
+          await _authRepository.verifyOtpRepo(mobile, email, otp, name, role);
+      Get.snackbar('Success', responsedata.message);
+      print(responsedata.success);
+      await _saveLoginData(responsedata);
+      Get.toNamed(AppRoutes.STUDENTDASHBOARD);
+      return responsedata;
     } catch (e) {
       Get.snackbar('Error', e.toString());
+      rethrow;
     } finally {
       isLoading.value = false;
     }
+  }
+
+  Future<void> _saveLoginData(OtpSuccessResponse responsedata) async {
+    Map<String, dynamic> loginData = {
+      'token': responsedata.token,
+      'isLoggedIn': true,
+      'userId': responsedata.userData.id,
+      'userName': responsedata.userData.name,
+      'userRoles':
+          responsedata.userData.roles.map((role) => role.roleName).toList(),
+    };
+    await storageService.write('login_details', loginData);
   }
 }

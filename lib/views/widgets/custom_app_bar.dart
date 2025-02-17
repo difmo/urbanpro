@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;
 
-  CustomAppBar({required this.scaffoldKey});
+  const CustomAppBar({super.key, required this.scaffoldKey});
 
   @override
   Size get preferredSize =>
-      Size.fromHeight(kToolbarHeight); // Define the height of the AppBar
+      Size.fromHeight(kToolbarHeight); 
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +16,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       preferredSize: preferredSize,
       child: AppBar(
         backgroundColor:
-            Colors.transparent, // Transparent background for gradient
-        elevation: 0, // Remove shadow
+            Colors.transparent, 
+        elevation: 0,
         flexibleSpace: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -26,7 +26,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               colors: [
                 AppColors.secondaryColor,
                 AppColors.primaryColor
-              ], // Custom gradient colors
+              ], 
             ),
             borderRadius: BorderRadius.only(),
           ),
@@ -34,7 +34,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         leading: IconButton(
           icon: const Icon(Icons.menu, color: Colors.white),
           onPressed: () {
-            scaffoldKey.currentState?.openDrawer(); // Open drawer
+            scaffoldKey.currentState?.openDrawer(); 
           },
         ),
         title: const Text(
@@ -42,7 +42,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
-            fontSize: 24, // Larger font size
+            fontSize: 24, 
           ),
         ),
         actions: <Widget>[

@@ -1,4 +1,4 @@
-import 'package:URBANPRO/utils/colors.dart';
+import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:flutter/material.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
@@ -23,7 +23,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
           BoxShadow(
             color: Colors.black12,
             blurRadius: 6,
-            offset: Offset(0, -2), // Shadow effect above the navigation bar
+            offset: Offset(0, -2), 
           ),
         ],
       ),
@@ -31,7 +31,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
         currentIndex: currentIndex,
         onTap: onTap,
         backgroundColor: Colors.white,
-        selectedItemColor: AppColors.primaryColor,
+        selectedItemColor: ThemeConstants.secondaryColor,
         unselectedItemColor: Colors.grey,
         showUnselectedLabels: true,
         type: BottomNavigationBarType.fixed,

@@ -2,7 +2,7 @@ import 'dart:ui';
 
 class AppColors {
   static const highlight = Color(0xFFFFB53B);
-  static const Color primaryColor = Color(0xFF149fcb);
+  static const Color primaryColor = Color.fromARGB(255, 17, 191, 245);
   static const Color backgroundCircle = Color(0xe00b171b);
   static const Color primaryLightColor = Color(0xFFabe7f6);
   static const Color primaryLighterColor = Color(0xFFedfbfe);

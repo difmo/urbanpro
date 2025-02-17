@@ -2,10 +2,9 @@ import 'package:URBANPRO/views/student/LearnScreen%20.dart';
 import 'package:URBANPRO/views/student/AccountScreen.dart';
 import 'package:URBANPRO/views/student/ChatScreen.dart';
 import 'package:URBANPRO/views/student/ScheduleScreen.dart';
-import 'package:URBANPRO/views/widgets/CustomBottomNavigationBar.dart';
+import 'package:URBANPRO/views/widgets/custom_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:URBANPRO/views/student/student_home_screen.dart';
-import 'package:URBANPRO/views/widgets/custom_app_bar.dart';
 import 'package:URBANPRO/views/widgets/drawer.dart';
 
 class StudentDashBoard extends StatefulWidget {

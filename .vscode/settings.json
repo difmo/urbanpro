@@ -1,3 +1,4 @@
 {
-    "cmake.sourceDirectory": "C:/development/flutter_works/UrbanPro/urbanpro/linux"
+    "cmake.sourceDirectory": "C:/development/flutter_works/UrbanPro/urbanpro/linux",
+    "java.configuration.updateBuildConfiguration": "interactive"
 }

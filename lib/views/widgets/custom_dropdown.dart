@@ -19,6 +19,7 @@ class CustomDropdown<T> extends StatefulWidget {
 
 class _CustomDropdownState<T> extends State<CustomDropdown<T>> {
   late T _selectedValue;
+  // ignore: unused_field
   bool _isHovered = false;
 
   @override

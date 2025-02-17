@@ -7,3 +7,4 @@ class InitialBindings extends Bindings {
     Get.put(AuthController());
   }
 }
+     

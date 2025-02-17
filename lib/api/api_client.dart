@@ -4,7 +4,8 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:http/http.dart' as http;
 
 class ApiClient {
-  static const String baseUrl = "https://shikshaappservice.kalln.com/";
+  // static const String baseUrl = "https://shikshaappservice.kalln.com/";
+  static const String baseUrl = "https://solutiontechs.in/";
 
   Future<void> _checkInternetConnection() async {
     final connectivityResult = await Connectivity().checkConnectivity();
@@ -22,16 +23,26 @@ class ApiClient {
     }
   }
 
-  Future<dynamic> post(String endpoint, Map<String, dynamic> body) async {
+  Future<T> post<T>(
+    String endpoint,
+    Map<String, dynamic> body,
+    T Function(Map<String, dynamic> json) fromJson,
+  ) async {
     await _checkInternetConnection();
+
     try {
       final response = await http.post(
         Uri.parse('$baseUrl$endpoint'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode(body),
       );
-
-      return _handleResponse(response);
+      print('Response body: ${response.body}');
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> jsonResponse = jsonDecode(response.body);
+        return fromJson(jsonResponse);
+      } else {
+        throw Exception('Failed to load data: ${response.reasonPhrase}');
+      }
     } catch (e) {
       throw Exception('Network error: Unable to complete POST request. $e');
     }

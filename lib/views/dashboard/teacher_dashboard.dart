@@ -1,6 +1,5 @@
-import 'package:URBANPRO/routes/app_routes.dart';
 import 'package:URBANPRO/utils/colors.dart';
-import 'package:URBANPRO/views/widgets/CustomBottomNavigationBar.dart';
+import 'package:URBANPRO/views/widgets/custom_bottom_bar.dart';
 import 'package:URBANPRO/views/widgets/custom_app_bar.dart';
 import 'package:URBANPRO/views/widgets/drawer.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +44,7 @@ class _TeacherDashBoard extends State<TeacherDashBoard> {
 
   @override
   Widget build(BuildContext context) {
-    final screenHeight = MediaQuery.of(context).size.height;
+    // final screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
       key: _scaffoldKey,

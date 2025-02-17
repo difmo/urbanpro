@@ -1,44 +1,53 @@
+import 'package:URBANPRO/models/otp_sucess_response.dart';
+import 'package:URBANPRO/models/send_otp_response.dart';
 
 import '../api/api_client.dart';
 import '../api/endpoints.dart';
-import '../models/user_model.dart';
 
 class AuthRepository {
   final ApiClient _apiClient = ApiClient();
 
-  Future<dynamic> login(String email, String password) async {
+  Future<OtpGetResponse> sendOtpRepo(
+      String mobile, String email, String name, String roleId) async {
     try {
-      final body = {'email': email, 'password': password};
-      return await _apiClient.post(Endpoints.LOGIN, body);
-    } catch (e) {
-      throw Exception('Login failed: $e');
-    }
-  }
-
-  Future<void> signup(String email, String password) async {
-    try {
-      final body = {'email': email, 'password': password};
-      await _apiClient.post(Endpoints.SIGNUP, body);
-    } catch (e) {
-      throw Exception('Signup failed: $e');
-    }
-  }
-
-  Future<UserModel> loginWithGet(
-      String appID, String studentID, String password) async {
-    try {
-      final queryParameters = {
-        'logid': studentID,
-        'passid': password,
-        'brid': appID,
+      final body = {
+        'mobile': mobile,
+        'email': email,
+        'name': name,
+        'role_id': roleId,
       };
-      final response = await _apiClient.get(
-        Endpoints.LOGIN,
-        queryParameters: queryParameters,
-      );
-      return UserModel.fromJson(response);
+      final responseJson = await _apiClient.post(
+          Endpoints.SEND_OTP, body, (json) => OtpGetResponse.fromJson(json));
+
+      if (responseJson.success == true) {
+        return responseJson;
+      } else {
+        throw Exception('OTP verification failed: ${responseJson.message}');
+      }
     } catch (e) {
-      throw Exception('Login with GET failed: $e');
+      throw Exception('OTP request failed: $e');
+    }
+  }
+
+  Future<OtpSuccessResponse> verifyOtpRepo(
+      String mobile, String email, int otp, String name, String roleId) async {
+    try {
+      final body = {
+        'mobile': mobile,
+        'email': email,
+        'name': name,
+        'role_id': roleId,
+        'otp': otp,
+      };
+      final responseJson = await _apiClient.post(Endpoints.VERIFY_OTP, body,
+          (json) => OtpSuccessResponse.fromJson(json));
+      if (responseJson.success == true) {
+        return responseJson;
+      } else {
+        throw Exception('OTP verification failed: ${responseJson.message}');
+      }
+    } catch (e) {
+      throw Exception('OTP request failed: $e');
     }
   }
 }

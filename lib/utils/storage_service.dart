@@ -10,6 +10,7 @@ class StorageService {
   Map<String, dynamic>? read(String key) {
     final prefs = SharedPreferences.getInstance();
     final data = prefs.then((prefs) => prefs.getString(key));
+    // ignore: unnecessary_null_comparison
     return data != null
         ? jsonDecode(data as String) as Map<String, dynamic>
         : null;

@@ -7,8 +7,7 @@ class LearnScreen extends StatefulWidget {
   State<LearnScreen> createState() => _LearnScreenState();
 }
 
-class _LearnScreenState extends State<LearnScreen>
-    with SingleTickerProviderStateMixin {
+class _LearnScreenState extends State<LearnScreen> with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -26,35 +25,11 @@ class _LearnScreenState extends State<LearnScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.blue,
-        elevation: 0,
-        title: Row(
-          children: [
-            const SizedBox(width: 10),
-            const Text(
-              "Learn",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-          ],
-        ),
-        bottom: TabBar(
-          controller: _tabController,
-          labelColor: Colors.black,
-          indicatorColor: Colors.blue,
-          unselectedLabelColor: Colors.grey,
-          tabs: const [
-            Tab(text: "Scheduled"),
-            Tab(text: "Pending"),
-            Tab(text: "All"),
-          ],
-        ),
-      ),
+      appBar: _customAppBar(),
       body: TabBarView(
         controller: _tabController,
         children: [
-          _buildEmptyState(
-              "No Scheduled Course found!\nContact the Tutor to schedule your classes."),
+          _buildEmptyState("No Scheduled Course found!\nContact the Tutor to schedule your classes."),
           _buildEmptyState("No Pending Courses found!"),
           _buildEmptyState("No Courses available at the moment."),
         ],
@@ -62,14 +37,61 @@ class _LearnScreenState extends State<LearnScreen>
     );
   }
 
+  PreferredSize _customAppBar() {
+    return PreferredSize(
+      preferredSize: const Size.fromHeight(80),
+      child: Container(
+        margin: const EdgeInsets.only(top: 5),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        decoration: _boxDecoration(),
+        child: SafeArea(
+          child: Column(
+            children: [
+              const SizedBox(height: 5),
+              TabBar(
+                controller: _tabController,
+                labelColor: Colors.black,
+                indicatorColor: Colors.blue,
+                unselectedLabelColor: Colors.grey,
+                tabs: const [
+                  Tab(text: "Scheduled"),
+                  Tab(text: "Pending"),
+                  Tab(text: "All"),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  BoxDecoration _boxDecoration() {
+    return BoxDecoration(
+      borderRadius: const BorderRadius.vertical(
+        bottom: Radius.circular(20),
+      ),
+      gradient: LinearGradient(
+        colors: [Colors.white, Colors.white],
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+      ),
+    );
+  }
+
+
+
   Widget _buildEmptyState(String message) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30),
-        child: Text(
-          message,
-          textAlign: TextAlign.center,
-          style: const TextStyle(fontSize: 16, color: Colors.black54),
+    return Container(
+      color: Colors.white,
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30),
+          child: Text(
+            message,
+            textAlign: TextAlign.center,
+            style: const TextStyle(fontSize: 16, color: Colors.black54),
+          ),
         ),
       ),
     );

@@ -3,6 +3,8 @@ import 'package:URBANPRO/utils/colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomDrawer extends StatelessWidget {
+  const CustomDrawer({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -46,6 +48,7 @@ class CustomDrawer extends StatelessWidget {
   }
 
   // Default Header (if no user data is found)
+  // ignore: unused_element
   Widget _buildDefaultHeader(bool isLoading) {
     return Container(
       width: double.infinity,
@@ -75,38 +78,6 @@ class CustomDrawer extends StatelessWidget {
   }
 
   // User Header with Firestore Data
-  Widget _buildUserHeader(Map<String, dynamic>? userData) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
-      decoration: BoxDecoration(color: AppColors.primaryColor),
-      child: Padding(
-        padding: const EdgeInsets.only(top: 60.0),
-        child: Column(
-          children: [
-            CircleAvatar(
-              radius: 50,
-              backgroundImage: NetworkImage(userData?['profileImage'] ??
-                  'https://cce.guru/wp-content/uploads/2022/12/Hydrangeas.jpg'),
-              backgroundColor: Colors.white,
-            ),
-            const SizedBox(height: 10),
-            Text(
-              userData?['name'] ?? 'Unknown User',
-              style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold),
-            ),
-            Text(
-              userData?['email'] ?? 'No Email',
-              style: const TextStyle(color: Colors.white70, fontSize: 14),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 
   // Drawer Menu Item
   Widget _buildDrawerItem(

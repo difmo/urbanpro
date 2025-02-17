@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import '../../routes/app_routes.dart';
 import '../../utils/colors.dart';
@@ -53,6 +54,33 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         backgroundColor: AppColors.white,
         body: Stack(
           children: [
+            // Positioned(
+            //   top: 100,
+            //   left: 60,
+            //   child: Container(
+            //     child: SvgPicture.asset(
+            //       'assets/bg/onboardbook.svg',
+            //     ),
+            //   ),
+            // ),
+            Positioned(
+              top: 0,
+              left: 15,
+              child: Container(
+                child: SvgPicture.asset(
+                  'assets/bg/onboard.svg',
+                ),
+              ),
+            ),
+            Positioned(
+              bottom: 0,
+              right: 15,
+              child: Container(
+                child: SvgPicture.asset(
+                  'assets/bg/onboardbottom.svg',
+                ),
+              ),
+            ),
             _buildPageView(),
             _buildIndicator(),
             _buildBottomButtons(),
@@ -135,9 +163,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   text: 'Get Started',
                   icon: Icons.arrow_forward_sharp,
                   textColor: AppColors.white,
-                  backgroundColor: AppColors.primaryColor,
+                  backgroundColor: const Color.fromARGB(255, 17, 191, 245),
                   borderRadius: const BorderRadius.all(
-                    Radius.circular(15),
+                    Radius.circular(100),
                   ),
                   onPressed: () {
                     Get.toNamed(AppRoutes.LOGIN);

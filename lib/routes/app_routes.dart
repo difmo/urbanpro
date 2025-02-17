@@ -7,4 +7,5 @@ class AppRoutes {
   static const ADMINDASHBOARD = '/admindashboard';
   static const STUDENTHOME = '/studenthome';
   static const ONBOARDING = '/onboarding';
+  static const OTPSCREEN = '/otpscreen';
 }

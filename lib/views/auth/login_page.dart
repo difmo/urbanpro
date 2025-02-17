@@ -1,7 +1,9 @@
 import 'package:URBANPRO/routes/app_routes.dart';
+import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:URBANPRO/utils/user_role.dart';
+import 'package:URBANPRO/views/widgets/custom_dropdown%20copy.dart';
 import 'package:URBANPRO/views/widgets/custom_dropdown.dart';
-import 'package:URBANPRO/views/widgets/phone_number_input.dart';
+import 'package:URBANPRO/views/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -32,13 +34,8 @@ class _LoginPageState extends State<LoginPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(height: 60),
-
-              // Logo
               Image.asset("assets/images/Logo.png", height: 100),
-
               const SizedBox(height: 30),
-
-              // Title
               Text(
                 'Login with Your',
                 style: TextStyle(
@@ -48,10 +45,7 @@ class _LoginPageState extends State<LoginPage> {
                   fontFamily: "Poppins",
                 ),
               ),
-
               const SizedBox(height: 10),
-
-              // Subtitle
               Text(
                 "Education is the passport to the future\nKeep learning, keep growing.",
                 textAlign: TextAlign.center,
@@ -64,13 +58,9 @@ class _LoginPageState extends State<LoginPage> {
               ),
 
               const SizedBox(height: 30),
-
-              // Dropdown for User Role
-              _buildDropdown(),
-
+              SimpleDropdown(onSelectedValueChanged: (value) => {}, initialValue: "Admin"),
               const SizedBox(height: 20),
 
-              // Name Input
               CommonTextField(
                 inputType: InputType.name,
                 label: "Full Name",
@@ -81,7 +71,6 @@ class _LoginPageState extends State<LoginPage> {
 
               const SizedBox(height: 20),
 
-              // Phone Input
               CommonTextField(
                 inputType: InputType.phone,
                 label: "Phone Number",
@@ -94,10 +83,11 @@ class _LoginPageState extends State<LoginPage> {
 
               const SizedBox(height: 20),
 
-              // Sign In Button
               SizedBox(
                 width: double.infinity,
                 child: CustomButton(
+                  width: 70,
+                  baseTextColor: ThemeConstants.whiteColor,
                   text: 'SIGN IN',
                   onPressed: () async {
                     Get.toNamed(AppRoutes.STUDENTDASHBOARD);
@@ -107,7 +97,6 @@ class _LoginPageState extends State<LoginPage> {
 
               const SizedBox(height: 30),
 
-              // Don't have an account? Sign Up
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -139,6 +128,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+  // ignore: unused_element
   Widget _buildDropdown() {
     return Container(
       width: double.infinity,

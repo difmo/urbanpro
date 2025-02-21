@@ -16,8 +16,9 @@ class CommonTextField extends StatefulWidget {
   final double? borderRadius;
   final double? height;
   final Color? borderColor;
-  final IconData? icon; // Added optional icon parameter
-  final IconData? suffixicon; // Added optional icon parameter
+  final IconData? icon; 
+  final IconData? suffixicon; 
+    final String? Function(String?)? validator;
 
   const CommonTextField({
     super.key,
@@ -25,6 +26,7 @@ class CommonTextField extends StatefulWidget {
     required this.controller,
     required this.onChanged,
     required this.label,
+        this.validator,
     required this.hint,
     this.readOnly = false,
     this.autofocus = false,
@@ -101,7 +103,6 @@ class _CommonTextFieldState extends State<CommonTextField> {
 
   @override
   Widget build(BuildContext context) {
-    // Default border color if not passed
     Color defaultBorderColor = widget.borderColor ?? AppColors.primaryColor;
 
     return TextFormField(
@@ -111,7 +112,7 @@ class _CommonTextFieldState extends State<CommonTextField> {
       inputFormatters: _inputFormatters,
       readOnly: widget.readOnly,
       onChanged: widget.onChanged,
-      validator: _validateInput,
+     validator: widget.validator,
       style: TextStyle(
         color: widget.readOnly ? Colors.grey : AppColors.grey,
         letterSpacing: 1.5,

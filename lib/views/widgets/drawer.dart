@@ -77,9 +77,7 @@ class CustomDrawer extends StatelessWidget {
     );
   }
 
-  // User Header with Firestore Data
 
-  // Drawer Menu Item
   Widget _buildDrawerItem(
       IconData icon, String title, String? route, BuildContext context) {
     return ListTile(

@@ -1,3 +1,5 @@
+import 'package:URBANPRO/utils/theme_constants.dart';
+import 'package:URBANPRO/views/widgets/custom_button.dart';
 import 'package:URBANPRO/views/widgets/loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
@@ -54,6 +56,7 @@ class _OTPScreenState extends State<OTPScreen> {
     print("Role: ${widget.role}");
 
     return Scaffold(
+      backgroundColor: ThemeConstants.whiteColor,
       body: isLoading
           ? LoadingWidget()  
           : Container(
@@ -62,7 +65,7 @@ class _OTPScreenState extends State<OTPScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const SizedBox(height: 40.0),
-                  Text('Phone Number: ${widget.phone}', style: TextStyle(fontSize: 18)),
+                  Text('Phone Number: ${widget.phone} and your temp otp is ${widget.otp}', style: TextStyle(fontSize: 18)),
                   const SizedBox(height: 20.0),
                   OtpTextField(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -81,7 +84,8 @@ class _OTPScreenState extends State<OTPScreen> {
                   const SizedBox(height: 20.0),
                   SizedBox(
                     width: double.infinity,
-                    child: ElevatedButton(
+                    child: CustomButton(
+                      text: "Next",
                       onPressed: () {
                         if (widget.phone.isNotEmpty) {
                           verifyOtp(widget.phone, widget.otp, widget.email, widget.name, widget.role);
@@ -89,7 +93,6 @@ class _OTPScreenState extends State<OTPScreen> {
                           print("Please enter a valid phone number");
                         }
                       },
-                      child: const Text('Next'),
                     ),
                   ),
                 ],

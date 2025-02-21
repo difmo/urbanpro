@@ -1,3 +1,4 @@
+import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
@@ -5,7 +6,7 @@ class CustomButton extends StatelessWidget {
   final VoidCallback onPressed;
   final Color backgroundColor;
   final Color textColor;
-  final Widget? icon; // Icon or any other widget
+  final Widget? icon; 
   final double borderRadius;
   final bool left;
   final double? width; // Nullable width, calculated dynamically if not provided
@@ -18,7 +19,7 @@ class CustomButton extends StatelessWidget {
     super.key,
     required this.text,
     required this.onPressed,
-    this.backgroundColor = Colors.blue,
+    this.backgroundColor = ThemeConstants.secondaryColor,
     this.textColor = Colors.white,
     this.icon,
     this.borderRadius = 30.0,
@@ -32,8 +33,8 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final buttonWidth = width ?? 80;
-    final buttonHeight = height ?? 35;
+    final buttonWidth = width ?? 100;
+    final buttonHeight = height ?? 40;
     return SizedBox(
       width: buttonWidth,
       height: buttonHeight,

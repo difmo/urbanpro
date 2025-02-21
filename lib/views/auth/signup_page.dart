@@ -1,13 +1,15 @@
+import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:URBANPRO/utils/user_role.dart';
+import 'package:URBANPRO/utils/validators.dart';
+import 'package:URBANPRO/views/auth/otp_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:URBANPRO/controllers/auth_controller.dart'; // Import the controller
-import 'package:URBANPRO/routes/app_routes.dart';
+import 'package:URBANPRO/controllers/auth_controller.dart';
 import 'package:URBANPRO/utils/colors.dart';
 import 'package:URBANPRO/views/widgets/custom_button.dart';
 import 'package:URBANPRO/views/widgets/custom_dropdown.dart';
 import 'package:URBANPRO/views/widgets/custom_text_field.dart';
-import 'package:URBANPRO/views/widgets/loading_widget.dart'; // Import the loading widget
+import 'package:URBANPRO/views/widgets/loading_widget.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -20,161 +22,177 @@ class _SignupPageState extends State<SignupPage> {
   final TextEditingController roleController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
-  final AuthController _authController =
-      Get.put(AuthController()); // Initialize AuthController
-  bool isLoading = false; // To track loading state
+  final AuthController _authController = Get.put(AuthController());
+  bool isLoading = false;
+  final _nameFormKey = GlobalKey<FormState>();
+  final _mobileFormKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Stack(
-          children: [
-            // Main UI content
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const SizedBox(height: 60),
-
-                  // Logo
-                  Image.asset("assets/images/Logo.png", height: 100),
-
-                  const SizedBox(height: 30),
-
-                  // Title
-                  Text(
-                    'Sign Up with your',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.primaryColor,
-                      fontFamily: "Poppins",
-                    ),
+      body: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const SizedBox(height: 60),
+                Image.asset("assets/images/Logo.png", height: 100),
+                const SizedBox(height: 30),
+                Text(
+                  'Sign Up with your',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.primaryColor,
+                    fontFamily: "Poppins",
                   ),
-                  const SizedBox(height: 10),
-                  // Subtitle
-                  Text(
-                    "Education is the passport to the future\nKeep learning, keep growing.",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      fontFamily: 'Poppins',
-                      color: Colors.grey.shade700,
-                    ),
+                ),
+                const SizedBox(height: 10),
+                // Subtitle
+                Text(
+                  "Education is the passport to the future\nKeep learning, keep growing.",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: 'Poppins',
+                    color: Colors.grey.shade700,
                   ),
+                ),
 
-                  const SizedBox(height: 30),
+                const SizedBox(height: 30),
 
-                  // Dropdown for Role
-                  _buildDropdown(),
+                _buildDropdown(),
 
-                  const SizedBox(height: 20),
+                const SizedBox(height: 20),
 
-                  // Name Input
-                  CommonTextField(
+                Form(
+                  key: _nameFormKey,
+                  child: CommonTextField(
                     inputType: InputType.name,
                     label: "Full Name",
                     hint: "Enter your full name",
                     controller: nameController,
-                    onChanged: (value) => print("Name: $value"),
+                    validator: Validators.validateName,
+                    onChanged: (value) {
+                      _nameFormKey.currentState?.validate();
+                    },
                   ),
+                ),
 
-                  const SizedBox(height: 20),
+                const SizedBox(height: 20),
 
-                  CommonTextField(
+                Form(
+                  key: _mobileFormKey,
+                  child: CommonTextField(
                     inputType: InputType.phone,
                     label: "Phone Number",
                     hint: "Enter your phone number",
                     controller: phoneController,
-                    onChanged: (value) => print("Phone: $value"),
-                  ),
-
-                  const SizedBox(height: 10),
-
-                  const SizedBox(height: 20),
-                  SizedBox(
-                    width: double.infinity,
-                    child: CustomButton(
-                      text: 'SIGN UP',
-                      onPressed: () async {
-                        setState(() {
-                          isLoading = true; // Set loading state to true
-                        });
-
-                        String name = nameController.text;
-                        String phone = phoneController.text;
-                        String role = roleController.text;
-
-                        if (name.isNotEmpty &&
-                            phone.isNotEmpty &&
-                            role.isNotEmpty) {
-                          await _authController.sendOtpcontroller(
-                            phone,
-                            'email@gmail.com',
-                            name,
-                            '1',
-                          );
-
-                          setState(() {
-                            isLoading = false; // Reset loading state after action
-                          });
-                        } else {
-                          Get.snackbar('Error', 'Please fill all fields');
-                          setState(() {
-                            isLoading = false; // Reset loading state on error
-                          });
-                        }
-                      },
-                    ),
-                  ),
-
-                  const SizedBox(height: 30),
-
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "If you have already registered?",
-                        style: TextStyle(fontSize: 14, color: Colors.black),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          Get.toNamed(AppRoutes.LOGIN);
-                        },
-                        child: Text(
-                          "Sign In",
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.primaryColor,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-
-                  const SizedBox(height: 20),
-                ],
-              ),
-            ),
-
-            // Show loading overlay if isLoading is true
-            if (isLoading)
-              Positioned.fill(
-                child: Container(
-                  color: Colors.black.withOpacity(0.4), // Semi-transparent overlay
-                  child: Center(
-                    child: LoadingWidget(), // Show loading spinner in center
+                    validator: Validators.validatePhoneNumber,
+                    onChanged: (value) {
+                      _mobileFormKey.currentState?.validate();
+                    },
                   ),
                 ),
+
+                const SizedBox(height: 10),
+
+                const SizedBox(height: 20),
+               // Updated part in the SignupPage
+SizedBox(
+  width: double.infinity,
+  child: CustomButton(
+    baseTextColor: ThemeConstants.whiteColor,
+    text: 'SIGN UP',
+    onPressed: () async {
+      setState(() {
+        isLoading = true;
+      });
+
+      bool isNameValid =
+          _nameFormKey.currentState?.validate() ?? false;
+      bool isPhoneValid =
+          _mobileFormKey.currentState?.validate() ?? false;
+
+      if (isNameValid && isPhoneValid) {
+        // Send OTP
+        await _authController.sendOtpcontroller(
+          phoneController.text,
+          'email@gmail.com',  // Replace with actual email
+          nameController.text,
+          '1',  // Role, you can modify this based on selection
+        );
+
+        setState(() {
+          isLoading = false;
+        });
+
+        // Show OTP screen as a modal from bottom to top
+        showModalBottomSheet(
+          context: context,
+          isScrollControlled: true,
+          backgroundColor: Colors.transparent,  // Remove background color to show transparency
+          builder: (context) => OTPScreen(
+            phone: phoneController.text,
+            otp: 123456,  // This should come from your OTP controller or backend
+            email: 'email@gmail.com',  // Replace with actual email
+            name: nameController.text,
+            role: '1',  // Replace with actual role
+          ),
+        );
+      } else {
+        setState(() {
+          isLoading = false;
+        });
+      }
+    },
+  ),
+),
+
+
+                const SizedBox(height: 30),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "If you have already registered?",
+                      style: TextStyle(fontSize: 14, color: Colors.black),
+                    ),
+                    TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        "Sign In",
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.primaryColor,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+
+                const SizedBox(height: 20),
+              ],
+            ),
+          ),
+          if (isLoading)
+            Positioned.fill(
+              child: Container(
+                color: Colors.black.withOpacity(0.4),
+                child: Center(
+                  child: LoadingWidget(),
+                ),
               ),
-          ],
-        ),
+            ),
+        ],
       ),
     );
   }

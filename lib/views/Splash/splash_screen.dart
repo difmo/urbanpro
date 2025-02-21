@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'dart:async';
 import 'package:get/get.dart';
 import '../../utils/colors.dart';
@@ -23,27 +22,28 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF006F92),
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+      // backgroundColor: const Color(0xFF006F92),
       body: Stack(
         children: [
-          Positioned(
-            top: 0,
-            left: 0,
-            child: Container(
-              child: SvgPicture.asset(
-                'assets/bg/splashelementupper.svg',
-              ),
-            ),
-          ),
-          Positioned(
-            bottom: 0,
-            right: 0,
-            child: Container(
-              child: SvgPicture.asset(
-                'assets/bg/splashelement.svg',
-              ),
-            ),
-          ),
+          // Positioned(
+          //   top: 0,
+          //   left: 0,
+          //   child: Container(
+          //     child: SvgPicture.asset(
+          //       'assets/bg/splashelementupper.svg',
+          //     ),
+          //   ),
+          // ),
+          // Positioned(
+          //   bottom: 0,
+          //   right: 0,
+          //   child: Container(
+          //     child: SvgPicture.asset(
+          //       'assets/bg/splashelement.svg',
+          //     ),
+          //   ),
+          // ),
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -61,7 +61,7 @@ class _SplashScreenState extends State<SplashScreen> {
                       style: TextStyle(
                         fontSize: 26,
                         fontWeight: FontWeight.bold,
-                        color: AppColors.white,
+                        color: AppColors.black,
                         fontFamily: "poppins",
                       ),
                     ),

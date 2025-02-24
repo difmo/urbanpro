@@ -1,7 +1,7 @@
 import 'package:URBANPRO/utils/colors.dart';
-import 'package:URBANPRO/views/widgets/custom_bottom_bar.dart';
 import 'package:URBANPRO/views/widgets/custom_app_bar.dart';
 import 'package:URBANPRO/views/widgets/drawer.dart';
+import 'package:URBANPRO/views/widgets/teacher_bottom_bar.dart';
 import 'package:flutter/material.dart';
 
 class TeacherDashBoard extends StatefulWidget {
@@ -87,7 +87,7 @@ class _TeacherDashBoard extends State<TeacherDashBoard> {
           ],
         ),
       ),
-      bottomNavigationBar: CustomBottomNavigationBar(
+      bottomNavigationBar: TeacherBottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
       ),

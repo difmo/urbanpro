@@ -118,14 +118,14 @@ class Validators {
 
   static String? validateZipCode(String? value) {
     final zipRegEx = RegExp(r'^\d{6}$');
-    if (value!.length >= 1 && !zipRegEx.hasMatch(value)) {
+    if (value!.isNotEmpty && !zipRegEx.hasMatch(value)) {
       return 'Pincode must be exactly 6 digits';
     }
     return null;
   }
 
   static String? checkLength(String? value) {
-    if (value!.length >= 1 && value.length <= 2) {
+    if (value!.isNotEmpty && value.length <= 2) {
       return '$value must be at least 2 characters long';
     }
     return null;
@@ -135,7 +135,7 @@ class Validators {
     if (value == null || value.isEmpty) {
       return '$label must not be empty';
     }
-    if (value.length >= 1 && value.length <= 2) {
+    if (value.isNotEmpty && value.length <= 2) {
       return '$label must be at least 2 characters long';
     }
     if (value.length > 50) {
@@ -149,7 +149,7 @@ class Validators {
   }
 
   String? checkLengthAndAddress(String? value, String label) {
-    if (value!.length >= 1 && value.length <= 2) {
+    if (value!.isNotEmpty && value.length <= 2) {
       return '$label must be at least 2 characters long';
     }
     if (value.length > 50) {
@@ -159,7 +159,7 @@ class Validators {
   }
 
   String? checkLengths(String? value, String label) {
-    if (value!.length >= 1 && value.length <= 2) {
+    if (value!.isNotEmpty && value.length <= 2) {
       return '$label must be at least 2 characters long';
     }
     if (value.length > 50) {

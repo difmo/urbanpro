@@ -1,5 +1,5 @@
 import 'package:URBANPRO/utils/colors.dart';
-import 'package:URBANPRO/views/widgets/custom_bottom_bar.dart';
+import 'package:URBANPRO/views/widgets/admin_bottom_bar.dart';
 import 'package:URBANPRO/views/widgets/custom_app_bar.dart';
 import 'package:URBANPRO/views/widgets/drawer.dart';
 import 'package:flutter/material.dart';
@@ -87,7 +87,7 @@ class _AdminDashBoard extends State<AdminDashBoard> {
           ],
         ),
       ),
-      bottomNavigationBar: CustomBottomNavigationBar(
+      bottomNavigationBar: AdminBottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
       ),

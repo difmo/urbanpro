@@ -16,9 +16,9 @@ class CommonTextField extends StatefulWidget {
   final double? borderRadius;
   final double? height;
   final Color? borderColor;
-  final IconData? icon; 
-  final IconData? suffixicon; 
-    final String? Function(String?)? validator;
+  final IconData? icon;
+  final IconData? suffixicon;
+  final String? Function(String?)? validator;
 
   const CommonTextField({
     super.key,
@@ -26,7 +26,7 @@ class CommonTextField extends StatefulWidget {
     required this.controller,
     required this.onChanged,
     required this.label,
-        this.validator,
+    this.validator,
     required this.hint,
     this.readOnly = false,
     this.autofocus = false,
@@ -112,14 +112,15 @@ class _CommonTextFieldState extends State<CommonTextField> {
       inputFormatters: _inputFormatters,
       readOnly: widget.readOnly,
       onChanged: widget.onChanged,
-     validator: widget.validator,
+      validator: widget.validator,
       style: TextStyle(
         color: widget.readOnly ? Colors.grey : AppColors.grey,
         letterSpacing: 1.5,
       ),
       decoration: InputDecoration(
         suffixIcon: widget.suffixicon != null
-            ? Icon(widget.suffixicon, color: ThemeConstants.grey) // Optional icon
+            ? Icon(widget.suffixicon,
+                color: ThemeConstants.grey) // Optional icon
             : null, // Only show if icon is passed
         prefixIcon: widget.icon != null
             ? Icon(widget.icon, color: ThemeConstants.grey) // Optional icon

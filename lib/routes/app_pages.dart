@@ -3,6 +3,7 @@ import 'package:URBANPRO/views/dashboard/admin_dashboard.dart';
 import 'package:URBANPRO/views/dashboard/student_dashboard.dart';
 import 'package:URBANPRO/views/dashboard/teacher_dashboard.dart';
 import 'package:URBANPRO/views/student/student_home_screen.dart';
+import 'package:URBANPRO/views/student/study_meterial_screen.dart';
 import 'package:get/get.dart';
 import '../views/onboarding/onboarding_screen.dart';
 import '../views/splash/splash_screen.dart';
@@ -15,7 +16,7 @@ class AppPages {
     GetPage(name: AppRoutes.SPLASHSCREEN, page: () => SplashScreen()),
     GetPage(name: AppRoutes.LOGIN, page: () => LoginPage()),
     GetPage(name: AppRoutes.SIGNUP, page: () => SignupPage()),
-    GetPage(name: AppRoutes.STUDENTHOME, page: () => StudentHomeScreen()),
+    GetPage(name: AppRoutes.STUDENTHOME, page: () => StudyMaterialScreen()),
     GetPage(name: AppRoutes.ONBOARDING, page: () => OnboardingScreen()),
     GetPage(name: AppRoutes.STUDENTDASHBOARD, page: () => StudentDashBoard()),
     GetPage(name: AppRoutes.TEACHERDASHBOARD, page: () => TeacherDashBoard()),

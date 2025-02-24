@@ -1,11 +1,11 @@
 import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:flutter/material.dart';
 
-class CustomBottomNavigationBar extends StatelessWidget {
+class TeacherBottomNavigationBar extends StatelessWidget {
   final int currentIndex;
   final Function(int) onTap;
 
-  const CustomBottomNavigationBar({
+  const TeacherBottomNavigationBar({
     super.key,
     required this.currentIndex,
     required this.onTap,

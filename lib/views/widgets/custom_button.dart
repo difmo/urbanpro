@@ -19,7 +19,7 @@ class CustomButton extends StatelessWidget {
     super.key,
     required this.text,
     required this.onPressed,
-    this.backgroundColor = ThemeConstants.secondaryColor,
+    this.backgroundColor = ThemeConstants.primaryColor,
     this.textColor = Colors.white,
     this.icon,
     this.borderRadius = 30.0,

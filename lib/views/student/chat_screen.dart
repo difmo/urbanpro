@@ -1,4 +1,4 @@
-import 'package:URBANPRO/views/student/ChatDetailScreen.dart';
+import 'package:URBANPRO/views/student/chat_detail_screen.dart';
 import 'package:flutter/material.dart';
 
 class ChatScreen extends StatelessWidget {

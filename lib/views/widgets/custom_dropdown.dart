@@ -1,4 +1,4 @@
-import 'package:URBANPRO/utils/colors.dart';
+import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:flutter/material.dart';
 
 class CustomDropdown<T> extends StatefulWidget {
@@ -38,14 +38,14 @@ class _CustomDropdownState<T> extends State<CustomDropdown<T>> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: AppColors.secondHeadingBlack,
+            color: ThemeConstants.secondHeadingBlack,
             width: 1,
           ),
-          color: AppColors.primaryColor,
+          color: ThemeConstants.primaryColor,
         ),
         child: Theme(
           data: Theme.of(context).copyWith(
-            canvasColor: AppColors.primaryColor,
+            canvasColor: ThemeConstants.primaryColor,
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(50),
@@ -55,12 +55,12 @@ class _CustomDropdownState<T> extends State<CustomDropdown<T>> {
                 child: DropdownButton<T>(
                   icon: const Icon(
                     Icons.arrow_drop_down,
-                    color: AppColors.white,
+                    color: ThemeConstants.white,
                   ),
                   iconSize: 28,
                   elevation: 16,
                   style: const TextStyle(
-                    color: AppColors.white,
+                    color: ThemeConstants.white,
                   ),
                   underline: Container(
                     height: 0,
@@ -77,7 +77,7 @@ class _CustomDropdownState<T> extends State<CustomDropdown<T>> {
                       child: Text(
                         entry.value,
                         style: const TextStyle(
-                          color: AppColors.white,
+                          color: ThemeConstants.white,
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
                         ),

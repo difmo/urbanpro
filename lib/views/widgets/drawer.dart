@@ -1,5 +1,5 @@
 import 'package:URBANPRO/routes/app_routes.dart';
-import 'package:URBANPRO/utils/colors.dart';
+import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:flutter/material.dart';
 
 class CustomDrawer extends StatelessWidget {
@@ -53,7 +53,7 @@ class CustomDrawer extends StatelessWidget {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 20),
-      decoration: BoxDecoration(color: AppColors.primaryColor),
+      decoration: BoxDecoration(color: ThemeConstants.primaryColor),
       child: isLoading
           ? const Center(child: CircularProgressIndicator(color: Colors.white))
           : Column(
@@ -81,7 +81,7 @@ class CustomDrawer extends StatelessWidget {
   Widget _buildDrawerItem(
       IconData icon, String title, String? route, BuildContext context) {
     return ListTile(
-      leading: Icon(icon, color: AppColors.primaryColor, size: 26),
+      leading: Icon(icon, color: ThemeConstants.primaryColor, size: 26),
       title: Text(
         title,
         style: const TextStyle(

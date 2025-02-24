@@ -1,8 +1,8 @@
+import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import '../../routes/app_routes.dart';
-import '../../utils/colors.dart';
 import '../../utils/orientation_lock.dart';
 import 'onboarding_controller.dart';
 
@@ -51,7 +51,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   Widget build(BuildContext context) {
     return OrientationLock(
       child: Scaffold(
-        backgroundColor: AppColors.white,
+        backgroundColor: ThemeConstants.white,
         body: Stack(
           children: [
             // Positioned(
@@ -128,8 +128,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       height: 10.0,
                       decoration: BoxDecoration(
                         color: controller.currentIndex.value == index
-                            ? AppColors.primaryColor
-                            : AppColors.grey,
+                            ? ThemeConstants.primaryColor
+                            : ThemeConstants.grey,
                         shape: BoxShape.circle,
                       ),
                     ),
@@ -162,7 +162,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 _buildButton(
                   text: 'Get Started',
                   icon: Icons.arrow_forward_sharp,
-                  textColor: AppColors.white,
+                  textColor: ThemeConstants.white,
                   backgroundColor: const Color.fromARGB(255, 17, 191, 245),
                   borderRadius: const BorderRadius.all(
                     Radius.circular(100),
@@ -285,13 +285,13 @@ class OnboardingPage extends StatelessWidget {
                 style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
-                    color: AppColors.black),
+                    color: ThemeConstants.black),
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 40),
               Text(
                 description,
-                style: TextStyle(fontSize: 16, color: AppColors.black),
+                style: TextStyle(fontSize: 16, color: ThemeConstants.black),
                 textAlign: TextAlign.center,
               ),
             ],

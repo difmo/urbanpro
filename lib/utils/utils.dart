@@ -1,4 +1,4 @@
-import 'package:URBANPRO/utils/colors.dart';
+import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,8 +12,8 @@ class Utils {
       snackPosition: SnackPosition.BOTTOM,
       maxWidth: 500,
       duration: const Duration(seconds: 2),
-      backgroundColor: AppColors.red,
-      colorText: AppColors.primaryColor,
+      backgroundColor: ThemeConstants.red,
+      colorText: ThemeConstants.primaryColor,
       dismissDirection: DismissDirection.horizontal,
       barBlur: 2,
       isDismissible: true,
@@ -31,10 +31,10 @@ class Utils {
       snackPosition: SnackPosition.BOTTOM,
       maxWidth: 500,
       duration: const Duration(seconds: 2),
-      backgroundColor: AppColors.green,
+      backgroundColor: ThemeConstants.green,
       dismissDirection: DismissDirection.horizontal,
       barBlur: 2,
-      colorText: AppColors.primaryColor,
+      colorText: ThemeConstants.primaryColor,
       isDismissible: true,
       shouldIconPulse: true,
       animationDuration: const Duration(
@@ -50,8 +50,8 @@ class Utils {
       snackPosition: SnackPosition.BOTTOM,
       maxWidth: 500,
       duration: const Duration(seconds: 2),
-      backgroundColor: AppColors.highlight,
-      colorText: AppColors.primaryColor,
+      backgroundColor: ThemeConstants.highlight,
+      colorText: ThemeConstants.primaryColor,
       dismissDirection: DismissDirection.horizontal,
       barBlur: 2,
       isDismissible: true,

@@ -33,8 +33,8 @@ class CommonTextField extends StatefulWidget {
     this.borderRadius,
     this.height,
     this.borderColor,
-    this.icon, // Added icon to constructor
-    this.suffixicon, // Added icon to constructor
+    this.icon,
+    this.suffixicon,
   });
 
   @override
@@ -77,35 +77,12 @@ class _CommonTextFieldState extends State<CommonTextField> {
     }
   }
 
-  String? _validateInput(String? value) {
-    if (value == null || value.trim().isEmpty) {
-      return '${widget.label} is required';
-    }
-    switch (widget.inputType) {
-      case InputType.phone:
-        if (value.length != 10) return 'Enter a valid 10-digit phone number';
-        break;
-      case InputType.email:
-        if (!RegExp(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")
-            .hasMatch(value)) {
-          return 'Enter a valid email address';
-        }
-        break;
-      case InputType.name:
-        if (value.length < 2) return 'Enter a valid name';
-        break;
-      case InputType.address:
-        if (value.length < 5) return 'Enter a valid address';
-        break;
-    }
-    return null;
-  }
-
   @override
   Widget build(BuildContext context) {
     Color defaultBorderColor = widget.borderColor ?? AppColors.primaryColor;
 
     return TextFormField(
+      // autovalidateMode: ,
       autofocus: widget.autofocus,
       controller: widget.controller,
       keyboardType: _keyboardType,
@@ -123,8 +100,8 @@ class _CommonTextFieldState extends State<CommonTextField> {
                 color: ThemeConstants.grey) // Optional icon
             : null, // Only show if icon is passed
         prefixIcon: widget.icon != null
-            ? Icon(widget.icon, color: ThemeConstants.grey) // Optional icon
-            : null, // Only show if icon is passed
+            ? Icon(widget.icon, color: ThemeConstants.grey)
+            : null,
         labelText: widget.label,
         hintText: widget.hint,
         labelStyle: TextStyle(

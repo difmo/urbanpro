@@ -104,57 +104,58 @@ class _SignupPageState extends State<SignupPage> {
                 const SizedBox(height: 10),
 
                 const SizedBox(height: 20),
-               // Updated part in the SignupPage
-SizedBox(
-  width: double.infinity,
-  child: CustomButton(
-    baseTextColor: ThemeConstants.whiteColor,
-    text: 'SIGN UP',
-    onPressed: () async {
-      setState(() {
-        isLoading = true;
-      });
+                SizedBox(
+                  width: double.infinity,
+                  child: CustomButton(
+                    baseTextColor: ThemeConstants.whiteColor,
+                    text: 'SIGN UP',
+                    onPressed: () async {
+                      setState(() {
+                        isLoading = true;
+                      });
 
-      bool isNameValid =
-          _nameFormKey.currentState?.validate() ?? false;
-      bool isPhoneValid =
-          _mobileFormKey.currentState?.validate() ?? false;
+                      bool isNameValid =
+                          _nameFormKey.currentState?.validate() ?? false;
+                      bool isPhoneValid =
+                          _mobileFormKey.currentState?.validate() ?? false;
 
-      if (isNameValid && isPhoneValid) {
-        // Send OTP
-        await _authController.sendOtpcontroller(
-          phoneController.text,
-          'email@gmail.com',  // Replace with actual email
-          nameController.text,
-          '1',  // Role, you can modify this based on selection
-        );
+                      if (isNameValid && isPhoneValid) {
+                        // Send OTP
+                        await _authController.sendOtpcontroller(
+                          phoneController.text,
+                          'email@gmail.com',
+                          nameController.text,
+                          '1',
+                        );
 
-        setState(() {
-          isLoading = false;
-        });
+                        setState(() {
+                          isLoading = false;
+                        });
 
-        // Show OTP screen as a modal from bottom to top
-        showModalBottomSheet(
-          context: context,
-          isScrollControlled: true,
-          backgroundColor: Colors.transparent,  // Remove background color to show transparency
-          builder: (context) => OTPScreen(
-            phone: phoneController.text,
-            otp: 123456,  // This should come from your OTP controller or backend
-            email: 'email@gmail.com',  // Replace with actual email
-            name: nameController.text,
-            role: '1',  // Replace with actual role
-          ),
-        );
-      } else {
-        setState(() {
-          isLoading = false;
-        });
-      }
-    },
-  ),
-),
-
+                        // Show OTP screen as a modal from bottom to top
+                        showModalBottomSheet(
+                          context: context,
+                          isScrollControlled: true,
+                          backgroundColor: Colors
+                              .transparent, // Remove background color to show transparency
+                          builder: (context) => OTPScreen(
+                            phone: phoneController.text,
+                            otp:
+                                123456, // This should come from your OTP controller or backend
+                            email:
+                                'email@gmail.com', // Replace with actual email
+                            name: nameController.text,
+                            role: '1', // Replace with actual role
+                          ),
+                        );
+                      } else {
+                        setState(() {
+                          isLoading = false;
+                        });
+                      }
+                    },
+                  ),
+                ),
 
                 const SizedBox(height: 30),
 

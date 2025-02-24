@@ -82,7 +82,7 @@ class _CommonTextFieldState extends State<CommonTextField> {
     Color defaultBorderColor = widget.borderColor ?? AppColors.primaryColor;
 
     return TextFormField(
-      // autovalidateMode: ,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       autofocus: widget.autofocus,
       controller: widget.controller,
       keyboardType: _keyboardType,
@@ -96,9 +96,8 @@ class _CommonTextFieldState extends State<CommonTextField> {
       ),
       decoration: InputDecoration(
         suffixIcon: widget.suffixicon != null
-            ? Icon(widget.suffixicon,
-                color: ThemeConstants.grey) // Optional icon
-            : null, // Only show if icon is passed
+            ? Icon(widget.suffixicon, color: ThemeConstants.grey)
+            : null,
         prefixIcon: widget.icon != null
             ? Icon(widget.icon, color: ThemeConstants.grey)
             : null,

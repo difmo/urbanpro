@@ -13,7 +13,6 @@ import 'package:URBANPRO/views/widgets/loading_widget.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
-
   @override
   State<SignupPage> createState() => _SignupPageState();
 }
@@ -25,7 +24,7 @@ class _SignupPageState extends State<SignupPage> {
   final AuthController _authController = Get.put(AuthController());
   bool isLoading = false;
   final _nameFormKey = GlobalKey<FormState>();
-  final _mobileFormKey = GlobalKey<FormState>();
+  final _mobileFormKey = GlobalKey<FormState>(); 
 
   @override
   Widget build(BuildContext context) {

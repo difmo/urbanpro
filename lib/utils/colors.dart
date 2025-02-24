@@ -24,5 +24,4 @@ class AppColors {
   static const Color red = Color(0xffFF0000);
   static const Color lightRed = Color(0x5acc6a6a);
   static const Color blueback = Color(0xFF242f43);
-// Add more custom colors here...
 }

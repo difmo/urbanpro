@@ -1,9 +1,9 @@
+import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:URBANPRO/views/student/start_test_screen.dart';
 import 'package:flutter/material.dart';
 
 class TestSeriesScreen extends StatefulWidget {
   const TestSeriesScreen({super.key});
-
   @override
   _TestSeriesScreenState createState() => _TestSeriesScreenState();
 }
@@ -11,7 +11,6 @@ class TestSeriesScreen extends StatefulWidget {
 class _TestSeriesScreenState extends State<TestSeriesScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
-
   @override
   void initState() {
     super.initState();
@@ -44,20 +43,36 @@ class _TestSeriesScreenState extends State<TestSeriesScreen>
           IconButton(
             icon: const Icon(Icons.search, color: Colors.white),
             onPressed: () {
-              // Search functionality
             },
           ),
         ],
       ),
+      // appBar: AppBar(
+      //   title: const Text(
+      //     "Test Series",
+      //     style: TextStyle(fontWeight: FontWeight.bold),
+      //   ),
+      //   centerTitle: true,
+      //   automaticallyImplyLeading: false,
+      //   backgroundColor: Colors.transparent,
+      //   elevation: 0,
+      //   actions: [
+      //     IconButton(
+      //       icon: const Icon(Icons.search, color: Colors.white),
+      //       onPressed: () {
+      //       },
+      //     ),
+      //   ],
+      // ),
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Color(0xFF6A82FB),
-              Color(0xFFFC5C7D)
-            ], // Gradient background
+              Color.fromARGB(255, 255, 255, 255),
+              ThemeConstants.whiteColor
+            ], 
           ),
         ),
         child: Column(

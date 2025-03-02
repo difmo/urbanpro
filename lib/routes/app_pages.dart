@@ -2,7 +2,6 @@ import 'package:URBANPRO/views/auth/otp_screen.dart';
 import 'package:URBANPRO/views/dashboard/admin_dashboard.dart';
 import 'package:URBANPRO/views/dashboard/student_dashboard.dart';
 import 'package:URBANPRO/views/dashboard/teacher_dashboard.dart';
-import 'package:URBANPRO/views/student/student_home_screen.dart';
 import 'package:URBANPRO/views/student/study_meterial_screen.dart';
 import 'package:get/get.dart';
 import '../views/onboarding/onboarding_screen.dart';

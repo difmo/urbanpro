@@ -5,7 +5,6 @@ import 'package:URBANPRO/views/auth/otp_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:URBANPRO/controllers/auth_controller.dart';
-import 'package:URBANPRO/utils/colors.dart';
 import 'package:URBANPRO/views/widgets/custom_button.dart';
 import 'package:URBANPRO/views/widgets/custom_dropdown.dart';
 import 'package:URBANPRO/views/widgets/custom_text_field.dart';
@@ -13,7 +12,6 @@ import 'package:URBANPRO/views/widgets/loading_widget.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
-
   @override
   State<SignupPage> createState() => _SignupPageState();
 }
@@ -25,7 +23,7 @@ class _SignupPageState extends State<SignupPage> {
   final AuthController _authController = Get.put(AuthController());
   bool isLoading = false;
   final _nameFormKey = GlobalKey<FormState>();
-  final _mobileFormKey = GlobalKey<FormState>();
+  final _mobileFormKey = GlobalKey<FormState>(); 
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +46,7 @@ class _SignupPageState extends State<SignupPage> {
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
-                    color: AppColors.primaryColor,
+                    color: ThemeConstants.primaryColor,
                     fontFamily: "Poppins",
                   ),
                 ),
@@ -173,7 +171,7 @@ class _SignupPageState extends State<SignupPage> {
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
-                          color: AppColors.primaryColor,
+                          color: ThemeConstants.primaryColor,
                         ),
                       ),
                     ),
@@ -205,12 +203,12 @@ class _SignupPageState extends State<SignupPage> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: AppColors.primaryColor,
+          color: ThemeConstants.primaryColor,
           width: 1,
         ),
         boxShadow: [
           BoxShadow(
-            color: AppColors.primaryColor.withOpacity(0.15),
+            color: ThemeConstants.primaryColor.withOpacity(0.15),
             spreadRadius: 2,
             blurRadius: 10,
             offset: const Offset(0, 3),

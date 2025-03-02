@@ -1,4 +1,4 @@
-import 'package:URBANPRO/utils/colors.dart';
+import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -24,15 +24,15 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               colors: [
-                AppColors.secondaryColor,
-                AppColors.primaryColor
+                const Color.fromARGB(255, 255, 255, 255),
+                const Color.fromARGB(255, 255, 255, 255)
               ], 
             ),
             borderRadius: BorderRadius.only(),
           ),
         ),
         leading: IconButton(
-          icon: const Icon(Icons.menu, color: Colors.white),
+          icon: const Icon(Icons.menu, color: Colors.black),
           onPressed: () {
             scaffoldKey.currentState?.openDrawer(); 
           },
@@ -40,22 +40,19 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         title: const Text(
           'UrbanPro',
           style: TextStyle(
-            color: Colors.white,
+            color: Colors.black,
             fontWeight: FontWeight.bold,
             fontSize: 24, 
           ),
         ),
         actions: <Widget>[
-          // List Our Property Button (New)
           Padding(
             padding: const EdgeInsets.only(right: 8.0),
             child: OutlinedButton(
               onPressed: () {
-                // Navigator.pushNamed(context,
-                //     AppRoutes.HOME); // Navigate to list our property screen
               },
               style: OutlinedButton.styleFrom(
-                side: BorderSide(color: Colors.white), // White border color
+                side: BorderSide(color: Colors.white), 
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30), // Border radius
                 ),
@@ -64,7 +61,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               child: Text(
                 'Go Live',
                 style: TextStyle(
-                  color: Colors.white, // Text color
+                  color: ThemeConstants.primaryColor, // Text color
                   fontWeight: FontWeight.bold,
                   fontSize: 11, // Adjust text size
                 ),

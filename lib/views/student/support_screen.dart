@@ -1,4 +1,4 @@
-import 'package:URBANPRO/utils/colors.dart';
+import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:URBANPRO/views/student/live_chat_support_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -24,7 +24,7 @@ class SupportScreen extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [Color(0xFF6A82FB), Color(0xFFFC5C7D)],
+            colors: [Color.fromARGB(255, 255, 255, 255), Color.fromARGB(255, 255, 255, 255)],
           ),
         ),
         child: Column(
@@ -259,7 +259,7 @@ class SupportScreen extends StatelessWidget {
         label: const Text("Live Chat Support",
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.secondaryColor,
+          backgroundColor: ThemeConstants.secondaryColor,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         ),
       ),

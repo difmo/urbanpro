@@ -1,4 +1,4 @@
-import 'package:URBANPRO/utils/colors.dart';
+import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer';
@@ -33,12 +33,12 @@ class _SimpleDropdownState extends State<SimpleDropdown> {
       decoration: CustomDropdownDecoration(
         closedBorder: Border.all(
           width: 1,
-          color: AppColors.lightGrey,
+          color: ThemeConstants.lightGrey,
         ),
         closedBorderRadius: BorderRadius.circular(16),
         // listItemStyle: AppTextStyle.simpleText14500,
         headerStyle: TextStyle(
-          color: AppColors.grey,
+          color: ThemeConstants.grey,
           fontWeight: FontWeight.w500,
           fontSize: 14,
         ),

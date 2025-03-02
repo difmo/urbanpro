@@ -1,9 +1,14 @@
+import 'package:URBANPRO/utils/app__text_style.dart';
+import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:URBANPRO/views/student/start_test_screen.dart';
+import 'package:URBANPRO/views/widgets/custom_app_bar.dart';
+import 'package:URBANPRO/views/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
+
+const Color E2E8F0 = Color.fromARGB(255, 255, 255, 255);
 
 class TestSeriesScreen extends StatefulWidget {
   const TestSeriesScreen({super.key});
-
   @override
   _TestSeriesScreenState createState() => _TestSeriesScreenState();
 }
@@ -11,7 +16,6 @@ class TestSeriesScreen extends StatefulWidget {
 class _TestSeriesScreenState extends State<TestSeriesScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
-
   @override
   void initState() {
     super.initState();
@@ -28,41 +32,14 @@ class _TestSeriesScreenState extends State<TestSeriesScreen>
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double fontSize = screenWidth * 0.04;
-
     return Scaffold(
+      appBar: CustomAppBar(scaffoldKey: GlobalKey<ScaffoldState>()),
       extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        title: const Text(
-          "Test Series",
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        centerTitle: true,
-        automaticallyImplyLeading: false,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.search, color: Colors.white),
-            onPressed: () {
-              // Search functionality
-            },
-          ),
-        ],
-      ),
       body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color(0xFF6A82FB),
-              Color(0xFFFC5C7D)
-            ], // Gradient background
-          ),
-        ),
+        decoration: const BoxDecoration(color: E2E8F0),
         child: Column(
           children: [
-            const SizedBox(height: 90),
+            const SizedBox(height: 100),
             _buildTabBar(),
             Expanded(
               child: TabBarView(
@@ -74,6 +51,7 @@ class _TestSeriesScreenState extends State<TestSeriesScreen>
                 ],
               ),
             ),
+            // SizedBox(height: ,)
           ],
         ),
       ),
@@ -83,23 +61,65 @@ class _TestSeriesScreenState extends State<TestSeriesScreen>
   Widget _buildTabBar() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.2),
-          borderRadius: BorderRadius.circular(30),
-        ),
-        child: TabBar(
-          controller: _tabController,
-          indicator: BoxDecoration(
-            borderRadius: BorderRadius.circular(25),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Test Series",
+            style: AppTextStyle.Text18600,
           ),
-          labelColor: Colors.black,
-          unselectedLabelColor: Colors.white,
-          labelPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-          tabs: const [
-            Tab(text: "Mathematics"),
-            Tab(text: "Science"),
-            Tab(text: "English"),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30),
+            ),
+            child: TabBar(
+              controller: _tabController,
+              indicator: BoxDecoration(
+                borderRadius: BorderRadius.circular(25),
+              ),
+              labelColor: Colors.black,
+              unselectedLabelColor: Colors.white,
+              labelPadding:
+                  const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+              tabs: [
+                _buildTabs("Math", Icons.calculate),
+                _buildTabs("Science", Icons.science),
+                _buildTabs("English", Icons.book),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildTabs(String label, IconData icon) {
+    return Tab(
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 10),
+        decoration: BoxDecoration(
+            border: Border.all(
+                width: 1, color: const Color.fromARGB(255, 175, 231, 255)),
+            borderRadius: BorderRadius.circular(10),
+            color: ThemeConstants.backgroundColor),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 1),
+              decoration: BoxDecoration(
+                color: Colors.blue[100],
+                borderRadius: BorderRadius.circular(25),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(icon, color: Colors.black),
+                  SizedBox(width: 1),
+                ],
+              ),
+            ),
+            Text(label, style: TextStyle(color: Colors.black)),
           ],
         ),
       ),
@@ -226,7 +246,7 @@ class _TestSeriesScreenState extends State<TestSeriesScreen>
                         Icon(Icons.help_outline,
                             size: fontSize * 0.9, color: Colors.grey[700]),
                         const SizedBox(width: 5),
-                        Text( 
+                        Text(
                           "${testSeries[index]["questions"]!} Questions",
                           style: TextStyle(
                               fontSize: fontSize * 1, color: Colors.grey[700]),
@@ -237,36 +257,25 @@ class _TestSeriesScreenState extends State<TestSeriesScreen>
                 ),
                 const SizedBox(height: 10),
                 SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton.icon(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => StartTestScreen(
-                            title: testSeries[index]["title"]!,
-                            questions: testSeries[index]["questions"]!,
-                            duration: testSeries[index]["duration"]!,
-                            level: testSeries[index]["level"]!,
-                            image: testSeries[index]["image"]!,
+                    width: double.infinity,
+                    child: CustomButton(
+                      text: "Start text",
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => StartTestScreen(
+                              title: testSeries[index]["title"]!,
+                              questions: testSeries[index]["questions"]!,
+                              duration: testSeries[index]["duration"]!,
+                              level: testSeries[index]["level"]!,
+                              image: testSeries[index]["image"]!,
+                            ),
                           ),
-                        ),
-                      );
-                    },
-                    icon: const Icon(Icons.play_arrow, size: 18),
-                    label: const Text("Start Test"),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green,
-                      foregroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      textStyle: TextStyle(fontSize: fontSize * 0.85),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 12, vertical: 10),
-                    ),
-                  ),
-                ),
+                        );
+                      },
+                      baseTextColor: ThemeConstants.backgroundColor,
+                    )),
               ],
             ),
           ),

@@ -1,4 +1,4 @@
-import 'package:URBANPRO/utils/colors.dart';
+import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:URBANPRO/views/widgets/custom_app_bar.dart';
 import 'package:URBANPRO/views/widgets/drawer.dart';
 import 'package:URBANPRO/views/widgets/teacher_bottom_bar.dart';
@@ -76,7 +76,7 @@ class _TeacherDashBoard extends State<TeacherDashBoard> {
                     child: Text(
                       'View More',
                       style: TextStyle(
-                          color: AppColors.primaryColor,
+                          color: ThemeConstants.primaryColor,
                           fontWeight: FontWeight.bold),
                     ),
                   ),

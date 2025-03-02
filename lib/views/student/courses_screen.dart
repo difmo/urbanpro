@@ -1,3 +1,4 @@
+import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:URBANPRO/views/student/course_details_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -45,7 +46,6 @@ class _CoursesScreenState extends State<CoursesScreen>
           IconButton(
             icon: const Icon(Icons.search, color: Colors.white),
             onPressed: () {
-              // Add search functionality if needed
             },
           ),
         ],
@@ -55,7 +55,7 @@ class _CoursesScreenState extends State<CoursesScreen>
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [Color(0xFF6A82FB), Color(0xFFFC5C7D)],
+            colors: [Color.fromARGB(255, 255, 255, 255), Color.fromARGB(255, 255, 255, 255)],
           ),
         ),
         child: Column(
@@ -94,10 +94,43 @@ class _CoursesScreenState extends State<CoursesScreen>
           labelColor: Colors.black,
           unselectedLabelColor: Colors.white,
           labelPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-          tabs: const [
-            Tab(text: "1st-4th"),
-            Tab(text: "5th-8th"),
-            Tab(text: "9th-12th"),
+          tabs:  [
+            _buildTabs("1st-4th"),
+            _buildTabs("5st-8th"),
+            _buildTabs("9st-12th"),
+        
+          ],
+        ),
+      ),
+    );
+  }
+Widget _buildTabs(String label) {
+    return Tab(
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 10),
+        decoration: BoxDecoration(
+            border: Border.all(
+                width: 1, color: const Color.fromARGB(255, 175, 231, 255)),
+            borderRadius: BorderRadius.circular(10),
+            color: ThemeConstants.backgroundColor),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 1),
+              decoration: BoxDecoration(
+                color: Colors.blue[100],
+                borderRadius: BorderRadius.circular(25),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  // Icon(icon, color: Colors.black),
+                  SizedBox(width: 1),
+                ],
+              ),
+            ),
+            Text(label, style: TextStyle(color: Colors.black)),
           ],
         ),
       ),

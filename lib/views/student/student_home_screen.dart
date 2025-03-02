@@ -1,5 +1,4 @@
 import 'package:URBANPRO/utils/app__text_style.dart';
-import 'package:URBANPRO/utils/colors.dart';
 import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:URBANPRO/views/widgets/custom_button.dart';
 import 'package:URBANPRO/views/widgets/custom_text_field.dart';
@@ -80,7 +79,7 @@ class StudentHomeScreen extends StatelessWidget {
   }) {
     return Card(
       elevation: 0,
-      color: AppColors.white,
+      color: ThemeConstants.white,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
         side: BorderSide(color: Colors.grey.shade300, width: 0.5),
@@ -212,7 +211,7 @@ class StudentHomeScreen extends StatelessWidget {
                           fontSize: 12,
                           baseTextColor: ThemeConstants.primaryColor,
                           borderColor: ThemeConstants.primaryColor,
-                          backgroundColor: AppColors.white,
+                          backgroundColor: ThemeConstants.white,
                           width: 80,
                           height: 30,
                           text: "Register",
@@ -277,7 +276,7 @@ BoxDecoration _boxDecoration() {
       ),
     ),
     gradient: LinearGradient(
-      colors: [Colors.white, AppColors.white],
+      colors: [Colors.white, ThemeConstants.white],
       begin: Alignment.topCenter,
       end: Alignment.bottomCenter,
     ),

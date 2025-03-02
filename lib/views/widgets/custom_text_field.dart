@@ -1,4 +1,3 @@
-import 'package:URBANPRO/utils/colors.dart';
 import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -79,10 +78,10 @@ class _CommonTextFieldState extends State<CommonTextField> {
 
   @override
   Widget build(BuildContext context) {
-    Color defaultBorderColor = widget.borderColor ?? AppColors.primaryColor;
+    Color defaultBorderColor = widget.borderColor ?? ThemeConstants.primaryColor;
 
     return TextFormField(
-      // autovalidateMode: ,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       autofocus: widget.autofocus,
       controller: widget.controller,
       keyboardType: _keyboardType,
@@ -91,21 +90,20 @@ class _CommonTextFieldState extends State<CommonTextField> {
       onChanged: widget.onChanged,
       validator: widget.validator,
       style: TextStyle(
-        color: widget.readOnly ? Colors.grey : AppColors.grey,
+        color: widget.readOnly ? Colors.grey : ThemeConstants.grey,
         letterSpacing: 1.5,
       ),
       decoration: InputDecoration(
         suffixIcon: widget.suffixicon != null
-            ? Icon(widget.suffixicon,
-                color: ThemeConstants.grey) // Optional icon
-            : null, // Only show if icon is passed
+            ? Icon(widget.suffixicon, color: ThemeConstants.grey)
+            : null,
         prefixIcon: widget.icon != null
             ? Icon(widget.icon, color: ThemeConstants.grey)
             : null,
         labelText: widget.label,
         hintText: widget.hint,
         labelStyle: TextStyle(
-          color: widget.readOnly ? Colors.grey : AppColors.grey,
+          color: widget.readOnly ? Colors.grey : ThemeConstants.grey,
           fontWeight: FontWeight.w200,
           fontSize: 16,
         ),
@@ -119,7 +117,7 @@ class _CommonTextFieldState extends State<CommonTextField> {
         ),
         floatingLabelBehavior: FloatingLabelBehavior.always,
         floatingLabelStyle: TextStyle(
-          color: widget.readOnly ? Colors.grey : AppColors.primaryColor,
+          color: widget.readOnly ? Colors.grey : ThemeConstants.primaryColor,
           fontWeight: FontWeight.w600,
           fontSize: 16,
         ),

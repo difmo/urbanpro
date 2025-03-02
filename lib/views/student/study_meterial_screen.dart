@@ -1,3 +1,4 @@
+import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:URBANPRO/views/student/study_meterial_details_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -27,10 +28,10 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    double fontSize = screenWidth * 0.04; // Responsive font size
+    double fontSize = screenWidth * 0.04;
 
     return Scaffold(
-      extendBodyBehindAppBar: true, // Allows the gradient background
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
         title: const Text(
           "Study Material",
@@ -44,7 +45,6 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
           IconButton(
             icon: const Icon(Icons.search, color: Colors.white),
             onPressed: () {
-              // Search functionality can be added here
             },
           ),
         ],
@@ -55,8 +55,8 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Color(0xFF6A82FB),
-              Color(0xFFFC5C7D)
+              Color.fromARGB(255, 255, 255, 255),
+              Color.fromARGB(255, 255, 255, 255)
             ], // Gradient background
           ),
         ),
@@ -100,10 +100,42 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
           unselectedLabelColor: Colors.white,
           labelPadding: const EdgeInsets.symmetric(
               horizontal: 12, vertical: 6), // Padding inside selected tab
-          tabs: const [
-            Tab(text: "Notes"),
-            Tab(text: "Videos"),
-            Tab(text: "Books"),
+          tabs: [
+            _buildTabs("Notes"),
+            _buildTabs("Videos"),
+            _buildTabs("Books")
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTabs(String label) {
+    return Tab(
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 10),
+        decoration: BoxDecoration(
+            border: Border.all(
+                width: 1, color: const Color.fromARGB(255, 175, 231, 255)),
+            borderRadius: BorderRadius.circular(10),
+            color: ThemeConstants.backgroundColor),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 1),
+              decoration: BoxDecoration(
+                color: Colors.blue[100],
+                borderRadius: BorderRadius.circular(25),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  SizedBox(width: 1),
+                ],
+              ),
+            ),
+            Text(label, style: TextStyle(color: Colors.black)),
           ],
         ),
       ),

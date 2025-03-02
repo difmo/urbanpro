@@ -7,7 +7,6 @@ import 'package:URBANPRO/views/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../utils/colors.dart';
 import '../widgets/custom_button.dart';
 
 class LoginPage extends StatefulWidget {
@@ -41,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  color: AppColors.primaryColor,
+                  color: ThemeConstants.primaryColor,
                   fontFamily: "Poppins",
                 ),
               ),
@@ -113,7 +112,7 @@ class _LoginPageState extends State<LoginPage> {
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
-                        color: AppColors.primaryColor,
+                        color: ThemeConstants.primaryColor,
                       ),
                     ),
                   ),
@@ -136,12 +135,12 @@ class _LoginPageState extends State<LoginPage> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: AppColors.primaryColor,
+          color: ThemeConstants.primaryColor,
           width: 1,
         ),
         boxShadow: [
           BoxShadow(
-            color: AppColors.primaryColor.withOpacity(0.15),
+            color: ThemeConstants.primaryColor.withOpacity(0.15),
             spreadRadius: 2,
             blurRadius: 10,
             offset: const Offset(0, 3),

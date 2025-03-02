@@ -69,7 +69,7 @@ class _FindTutorsScreenState extends State<FindTutorsScreen> {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [Color(0xFF6A82FB), Color(0xFFFC5C7D)], // Dark Gradient
+            colors: [Color.fromARGB(255, 255, 255, 255), Color.fromARGB(255, 255, 255, 255)], // Dark Gradient
           ),
         ),
         child: Column(

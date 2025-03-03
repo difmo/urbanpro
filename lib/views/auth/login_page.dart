@@ -1,6 +1,8 @@
 import 'package:URBANPRO/routes/app_routes.dart';
+import 'package:URBANPRO/utils/app__text_style.dart';
 import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:URBANPRO/utils/user_role.dart';
+import 'package:URBANPRO/views/widgets/applogo.dart';
 import 'package:URBANPRO/views/widgets/custom_dropdown%20copy.dart';
 import 'package:URBANPRO/views/widgets/custom_dropdown.dart';
 import 'package:URBANPRO/views/widgets/custom_text_field.dart';
@@ -33,33 +35,21 @@ class _LoginPageState extends State<LoginPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(height: 60),
-              Image.asset("assets/images/Logo.png", height: 100),
+              Applogo(width: 100),
               const SizedBox(height: 30),
-              Text(
-                'Login with Your',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: ThemeConstants.primaryColor,
-                  fontFamily: "Poppins",
-                ),
-              ),
+              Text('Login with Your',
+                  style: AppTextStyle.Text20600.copyWith(
+                      color: ThemeConstants.primaryColor)),
               const SizedBox(height: 10),
               Text(
-                "Education is the passport to the future\nKeep learning, keep growing.",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                  fontFamily: 'Poppins',
-                  color: Colors.grey.shade700,
-                ),
-              ),
-
+                  "Education is the passport to the future\nKeep learning, keep growing.",
+                  textAlign: TextAlign.center,
+                  style: AppTextStyle.Text16600.copyWith(
+                      color: ThemeConstants.grey)),
               const SizedBox(height: 30),
-              SimpleDropdown(onSelectedValueChanged: (value) => {}, initialValue: "Admin"),
+              SimpleDropdown(
+                  onSelectedValueChanged: (value) => {}, initialValue: "Admin"),
               const SizedBox(height: 20),
-
               CommonTextField(
                 inputType: InputType.name,
                 label: "Full Name",
@@ -67,9 +57,7 @@ class _LoginPageState extends State<LoginPage> {
                 controller: nameController,
                 onChanged: (value) => print("Name: $value"),
               ),
-
               const SizedBox(height: 20),
-
               CommonTextField(
                 inputType: InputType.phone,
                 label: "Phone Number",
@@ -77,11 +65,8 @@ class _LoginPageState extends State<LoginPage> {
                 controller: phoneController,
                 onChanged: (value) => print("Phone: $value"),
               ),
-
               const SizedBox(height: 10),
-
               const SizedBox(height: 20),
-
               SizedBox(
                 width: double.infinity,
                 child: CustomButton(
@@ -93,32 +78,24 @@ class _LoginPageState extends State<LoginPage> {
                   },
                 ),
               ),
-
               const SizedBox(height: 30),
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     "Not registered?",
-                    style: TextStyle(fontSize: 14, color: Colors.black),
+                    style: AppTextStyle.Text14300,
                   ),
                   TextButton(
                     onPressed: () {
                       Get.toNamed(AppRoutes.SIGNUP);
                     },
-                    child: Text(
-                      "Sign Up",
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        color: ThemeConstants.primaryColor,
-                      ),
-                    ),
+                    child: Text("Sign Up",
+                        style: AppTextStyle.Text14500.copyWith(
+                            color: ThemeConstants.primaryColor)),
                   ),
                 ],
               ),
-
               const SizedBox(height: 20),
             ],
           ),

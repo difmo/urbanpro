@@ -1,3 +1,4 @@
+import 'package:URBANPRO/utils/app__text_style.dart';
 import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -78,7 +79,8 @@ class _CommonTextFieldState extends State<CommonTextField> {
 
   @override
   Widget build(BuildContext context) {
-    Color defaultBorderColor = widget.borderColor ?? ThemeConstants.primaryColor;
+    Color defaultBorderColor =
+        widget.borderColor ?? ThemeConstants.secondaryColor;
 
     return TextFormField(
       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -102,24 +104,18 @@ class _CommonTextFieldState extends State<CommonTextField> {
             : null,
         labelText: widget.label,
         hintText: widget.hint,
-        labelStyle: TextStyle(
+        labelStyle: AppTextStyle.Text16600.copyWith(
           color: widget.readOnly ? Colors.grey : ThemeConstants.grey,
-          fontWeight: FontWeight.w200,
-          fontSize: 16,
         ),
-        hintStyle: TextStyle(
+        hintStyle: AppTextStyle.Text14400.copyWith(
           color: widget.readOnly ? Colors.grey : Colors.grey,
-          fontWeight: FontWeight.w400,
-          fontSize: 14,
         ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(widget.borderRadius ?? 12.0),
         ),
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        floatingLabelStyle: TextStyle(
-          color: widget.readOnly ? Colors.grey : ThemeConstants.primaryColor,
-          fontWeight: FontWeight.w600,
-          fontSize: 16,
+        floatingLabelStyle: AppTextStyle.Text16600.copyWith(
+          color: widget.readOnly ? Colors.grey : ThemeConstants.secondaryColor,
         ),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(

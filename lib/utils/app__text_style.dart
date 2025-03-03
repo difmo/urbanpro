@@ -1,165 +1,214 @@
 import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AppTextStyle {
- static const TextStyle Text12500 = TextStyle(
+  static TextStyle Text12500 = GoogleFonts.montserrat(
     fontSize: 12,
     fontWeight: FontWeight.w500,
-    color:ThemeConstants.blackColor,
-  );
- static const TextStyle Text12300 = TextStyle(
-    fontSize: 12,
-    fontWeight: FontWeight.w300,
-    color:ThemeConstants.blackColor,
-  );
- static const TextStyle Text12400 = TextStyle(
-    fontSize: 12,
-    fontWeight: FontWeight.w400,
-    color:ThemeConstants.blackColor,
-  );
- static const TextStyle Text12700 = TextStyle(
-    fontSize: 12,
-    fontWeight: FontWeight.w700,
-    color:ThemeConstants.primaryColor,
-  );
-
-  static const TextStyle Text14300 = TextStyle(
-    fontSize: 14,
-    fontWeight: FontWeight.w300,
-    color:ThemeConstants.blackColor,
-  );
-  static const TextStyle Text14400 = TextStyle(
-    fontSize: 14,
-    fontWeight: FontWeight.w400,
-    color:ThemeConstants.blackColor,
-  );
-  static const TextStyle Text14500 = TextStyle(
-    fontSize: 14,
-    fontWeight: FontWeight.w500,
-    color:ThemeConstants.blackColor,
-  );
-  static const TextStyle TextRed14700 = TextStyle(
-    fontSize: 14,
-    fontWeight: FontWeight.w700,
-    color:ThemeConstants.red,
-  );
-  static const TextStyle Text16600 = TextStyle(
-    fontSize: 16,
-    fontWeight: FontWeight.w600,
-    color:ThemeConstants.whiteColor,
-  );
-  static const TextStyle Text20600 = TextStyle(
-    fontSize: 20,
-    fontWeight: FontWeight.w600,
-    color:ThemeConstants.whiteColor,
-  );
-  static const TextStyle Text18400 = TextStyle(
-    fontSize: 18,
-    fontWeight: FontWeight.w400,
-    color:ThemeConstants.blackColor,
-  );
-  static const TextStyle Text18500 = TextStyle(
-    fontSize: 18,
-    fontWeight: FontWeight.w500,
-    color:ThemeConstants.blackColor,
-  );
-  static const TextStyle Text18300 = TextStyle(
-    fontSize: 18,
-    fontWeight: FontWeight.w300,
-    color:ThemeConstants.blackColor,
-  );
-  static const TextStyle Text18600 = TextStyle(
-    fontSize: 18,
-    fontWeight: FontWeight.w600,
-    color:ThemeConstants.blackColor,
-  );
-  static const TextStyle Text28300 = TextStyle(
-    fontSize: 28,
-    fontWeight: FontWeight.w300,
-    color:ThemeConstants.blackColor,
-  );
-  static const TextStyle Text28600 = TextStyle(
-    fontSize: 28,
-    fontWeight: FontWeight.w600,
-    color:ThemeConstants.blackColor,
-  );
-
-  // Headings 
-  static const TextStyle Text = TextStyle(
-    fontSize: 20,
-    fontWeight: FontWeight.w700,
-    color:ThemeConstants.blackColor,
-  );
-  static const TextStyle Text18700 = TextStyle(
-    fontSize: 18,
-    fontWeight: FontWeight.w700,
-    color:ThemeConstants.blackColor,
+    color: ThemeConstants.blackColor,
   );
   
-  static const TextStyle TextWhite24700 = TextStyle(
+  static TextStyle Text12300 = GoogleFonts.montserrat(
+    fontSize: 12,
+    fontWeight: FontWeight.w300,
+    color: ThemeConstants.blackColor,
+  );
+  
+  static TextStyle Text12400 = GoogleFonts.montserrat(
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+    color: ThemeConstants.blackColor,
+  );
+  
+  static TextStyle Text12700 = GoogleFonts.montserrat(
+    fontSize: 12,
+    fontWeight: FontWeight.w700,
+    color: ThemeConstants.primaryColor,
+  );
+
+  static TextStyle Text14300 = GoogleFonts.montserrat(
+    fontSize: 14,
+    fontWeight: FontWeight.w300,
+    color: ThemeConstants.blackColor,
+  );
+  
+  static TextStyle Text14400 = GoogleFonts.montserrat(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    color: ThemeConstants.blackColor,
+  );
+  
+  static TextStyle Text14500 = GoogleFonts.montserrat(
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+    color: ThemeConstants.blackColor,
+  );
+  
+  static TextStyle Text14600 = GoogleFonts.montserrat(
+    fontSize: 14,
+    fontWeight: FontWeight.w600,
+    color: ThemeConstants.blackColor,
+  );
+  
+  static TextStyle Text14700 = GoogleFonts.montserrat(
+    fontSize: 14,
+    fontWeight: FontWeight.w700,
+    color: ThemeConstants.blackColor,
+  );
+  
+  static TextStyle TextRed14700 = GoogleFonts.montserrat(
+    fontSize: 14,
+    fontWeight: FontWeight.w700,
+    color: ThemeConstants.blackColor,
+  );
+  
+  static TextStyle Text16400 = GoogleFonts.montserrat(
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+    color: ThemeConstants.blackColor,
+  );
+  
+  static TextStyle Text16600 = GoogleFonts.montserrat(
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+    color: ThemeConstants.blackColor,
+  );
+  
+  static TextStyle Text16500 = GoogleFonts.montserrat(
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
+    color: ThemeConstants.blackColor,
+  );
+  
+  static TextStyle Text16200 = GoogleFonts.montserrat(
+    fontSize: 16,
+    fontWeight: FontWeight.w200,
+    color: ThemeConstants.blackColor,
+  );
+  
+  static TextStyle Text20600 = GoogleFonts.montserrat(
+    fontSize: 20,
+    fontWeight: FontWeight.w600,
+    color: ThemeConstants.blackColor,
+  );
+  
+  static TextStyle Text18400 = GoogleFonts.montserrat(
+    fontSize: 18,
+    fontWeight: FontWeight.w400,
+    color: ThemeConstants.blackColor,
+  );
+  
+  static TextStyle Text18500 = GoogleFonts.montserrat(
+    fontSize: 18,
+    fontWeight: FontWeight.w500,
+    color: ThemeConstants.blackColor,
+  );
+  
+  static TextStyle Text18300 = GoogleFonts.montserrat(
+    fontSize: 18,
+    fontWeight: FontWeight.w300,
+    color: ThemeConstants.blackColor,
+  );
+  
+  static TextStyle Text18600 = GoogleFonts.montserrat(
+    fontSize: 18,
+    fontWeight: FontWeight.w600,
+    color: ThemeConstants.blackColor,
+  );
+  
+  static TextStyle Text28300 = GoogleFonts.montserrat(
+    fontSize: 28,
+    fontWeight: FontWeight.w300,
+    color: ThemeConstants.blackColor,
+  );
+  
+  static TextStyle Text28600 = GoogleFonts.montserrat(
+    fontSize: 28,
+    fontWeight: FontWeight.w600,
+    color: ThemeConstants.blackColor,
+  );
+
+  // Headings
+  static TextStyle Text = GoogleFonts.montserrat(
+    fontSize: 20,
+    fontWeight: FontWeight.w700,
+    color: ThemeConstants.blackColor,
+  );
+
+  static TextStyle Text18700 = GoogleFonts.montserrat(
+    fontSize: 18,
+    fontWeight: FontWeight.w700,
+    color: ThemeConstants.blackColor,
+  );
+
+  static TextStyle TextWhite24700 = GoogleFonts.montserrat(
     fontSize: 24,
     fontWeight: FontWeight.w700,
     color: Colors.white,
   );
-  static const TextStyle Text16700 = TextStyle(
+
+  static TextStyle Text16700 = GoogleFonts.montserrat(
     fontSize: 16,
     fontWeight: FontWeight.w700,
-    color:ThemeConstants.blackColor,
+    color: ThemeConstants.blackColor,
   );
-  
-  static const TextStyle Text32600 = TextStyle(
+
+  static TextStyle Text32600 = GoogleFonts.montserrat(
     fontSize: 32,
     fontWeight: FontWeight.w700,
-    color:ThemeConstants.blackColor,
+    color: ThemeConstants.blackColor,
   );
-  static const TextStyle UnderlineText16700 = TextStyle(
+
+  static TextStyle UnderlineText16700 = GoogleFonts.montserrat(
     decoration: TextDecoration.underline,
     fontSize: 16,
     fontWeight: FontWeight.w700,
-    color:ThemeConstants.blackColor,
+    color: ThemeConstants.blackColor,
   );
 
-  static const TextStyle normalText = TextStyle(
+  static TextStyle normalText = GoogleFonts.montserrat(
     fontSize: 14,
     fontWeight: FontWeight.normal,
-    color:ThemeConstants.blackColor,
+    color: ThemeConstants.blackColor,
   );
-  static const TextStyle normalHeadingText = TextStyle(
+
+  static TextStyle normalHeadingText = GoogleFonts.montserrat(
     fontSize: 18,
     fontWeight: FontWeight.w700,
-    color:ThemeConstants.blackColor,
+    color: ThemeConstants.blackColor,
   );
 
-  static const TextStyle fieldTextStyle = TextStyle(
+  static TextStyle fieldTextStyle = GoogleFonts.montserrat(
     fontSize: 20,
     fontWeight: FontWeight.normal,
-    color:ThemeConstants.blackColor,
+    color: ThemeConstants.blackColor,
   );
 
-  static const TextStyle headingText = TextStyle(
+  static TextStyle headingText = GoogleFonts.montserrat(
     fontSize: 18,
     fontWeight: FontWeight.w900,
-    color:ThemeConstants.blackColor,
+    color: ThemeConstants.blackColor,
   );
 
-  static const TextStyle subheadingText = TextStyle(
+  static TextStyle subheadingText = GoogleFonts.montserrat(
     fontSize: 16,
     fontWeight: FontWeight.w600,
-    color:ThemeConstants.blackColor,
+    color: ThemeConstants.blackColor,
   );
 
-  static const TextStyle captionText = TextStyle(
+  static TextStyle captionText = GoogleFonts.montserrat(
     fontSize: 12,
     fontWeight: FontWeight.normal,
     color: Colors.grey,
   );
 
-
-  static TextStyle customText(
-      {double fontSize = 14,
-      FontWeight fontWeight = FontWeight.normal,
-      Color color = Colors.black87}) {
-    return TextStyle(
+  static TextStyle customText({
+    double fontSize = 14,
+    FontWeight fontWeight = FontWeight.normal,
+    Color color = Colors.black87,
+  }) {
+    return GoogleFonts.montserrat(
       fontSize: fontSize,
       fontWeight: fontWeight,
       color: color,

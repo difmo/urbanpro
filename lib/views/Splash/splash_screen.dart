@@ -1,5 +1,7 @@
+import 'package:URBANPRO/utils/app__text_style.dart';
 import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'dart:async';
 import 'package:get/get.dart';
 
@@ -14,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 3), () {
+    Timer(Duration(seconds:3), () {
       Get.toNamed('/onboarding');
     });
   }
@@ -23,56 +25,29 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-      // backgroundColor: const Color(0xFF006F92),
       body: Stack(
         children: [
-          // Positioned(
-          //   top: 0,
-          //   left: 0,
-          //   child: Container(
-          //     child: SvgPicture.asset(
-          //       'assets/bg/splashelementupper.svg',
-          //     ),
-          //   ),
-          // ),
-          // Positioned(
-          //   bottom: 0,
-          //   right: 0,
-          //   child: Container(
-          //     child: SvgPicture.asset(
-          //       'assets/bg/splashelement.svg',
-          //     ),
-          //   ),
-          // ),
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 SizedBox(
                   width: 250,
-                  child: Image.asset('assets/images/Logo.png'),
+                  child: SvgPicture.asset('assets/icons/applogo.svg'),
                 ),
                 SizedBox(height: 20),
-                Row(
+                Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      'Welcome to',
-                      style: TextStyle(
-                        fontSize: 26,
-                        fontWeight: FontWeight.bold,
-                        color: ThemeConstants.black,
-                        fontFamily: "poppins",
-                      ),
-                    ),
-                    Text(
-                      ' Urban Pro',
-                      style: TextStyle(
-                        fontSize: 26,
-                        fontWeight: FontWeight.bold,
-                        color: const Color.fromARGB(255, 255, 207, 75),
-                        fontFamily: "poppins",
-                      ),
+                    Text('Welcome', style: AppTextStyle.Text28600),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text('to ', style: AppTextStyle.Text28600),
+                        Text('Urban Tutors',
+                            style: AppTextStyle.Text28600.copyWith(
+                                color: ThemeConstants.secondaryColor)),
+                      ],
                     ),
                   ],
                 ),

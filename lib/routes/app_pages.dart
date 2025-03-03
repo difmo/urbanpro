@@ -12,27 +12,68 @@ import 'app_routes.dart';
 
 class AppPages {
   static final pages = [
-    GetPage(name: AppRoutes.SPLASHSCREEN, page: () => SplashScreen()),
-    GetPage(name: AppRoutes.LOGIN, page: () => LoginPage()),
-    GetPage(name: AppRoutes.SIGNUP, page: () => SignupPage()),
-    GetPage(name: AppRoutes.STUDENTHOME, page: () => StudyMaterialScreen()),
-    GetPage(name: AppRoutes.ONBOARDING, page: () => OnboardingScreen()),
-    GetPage(name: AppRoutes.STUDENTDASHBOARD, page: () => StudentDashBoard()),
-    GetPage(name: AppRoutes.TEACHERDASHBOARD, page: () => TeacherDashBoard()),
-    GetPage(name: AppRoutes.ADMINDASHBOARD, page: () => AdminDashBoard()),
-   GetPage(
-  name: AppRoutes.OTPSCREEN,
-  page: () {
-    final arguments = Get.arguments;  
-    return OTPScreen(
-      phone: arguments['mobile'],
-      otp: arguments['otp'],
-      email: arguments['email'],
-      name: arguments['name'],
-      role: arguments['role'],
-    );
-  },
-),
-
+    GetPage(
+      name: AppRoutes.SPLASHSCREEN, 
+      page: () => SplashScreen(),
+      transition: Transition.circularReveal,  
+      transitionDuration: Duration(milliseconds: 500), 
+    ),
+    GetPage(
+      name: AppRoutes.LOGIN, 
+      page: () => LoginPage(),
+       transition: Transition.circularReveal,  
+      transitionDuration: Duration(milliseconds: 500),
+    ),
+    GetPage(
+      name: AppRoutes.SIGNUP, 
+      page: () => SignupPage(),
+      transition: Transition.fadeIn, 
+      transitionDuration: Duration(milliseconds: 500),
+    ),
+    GetPage(
+      name: AppRoutes.STUDENTHOME, 
+      page: () => StudyMaterialScreen(),
+      transition: Transition.fadeIn, 
+      transitionDuration: Duration(milliseconds: 500),
+    ),
+    GetPage(
+      name: AppRoutes.ONBOARDING, 
+      page: () => OnboardingScreen(),
+      transition: Transition.circularReveal,  
+      transitionDuration: Duration(milliseconds: 2000),
+    ),
+    GetPage(
+      name: AppRoutes.STUDENTDASHBOARD, 
+      page: () => StudentDashBoard(),
+      transition: Transition.fadeIn, 
+      transitionDuration: Duration(milliseconds: 500),
+    ),
+    GetPage(
+      name: AppRoutes.TEACHERDASHBOARD, 
+      page: () => TeacherDashBoard(),
+      transition: Transition.fadeIn, 
+      transitionDuration: Duration(milliseconds: 500),
+    ),
+    GetPage(
+      name: AppRoutes.ADMINDASHBOARD, 
+      page: () => AdminDashBoard(),
+      transition: Transition.fadeIn, 
+      transitionDuration: Duration(milliseconds: 500),
+    ),
+    GetPage(
+      name: AppRoutes.OTPSCREEN,
+      page: () {
+        final arguments = Get.arguments;  
+        return OTPScreen(
+          phone: arguments['mobile'],
+          otp: arguments['otp'],
+          email: arguments['email'],
+          name: arguments['name'],
+          role: arguments['role'],
+        );
+      },
+      transition: Transition.fadeIn, 
+      transitionDuration: Duration(milliseconds: 500),
+    ),
   ];
 }

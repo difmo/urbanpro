@@ -12,10 +12,9 @@ class CustomDrawer extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Drawer Menu Items
           Expanded(
             child: ListView(
-              padding: const EdgeInsets.only(top: 10),
+              padding: const EdgeInsets.only(top: 100),
               children: [
                 _buildDrawerItem(Icons.dashboard, 'Dashboard',
                     AppRoutes.STUDENTHOME, context),
@@ -47,35 +46,6 @@ class CustomDrawer extends StatelessWidget {
     );
   }
 
-  // Default Header (if no user data is found)
-  // ignore: unused_element
-  Widget _buildDefaultHeader(bool isLoading) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 20),
-      decoration: BoxDecoration(color: ThemeConstants.primaryColor),
-      child: isLoading
-          ? const Center(child: CircularProgressIndicator(color: Colors.white))
-          : Column(
-              children: [
-                const CircleAvatar(
-                  radius: 40,
-                  backgroundImage: AssetImage('assets/profile.jpg'),
-                ),
-                const SizedBox(height: 10),
-                const Text(
-                  'Guest User',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold),
-                ),
-                const Text('guest@example.com',
-                    style: TextStyle(color: Colors.white70, fontSize: 14)),
-              ],
-            ),
-    );
-  }
 
 
   Widget _buildDrawerItem(

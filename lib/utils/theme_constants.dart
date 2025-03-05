@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class ThemeConstants {
   static const Color primaryColor = Color.fromARGB(255, 17, 191, 245);
+  static const Color primaryColorSoft = Color(0xFFD0F1FF);
   static const Color secondaryColor = Color(0xFFFFB53B);
   static const Color borderColor = Color(0xFFD9D9D9);
   static const Color backgroundColor = Colors.white;
@@ -10,8 +11,8 @@ class ThemeConstants {
   static const Color textColor = Colors.black;
   static const Color red = Colors.red;
   static const Color green = Colors.green;
-  static const Color grey = Colors.grey;
   static const Color softgrey = Color.fromARGB(255, 223, 223, 223);
+  static const Color grey = Color.fromARGB(255, 104, 104, 104);
   static const String primaryFont = 'Poppins';
   static const double defaultPadding = 16.0;
   static const BorderRadius defaultBorderRadius =

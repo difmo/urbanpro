@@ -4,9 +4,8 @@ class CustomAppBarNew extends StatelessWidget implements PreferredSizeWidget {
   @override
   final Size preferredSize;
 
-  CustomAppBarNew({Key? key}) 
-      : preferredSize = const Size.fromHeight(kToolbarHeight), 
-        super(key: key);
+  const CustomAppBarNew({super.key}) 
+      : preferredSize = const Size.fromHeight(kToolbarHeight);
 
   @override
   Widget build(BuildContext context) {

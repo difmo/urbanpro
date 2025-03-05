@@ -1,7 +1,6 @@
 import 'package:URBANPRO/utils/app__text_style.dart';
 import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:URBANPRO/views/student/start_test_screen.dart';
-import 'package:URBANPRO/views/widgets/custom_app_bar.dart';
 import 'package:URBANPRO/views/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 
@@ -33,13 +32,11 @@ class _TestSeriesScreenState extends State<TestSeriesScreen>
     double screenWidth = MediaQuery.of(context).size.width;
     double fontSize = screenWidth * 0.04;
     return Scaffold(
-      appBar: CustomAppBar(scaffoldKey: GlobalKey<ScaffoldState>()),
       extendBodyBehindAppBar: true,
       body: Container(
         decoration: const BoxDecoration(color: E2E8F0),
         child: Column(
           children: [
-            const SizedBox(height: 100),
             _buildTabBar(),
             Expanded(
               child: TabBarView(

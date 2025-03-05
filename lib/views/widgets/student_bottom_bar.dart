@@ -22,7 +22,7 @@ class StudentBottomNavigationBar extends StatelessWidget {
       currentIndex: currentIndex,
       onTap: onTap,
       backgroundColor: Colors.white,
-      selectedItemColor: ThemeConstants.secondaryColor,
+      selectedItemColor: ThemeConstants.primaryColor,
       unselectedItemColor: ThemeConstants.softgrey,
       showUnselectedLabels: true,
       type: BottomNavigationBarType.fixed,

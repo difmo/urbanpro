@@ -1,7 +1,9 @@
+import 'package:URBANPRO/utils/app__text_style.dart';
 import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:URBANPRO/utils/user_role.dart';
 import 'package:URBANPRO/utils/validators.dart';
 import 'package:URBANPRO/views/auth/otp_screen.dart';
+import 'package:URBANPRO/views/widgets/applogo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:URBANPRO/controllers/auth_controller.dart';
@@ -23,7 +25,7 @@ class _SignupPageState extends State<SignupPage> {
   final AuthController _authController = Get.put(AuthController());
   bool isLoading = false;
   final _nameFormKey = GlobalKey<FormState>();
-  final _mobileFormKey = GlobalKey<FormState>(); 
+  final _mobileFormKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -39,28 +41,21 @@ class _SignupPageState extends State<SignupPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const SizedBox(height: 60),
-                Image.asset("assets/images/Logo.png", height: 100),
+                Applogo(
+                  width: 100,
+                ),
                 const SizedBox(height: 30),
                 Text(
                   'Sign Up with your',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: ThemeConstants.primaryColor,
-                    fontFamily: "Poppins",
-                  ),
+                  style: AppTextStyle.Text20600.copyWith(
+                      color: ThemeConstants.primaryColor),
                 ),
                 const SizedBox(height: 10),
                 // Subtitle
                 Text(
                   "Education is the passport to the future\nKeep learning, keep growing.",
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    fontFamily: 'Poppins',
-                    color: Colors.grey.shade700,
-                  ),
+                  style: AppTextStyle.Text16400,
                 ),
 
                 const SizedBox(height: 30),
@@ -162,18 +157,13 @@ class _SignupPageState extends State<SignupPage> {
                   children: [
                     Text(
                       "If you have already registered?",
-                      style: TextStyle(fontSize: 14, color: Colors.black),
+                      style: AppTextStyle.Text14300,
                     ),
                     TextButton(
                       onPressed: () {},
-                      child: Text(
-                        "Sign In",
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          color: ThemeConstants.primaryColor,
-                        ),
-                      ),
+                      child: Text("Sign In",
+                          style: AppTextStyle.Text14600.copyWith(
+                              color: ThemeConstants.primaryColor)),
                     ),
                   ],
                 ),

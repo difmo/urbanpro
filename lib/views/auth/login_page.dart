@@ -74,7 +74,7 @@ class _LoginPageState extends State<LoginPage> {
                   baseTextColor: ThemeConstants.whiteColor,
                   text: 'SIGN IN',
                   onPressed: () async {
-                    Get.toNamed(AppRoutes.STUDENTDASHBOARD);
+                    Get.toNamed(AppRoutes.TEACHERDASHBOARD);
                   },
                 ),
               ),

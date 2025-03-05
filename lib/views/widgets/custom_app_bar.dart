@@ -1,4 +1,5 @@
 import 'package:URBANPRO/utils/theme_constants.dart';
+import 'package:URBANPRO/views/widgets/applogo.dart';
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -7,16 +8,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({super.key, required this.scaffoldKey});
 
   @override
-  Size get preferredSize =>
-      Size.fromHeight(kToolbarHeight); 
+  Size get preferredSize => Size.fromHeight(kToolbarHeight);
 
   @override
   Widget build(BuildContext context) {
     return PreferredSize(
       preferredSize: preferredSize,
       child: AppBar(
-        backgroundColor:
-            Colors.transparent, 
+        backgroundColor: Colors.transparent,
         elevation: 0,
         flexibleSpace: Container(
           decoration: BoxDecoration(
@@ -26,44 +25,44 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               colors: [
                 const Color.fromARGB(255, 255, 255, 255),
                 const Color.fromARGB(255, 255, 255, 255)
-              ], 
+              ],
             ),
             borderRadius: BorderRadius.only(),
           ),
         ),
         leading: IconButton(
-          icon: const Icon(Icons.menu, color: Colors.black),
+          icon: Container(
+              padding: EdgeInsets.only(left: 16), child: Applogo(width: 48)),
           onPressed: () {
-            scaffoldKey.currentState?.openDrawer(); 
+            scaffoldKey.currentState?.openDrawer();
           },
         ),
         title: const Text(
-          'UrbanPro',
+          'Urban Tutors',
           style: TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.bold,
-            fontSize: 24, 
+            fontSize: 18,
           ),
         ),
         actions: <Widget>[
           Padding(
             padding: const EdgeInsets.only(right: 8.0),
             child: OutlinedButton(
-              onPressed: () {
-              },
+              onPressed: () {},
               style: OutlinedButton.styleFrom(
-                side: BorderSide(color: Colors.white), 
+                side: BorderSide(color: Colors.white),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30), // Border radius
                 ),
                 // padding: EdgeInsets.symmetric(horizontal: 20, vertical:0), // Optional padding
               ),
               child: Text(
-                'Go Live',
+                'Coins | Pro',
                 style: TextStyle(
-                  color: ThemeConstants.primaryColor, // Text color
+                  color: ThemeConstants.secondaryColor, // Text color
                   fontWeight: FontWeight.bold,
-                  fontSize: 11, // Adjust text size
+                  fontSize: 16, // Adjust text size
                 ),
               ),
             ),

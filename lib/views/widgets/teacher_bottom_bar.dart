@@ -23,7 +23,7 @@ class TeacherBottomNavigationBar extends StatelessWidget {
           BoxShadow(
             color: Colors.black12,
             blurRadius: 6,
-            offset: Offset(0, -2), 
+            offset: Offset(0, -2),
           ),
         ],
       ),
@@ -37,23 +37,23 @@ class TeacherBottomNavigationBar extends StatelessWidget {
         type: BottomNavigationBarType.fixed,
         items: [
           const BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+            icon: Icon(Icons.equalizer_rounded),
+            label: 'Enquiries',
           ),
           const BottomNavigationBarItem(
             icon: Icon(Icons.label_off_rounded),
-            label: 'Learn',
-          ),
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.schedule),
-            label: 'Schedule',
+            label: 'Fds',
           ),
           const BottomNavigationBarItem(
             icon: Icon(Icons.message),
-            label: 'Message',
+            label: 'Message ',
           ),
           const BottomNavigationBarItem(
             icon: Icon(Icons.person),
+            label: 'Support',
+          ),
+          const BottomNavigationBarItem(
+            icon: Icon(Icons.account_box),
             label: 'Account',
           ),
         ],

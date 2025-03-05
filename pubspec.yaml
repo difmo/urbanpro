@@ -42,6 +42,7 @@ flutter:
     - assets/bg/onboardbottom.svg
     - assets/bg/logo.svg
     - assets/icons/applogo.svg
+    - assets/bg/circle.svg
   fonts:
     - family: Poppins
       fonts:

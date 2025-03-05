@@ -80,7 +80,7 @@ class _CommonTextFieldState extends State<CommonTextField> {
   @override
   Widget build(BuildContext context) {
     Color defaultBorderColor =
-        widget.borderColor ?? ThemeConstants.secondaryColor;
+        widget.borderColor ?? ThemeConstants.grey;
 
     return TextFormField(
       autovalidateMode: AutovalidateMode.onUserInteraction,

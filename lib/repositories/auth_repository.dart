@@ -8,7 +8,7 @@ class AuthRepository {
   final ApiClient _apiClient = ApiClient();
 
   Future<OtpGetResponse> sendOtpRepo(
-      String mobile, String email, String name, String roleId) async {
+      String mobile, String email, String name, int roleId) async {
     try {
       final body = {
         'mobile': mobile,
@@ -30,7 +30,7 @@ class AuthRepository {
   }
 
   Future<OtpSuccessResponse> verifyOtpRepo(
-      String mobile, String email, int otp, String name, String roleId) async {
+      String mobile, String email, int otp, String name, int roleId) async {
     try {
       final body = {
         'mobile': mobile,

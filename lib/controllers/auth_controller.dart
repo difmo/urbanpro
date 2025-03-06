@@ -11,7 +11,7 @@ class AuthController extends GetxController {
   var isLoading = false.obs;
   final StorageService storageService = StorageService();
   Future<OtpGetResponse> sendOtpcontroller(
-      String mobile, String email, String name, String role) async {
+      String mobile, String email, String name, int role) async {
     isLoading.value = true;
     try {
       final responsedata =
@@ -35,7 +35,7 @@ class AuthController extends GetxController {
   }
 
   Future<OtpSuccessResponse> OtpSuccesscontroller(
-      String mobile, String email, int otp, String name, String role) async {
+      String mobile, String email, int otp, String name,int  role) async {
     isLoading.value = true;
     try {
       final responsedata =
@@ -43,7 +43,7 @@ class AuthController extends GetxController {
       Get.snackbar('Success', responsedata.message);
       print(responsedata.success);
       await _saveLoginData(responsedata);
-      Get.toNamed(AppRoutes.STUDENTDASHBOARD);
+     
       return responsedata;
     } catch (e) {
       Get.snackbar('Error', e.toString());

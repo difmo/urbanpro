@@ -1,4 +1,5 @@
 import 'package:URBANPRO/utils/theme_constants.dart';
+import 'package:URBANPRO/views/admin/admin_enquiries_screen.dart';
 import 'package:URBANPRO/views/widgets/admin_bottom_bar.dart';
 import 'package:URBANPRO/views/widgets/custom_app_bar.dart';
 import 'package:URBANPRO/views/widgets/drawer.dart';
@@ -14,79 +15,28 @@ class AdminDashBoard extends StatefulWidget {
 class _AdminDashBoard extends State<AdminDashBoard> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   int _selectedIndex = 0;
+  final List<Widget> screens = [
+  AdminEnquiriesScreen(),
+  AdminEnquiriesScreen(),
+    AdminEnquiriesScreen(),
+      AdminEnquiriesScreen(),
+        AdminEnquiriesScreen()
+  ];
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
-
-    switch (index) {
-      case 0:
-        // Home - Stay on current screen
-        break;
-      case 1:
-        // Navigator.pushNamed(context, AppRoutes.HOME);
-        break;
-      case 2:
-        // Navigate to Add Property Form
-        // Navigator.pushNamed(context, AppRoutes.HOME);
-        break;
-      case 3:
-        // Navigate to Notifications Page
-        // Navigator.pushNamed(context, AppRoutes.HOME);
-        break;
-      case 4:
-        // Navigate to Profile Page
-        // Navigator.pushNamed(context, AppRoutes.HOME);
-        break;
-    }
   }
 
   @override
   Widget build(BuildContext context) {
-    // final screenHeight = MediaQuery.of(context).size.height;
-
     return Scaffold(
+      appBar:CustomAppBar(scaffoldKey: _scaffoldKey) ,
       key: _scaffoldKey,
-      appBar: CustomAppBar(scaffoldKey: _scaffoldKey),
       drawer: CustomDrawer(),
       backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // SizedBox(height: screenHeight * 0.28, child: const Carousel()),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.only(left: 9),
-                    child: Text(
-                      'Properties',
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      // Navigator.pushNamed(context, AppRoutes.HOME);
-                    },
-                    child: Text(
-                      'View More',
-                      style: TextStyle(
-                          color: ThemeConstants.primaryColor,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 80),
-          ],
-        ),
-      ),
+      body: screens[_selectedIndex],
       bottomNavigationBar: AdminBottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,

@@ -1,14 +1,14 @@
+import 'package:URBANPRO/routes/app_routes.dart';
 import 'package:URBANPRO/utils/app__text_style.dart';
 import 'package:URBANPRO/utils/theme_constants.dart';
-import 'package:URBANPRO/utils/user_role.dart';
 import 'package:URBANPRO/utils/validators.dart';
 import 'package:URBANPRO/views/auth/otp_screen.dart';
 import 'package:URBANPRO/views/widgets/applogo.dart';
+import 'package:URBANPRO/views/widgets/custom_dropdown%20copy.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:URBANPRO/controllers/auth_controller.dart';
 import 'package:URBANPRO/views/widgets/custom_button.dart';
-import 'package:URBANPRO/views/widgets/custom_dropdown.dart';
 import 'package:URBANPRO/views/widgets/custom_text_field.dart';
 import 'package:URBANPRO/views/widgets/loading_widget.dart';
 
@@ -19,7 +19,7 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
-  final TextEditingController roleController = TextEditingController();
+  late int selectedRole;
   final TextEditingController nameController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
   final AuthController _authController = Get.put(AuthController());
@@ -60,10 +60,10 @@ class _SignupPageState extends State<SignupPage> {
 
                 const SizedBox(height: 30),
 
-                _buildDropdown(),
-
+                SimpleDropdown(
+                    onSelectedValueChanged: (value) => {selectedRole = value},
+                    initialValue: "Admin"),
                 const SizedBox(height: 20),
-
                 Form(
                   key: _nameFormKey,
                   child: CommonTextField(
@@ -79,7 +79,6 @@ class _SignupPageState extends State<SignupPage> {
                 ),
 
                 const SizedBox(height: 20),
-
                 Form(
                   key: _mobileFormKey,
                   child: CommonTextField(
@@ -118,7 +117,7 @@ class _SignupPageState extends State<SignupPage> {
                           phoneController.text,
                           'email@gmail.com',
                           nameController.text,
-                          '1',
+                          selectedRole,
                         );
 
                         setState(() {
@@ -138,7 +137,7 @@ class _SignupPageState extends State<SignupPage> {
                             email:
                                 'email@gmail.com', // Replace with actual email
                             name: nameController.text,
-                            role: '1', // Replace with actual role
+                            role: selectedRole, // Replace with actual role
                           ),
                         );
                       } else {
@@ -160,7 +159,9 @@ class _SignupPageState extends State<SignupPage> {
                       style: AppTextStyle.Text14300,
                     ),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.toNamed(AppRoutes.LOGIN);
+                      },
                       child: Text("Sign In",
                           style: AppTextStyle.Text14600.copyWith(
                               color: ThemeConstants.primaryColor)),
@@ -182,37 +183,6 @@ class _SignupPageState extends State<SignupPage> {
               ),
             ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildDropdown() {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: ThemeConstants.primaryColor,
-          width: 1,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: ThemeConstants.primaryColor.withOpacity(0.15),
-            spreadRadius: 2,
-            blurRadius: 10,
-            offset: const Offset(0, 3),
-          ),
-        ],
-      ),
-      child: CustomDropdown<String>(
-        itemDescriptions: roleDescriptions,
-        selectedValue: userRole.first,
-        onChanged: (String? value) {
-          // Handle selection
-          print("$value");
-          roleController.text = value!;
-        },
       ),
     );
   }

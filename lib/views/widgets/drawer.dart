@@ -1,6 +1,9 @@
 import 'package:URBANPRO/routes/app_routes.dart';
 import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:http/http.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -16,21 +19,23 @@ class CustomDrawer extends StatelessWidget {
             child: ListView(
               padding: const EdgeInsets.only(top: 100),
               children: [
-                _buildDrawerItem(Icons.dashboard, 'Dashboard',
+                _buildDrawerItem(
+                    Icons.person, 'Users', AppRoutes.USERSSCREEN, context),
+                _buildDrawerItem(Icons.account_balance, 'Transactions',
+                    AppRoutes.TRANSACTIONSCREEN, context),
+                _buildDrawerItem(Icons.wallet, 'Wallet History',
                     AppRoutes.STUDENTHOME, context),
-                _buildDrawerItem(Icons.person_outline, 'Profile',
+                _buildDrawerItem(Icons.account_circle_outlined,
+                    'Account Option', AppRoutes.STUDENTHOME, context),
+                _buildDrawerItem(Icons.notification_add, 'Send Notification',
                     AppRoutes.STUDENTHOME, context),
-                _buildDrawerItem(Icons.apartment, 'Published Properties',
+                _buildDrawerItem(Icons.offline_share_rounded,
+                    'Promotions & Offers', AppRoutes.STUDENTHOME, context),
+                _buildDrawerItem(
+                    Icons.feedback, 'Feedback', AppRoutes.STUDENTHOME, context),
+                _buildDrawerItem(Icons.arrow_drop_down, 'Dynamic Dropdown',
                     AppRoutes.STUDENTHOME, context),
-                _buildDrawerItem(Icons.shopping_bag, 'Purchased Properties',
-                    AppRoutes.STUDENTHOME, context),
-                _buildDrawerItem(Icons.info_outline, 'About Us',
-                    AppRoutes.STUDENTHOME, context),
-                _buildDrawerItem(Icons.contact_mail_outlined, 'Contact Us',
-                    AppRoutes.STUDENTHOME, context),
-                _buildDrawerItem(Icons.lock_outline, 'Privacy Policy',
-                    AppRoutes.STUDENTHOME, context),
-                _buildDrawerItem(Icons.rule, 'Terms & Conditions',
+                _buildDrawerItem(Icons.security, 'Terms & Condition',
                     AppRoutes.STUDENTHOME, context),
                 Divider(
                     color: Colors.grey[300],
@@ -45,8 +50,6 @@ class CustomDrawer extends StatelessWidget {
       ),
     );
   }
-
-
 
   Widget _buildDrawerItem(
       IconData icon, String title, String? route, BuildContext context) {
@@ -84,7 +87,7 @@ class CustomDrawer extends StatelessWidget {
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text("Log Out"),
+        title: const Text("Logout"),
         content: const Text("Are you sure you want to log out?"),
         actions: [
           TextButton(
@@ -92,11 +95,14 @@ class CustomDrawer extends StatelessWidget {
             child: const Text("Cancel"),
           ),
           TextButton(
-            onPressed: () {},
-            child: const Text("Log Out"),
+            onPressed: () {
+              Get.toNamed(AppRoutes.LOGIN);
+            },
+            child: const Text("Logout"),
           ),
         ],
       ),
     );
   }
+  
 }

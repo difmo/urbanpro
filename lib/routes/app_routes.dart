@@ -8,4 +8,7 @@ class AppRoutes {
   static const STUDENTHOME = '/studenthome';
   static const ONBOARDING = '/onboarding';
   static const OTPSCREEN = '/otpscreen';
+  // admin
+    static const USERSSCREEN = '/usersscreen';
+        static const TRANSACTIONSCREEN = '/transactionscreen';
 }

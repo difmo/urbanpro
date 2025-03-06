@@ -1,4 +1,6 @@
 import 'package:URBANPRO/models/admin/enquiry_model.dart';
+import 'package:URBANPRO/utils/app__text_style.dart';
+import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:flutter/material.dart';
 
 class EnquiryCard extends StatelessWidget {
@@ -16,10 +18,11 @@ class EnquiryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 3,
+    return Container(
+      decoration: BoxDecoration(
+          border: Border.all(width: 1, color: ThemeConstants.lightGrey),
+          borderRadius: BorderRadius.all(Radius.circular(4))),
       margin: EdgeInsets.symmetric(vertical: 8),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       child: Padding(
         padding: EdgeInsets.all(12),
         child: Column(
@@ -37,21 +40,31 @@ class EnquiryCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                TextButton(
-                  onPressed: onViewDetails,
-                  child: Text("View Details"),
+                GestureDetector(
+                  onTap: onViewDetails,
+                  child: Container(
+                    padding: EdgeInsets.all(8),
+                    decoration: BoxDecoration(color: ThemeConstants.primaryColor,borderRadius: BorderRadius.all(Radius.circular(4))),
+                    child: Text(
+                      "View Details",
+                      style: AppTextStyle.TextWhite12700 ,
+                    ),
+                  ),
                 ),
                 SizedBox(width: 8),
-                ElevatedButton(
-                  onPressed: onApprove,
-                  style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
-                  child: Text("Approve", style: TextStyle(color: Colors.white)),
-                ),
+                GestureDetector(
+                  onTap: onApprove,
+                  child: Container(
+                    padding: EdgeInsets.all(8),
+                    decoration: BoxDecoration(color: ThemeConstants.secondaryColor,borderRadius: BorderRadius.all(Radius.circular(4))),
+                    child: Text("Approve",   style: AppTextStyle.TextWhite12700 ))),
                 SizedBox(width: 8),
-                ElevatedButton(
-                  onPressed: onReject,
-                  style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                  child: Text("Reject", style: TextStyle(color: Colors.white)),
+                GestureDetector(
+                onTap: onApprove,
+                child: Container(
+                   padding: EdgeInsets.all(8),
+                  decoration: BoxDecoration(color: ThemeConstants.red,borderRadius: BorderRadius.all(Radius.circular(4))),
+                  child: Text("Reject",   style: AppTextStyle.TextWhite12700 ,)),
                 ),
               ],
             ),

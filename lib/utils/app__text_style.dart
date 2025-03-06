@@ -148,6 +148,12 @@ class AppTextStyle {
     color: Colors.white,
   );
 
+    static TextStyle TextWhite12700 = GoogleFonts.plusJakartaSans(
+    fontSize: 12,
+    fontWeight: FontWeight.w700,
+    color: Colors.white,
+  );
+
   static TextStyle Text16700 = GoogleFonts.plusJakartaSans(
     fontSize: 16,
     fontWeight: FontWeight.w700,

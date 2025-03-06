@@ -1,5 +1,6 @@
 import 'package:URBANPRO/models/admin/enquiry_model.dart';
 import 'package:URBANPRO/services/admin/enquiry_service.dart';
+import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:URBANPRO/views/widgets/admin/enquiry_card.dart';
 import 'package:flutter/material.dart';
 
@@ -25,16 +26,7 @@ class _AdminEnquiriesScreenState extends State<AdminEnquiriesScreen> {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        appBar: AppBar(
-          title: Text("Admin Enquiries"),
-          bottom: TabBar(
-            onTap: (index) => setState(() => _selectedTabIndex = index),
-            tabs: [
-              Tab(text: "Students"),
-              Tab(text: "Teachers"),
-            ],
-          ),
-        ),
+        backgroundColor: ThemeConstants.white,
         body: FutureBuilder<List<Enquiry>>(
           future: _enquiryFuture,
           builder: (context, snapshot) {

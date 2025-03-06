@@ -1,3 +1,5 @@
+import 'package:URBANPRO/views/admin/transactions_screen.dart';
+import 'package:URBANPRO/views/admin/users_screen.dart';
 import 'package:URBANPRO/views/auth/otp_screen.dart';
 import 'package:URBANPRO/views/dashboard/admin_dashboard.dart';
 import 'package:URBANPRO/views/dashboard/student_dashboard.dart';
@@ -72,6 +74,21 @@ class AppPages {
           role: arguments['role'],
         );
       },
+      transition: Transition.fadeIn, 
+      transitionDuration: Duration(milliseconds: 500),
+    ),
+
+    // admin
+    GetPage(
+      name: AppRoutes.USERSSCREEN, 
+      page: () => UsersScreen(),
+      transition: Transition.fadeIn, 
+      transitionDuration: Duration(milliseconds: 500),
+    ),
+
+        GetPage(
+      name: AppRoutes.TRANSACTIONSCREEN, 
+      page: () =>TransactionsScreen(),
       transition: Transition.fadeIn, 
       transitionDuration: Duration(milliseconds: 500),
     ),

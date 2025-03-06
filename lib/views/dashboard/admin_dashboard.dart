@@ -3,6 +3,7 @@ import 'package:URBANPRO/views/admin/admin_enquiries_screen.dart';
 import 'package:URBANPRO/views/widgets/admin_bottom_bar.dart';
 import 'package:URBANPRO/views/widgets/custom_app_bar.dart';
 import 'package:URBANPRO/views/widgets/drawer.dart';
+import 'package:URBANPRO/views/widgets/menu_app_bar.dart';
 import 'package:flutter/material.dart';
 
 class AdminDashBoard extends StatefulWidget {
@@ -23,24 +24,15 @@ class _AdminDashBoard extends State<AdminDashBoard> {
         AdminEnquiriesScreen()
   ];
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:CustomAppBar(scaffoldKey: _scaffoldKey) ,
+      appBar:MenuAppBar(scaffoldKey: _scaffoldKey,notificationCount: 5,) ,
       key: _scaffoldKey,
       drawer: CustomDrawer(),
       backgroundColor: Colors.white,
       body: screens[_selectedIndex],
-      bottomNavigationBar: AdminBottomNavigationBar(
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-      ),
+  
     );
   }
 }

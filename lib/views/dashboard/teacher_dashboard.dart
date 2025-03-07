@@ -1,8 +1,6 @@
-import 'package:URBANPRO/views/student/chat_screen.dart';
 import 'package:URBANPRO/views/teacher/account_screen.dart';
 import 'package:URBANPRO/views/teacher/enquiries_screen.dart';
 import 'package:URBANPRO/views/teacher/teacher_chat_support_screen.dart';
-import 'package:URBANPRO/views/widgets/custom_app_bar.dart';
 import 'package:URBANPRO/views/widgets/drawer.dart';
 import 'package:URBANPRO/views/widgets/teacher_bottom_bar.dart';
 import 'package:flutter/material.dart';

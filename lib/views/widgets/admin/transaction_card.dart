@@ -8,13 +8,13 @@ class TransactionCard extends StatelessWidget {
   final String status;
 
   const TransactionCard({
-    Key? key,
+    super.key,
     required this.userName,
     required this.userType,
     required this.amount,
     required this.date,
     required this.status,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,9 @@ class TransactionCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(userName, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                Text(userName,
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   decoration: BoxDecoration(
@@ -42,7 +44,8 @@ class TransactionCard extends StatelessWidget {
                   ),
                   child: Text(
                     userType,
-                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.bold),
                   ),
                 ),
               ],
@@ -50,16 +53,22 @@ class TransactionCard extends StatelessWidget {
             SizedBox(height: 8),
 
             /// Transaction Details
-            Text("Amount: \$${amount.toStringAsFixed(2)}", style: TextStyle(fontSize: 14, color: Colors.black)),
+            Text("Amount: \$${amount.toStringAsFixed(2)}",
+                style: TextStyle(fontSize: 14, color: Colors.black)),
             SizedBox(height: 4),
-            Text("Date: $date", style: TextStyle(fontSize: 14, color: Colors.grey[700])),
+            Text("Date: $date",
+                style: TextStyle(fontSize: 14, color: Colors.grey[700])),
             SizedBox(height: 6),
 
             /// Transaction Status
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(status, style: TextStyle(fontSize: 14, color: statusColor, fontWeight: FontWeight.bold)),
+                Text(status,
+                    style: TextStyle(
+                        fontSize: 14,
+                        color: statusColor,
+                        fontWeight: FontWeight.bold)),
                 Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
               ],
             ),

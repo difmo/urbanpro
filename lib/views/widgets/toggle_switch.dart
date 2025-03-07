@@ -6,11 +6,11 @@ class ToggleSwitch extends StatelessWidget {
   final String title;
 
   const ToggleSwitch({
-    Key? key,
+    super.key,
     required this.value,
     required this.onChanged,
     required this.title,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

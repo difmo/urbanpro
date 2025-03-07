@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import '../widgets/lead_card.dart';
 
 class EnquiriesScreen extends StatefulWidget {
+  const EnquiriesScreen({super.key});
+
   @override
   _EnquiriesScreenState createState() => _EnquiriesScreenState();
 }

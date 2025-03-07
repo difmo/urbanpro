@@ -2,8 +2,6 @@ import 'package:URBANPRO/routes/app_routes.dart';
 import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:http/http.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -104,5 +102,4 @@ class CustomDrawer extends StatelessWidget {
       ),
     );
   }
-  
 }

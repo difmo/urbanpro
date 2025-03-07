@@ -9,7 +9,8 @@ class EnquiryCard extends StatelessWidget {
   final VoidCallback onReject;
   final VoidCallback onViewDetails;
 
-  EnquiryCard({
+  const EnquiryCard({
+    super.key,
     required this.enquiry,
     required this.onApprove,
     required this.onReject,
@@ -44,27 +45,37 @@ class EnquiryCard extends StatelessWidget {
                   onTap: onViewDetails,
                   child: Container(
                     padding: EdgeInsets.all(8),
-                    decoration: BoxDecoration(color: ThemeConstants.primaryColor,borderRadius: BorderRadius.all(Radius.circular(4))),
+                    decoration: BoxDecoration(
+                        color: ThemeConstants.primaryColor,
+                        borderRadius: BorderRadius.all(Radius.circular(4))),
                     child: Text(
                       "View Details",
-                      style: AppTextStyle.TextWhite12700 ,
+                      style: AppTextStyle.TextWhite12700,
                     ),
                   ),
                 ),
                 SizedBox(width: 8),
                 GestureDetector(
-                  onTap: onApprove,
-                  child: Container(
-                    padding: EdgeInsets.all(8),
-                    decoration: BoxDecoration(color: ThemeConstants.secondaryColor,borderRadius: BorderRadius.all(Radius.circular(4))),
-                    child: Text("Approve",   style: AppTextStyle.TextWhite12700 ))),
+                    onTap: onApprove,
+                    child: Container(
+                        padding: EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                            color: ThemeConstants.secondaryColor,
+                            borderRadius: BorderRadius.all(Radius.circular(4))),
+                        child: Text("Approve",
+                            style: AppTextStyle.TextWhite12700))),
                 SizedBox(width: 8),
                 GestureDetector(
-                onTap: onApprove,
-                child: Container(
-                   padding: EdgeInsets.all(8),
-                  decoration: BoxDecoration(color: ThemeConstants.red,borderRadius: BorderRadius.all(Radius.circular(4))),
-                  child: Text("Reject",   style: AppTextStyle.TextWhite12700 ,)),
+                  onTap: onApprove,
+                  child: Container(
+                      padding: EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                          color: ThemeConstants.red,
+                          borderRadius: BorderRadius.all(Radius.circular(4))),
+                      child: Text(
+                        "Reject",
+                        style: AppTextStyle.TextWhite12700,
+                      )),
                 ),
               ],
             ),

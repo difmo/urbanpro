@@ -4,14 +4,15 @@ import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:URBANPRO/views/widgets/admin/enquiry_card.dart';
 import 'package:flutter/material.dart';
 
-
 class AdminEnquiriesScreen extends StatefulWidget {
+  const AdminEnquiriesScreen({super.key});
+
   @override
   _AdminEnquiriesScreenState createState() => _AdminEnquiriesScreenState();
 }
 
 class _AdminEnquiriesScreenState extends State<AdminEnquiriesScreen> {
-  int _selectedTabIndex = 0;
+  final int _selectedTabIndex = 0;
   late Future<List<Enquiry>> _enquiryFuture;
   final EnquiryService _enquiryService = EnquiryService();
 

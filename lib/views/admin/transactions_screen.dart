@@ -4,6 +4,8 @@ import 'package:URBANPRO/views/widgets/admin/transaction_card.dart';
 import 'package:flutter/material.dart';
 
 class TransactionsScreen extends StatefulWidget {
+  const TransactionsScreen({super.key});
+
   @override
   _TransactionsScreenState createState() => _TransactionsScreenState();
 }
@@ -24,7 +26,8 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
     setState(() => _isLoading = true);
 
     try {
-      List<Transaction> transactions = await _transactionService.fetchTransactions();
+      List<Transaction> transactions =
+          await _transactionService.fetchTransactions();
       setState(() {
         _transactions = transactions;
         _isLoading = false;

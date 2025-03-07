@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AccountScreen extends StatefulWidget {
+  const AccountScreen({super.key});
+
   @override
   _AccountScreenState createState() => _AccountScreenState();
 }
@@ -42,7 +44,7 @@ class _AccountScreenState extends State<AccountScreen> {
               return Center(child: Text("Failed to load account details"));
             }
             Account account = snapshot.data!;
-        
+
             return LayoutBuilder(
               builder: (context, constraints) {
                 return SingleChildScrollView(
@@ -54,12 +56,14 @@ class _AccountScreenState extends State<AccountScreen> {
                     children: [
                       /// **Profile Section**
                       _buildProfileSection(account, constraints),
-        
+
                       SizedBox(height: 20),
-        
+
                       /// **Settings Card**
                       Container(
-                        decoration: BoxDecoration(border: Border.all(color: ThemeConstants.lightGrey,width: 1)),
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                                color: ThemeConstants.lightGrey, width: 1)),
                         child: Padding(
                           padding: EdgeInsets.all(16),
                           child: Column(
@@ -96,19 +100,19 @@ class _AccountScreenState extends State<AccountScreen> {
                           ),
                         ),
                       ),
-        
+
                       SizedBox(height: 16),
-        
+
                       /// **Quick Access Links**
-                      _buildInfoTile("Share Leads Link", account.leadsLink,
-                          Icons.link),
                       _buildInfoTile(
-                          "Sell Your Courses", account.coursesLink, Icons.school),
+                          "Share Leads Link", account.leadsLink, Icons.link),
+                      _buildInfoTile("Sell Your Courses", account.coursesLink,
+                          Icons.school),
                       _buildInfoTile("Contact for Studio Setup",
                           account.studioContact, Icons.spatial_audio),
-        
+
                       SizedBox(height: 24),
-        
+
                       /// **Logout Button**
                       Center(
                         child: ElevatedButton.icon(
@@ -124,7 +128,8 @@ class _AccountScreenState extends State<AccountScreen> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8)),
                             padding: EdgeInsets.symmetric(
-                                horizontal: constraints.maxWidth > 600 ? 40 : 20,
+                                horizontal:
+                                    constraints.maxWidth > 600 ? 40 : 20,
                                 vertical: 12),
                           ),
                         ),
@@ -146,8 +151,8 @@ class _AccountScreenState extends State<AccountScreen> {
 
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(4)),
-        border: Border.all(color: ThemeConstants.lighterGrey,width: 1)),
+          borderRadius: BorderRadius.all(Radius.circular(4)),
+          border: Border.all(color: ThemeConstants.lighterGrey, width: 1)),
       child: Padding(
         padding: EdgeInsets.all(16),
         child: Row(
@@ -157,9 +162,9 @@ class _AccountScreenState extends State<AccountScreen> {
               radius: isWideScreen ? 50 : 40,
               backgroundImage: NetworkImage(account.profileImage),
             ),
-      
+
             SizedBox(width: isWideScreen ? 24 : 16),
-      
+
             /// **User Details**
             Expanded(
               child: Column(
@@ -189,7 +194,7 @@ class _AccountScreenState extends State<AccountScreen> {
                 ],
               ),
             ),
-      
+
             /// **Edit Profile Button**
             IconButton(
               icon: Icon(Icons.edit, color: Colors.blue, size: 24),

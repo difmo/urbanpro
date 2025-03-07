@@ -12,7 +12,7 @@ class UserCard extends StatelessWidget {
   final VoidCallback? onDelete;
 
   const UserCard({
-    Key? key,
+    super.key,
     required this.name,
     required this.email,
     required this.phone,
@@ -21,12 +21,13 @@ class UserCard extends StatelessWidget {
     this.onViewProfile,
     this.onEdit,
     this.onDelete,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(border: Border.all(color: ThemeConstants.lightGrey)),
+      decoration:
+          BoxDecoration(border: Border.all(color: ThemeConstants.lightGrey)),
       child: Padding(
         padding: EdgeInsets.all(16),
         child: Column(
@@ -42,28 +43,34 @@ class UserCard extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   decoration: BoxDecoration(
-                    color: role == "Teacher" ? ThemeConstants.primaryColor : Colors.blue,
+                    color: role == "Teacher"
+                        ? ThemeConstants.primaryColor
+                        : Colors.blue,
                     borderRadius: BorderRadius.circular(5),
                   ),
                   child: Text(
                     role,
-                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.bold),
                   ),
                 ),
               ],
             ),
             SizedBox(height: 8),
-      
+
             /// Contact Details
-            Text("Email: $email", style: TextStyle(fontSize: 14, color: Colors.grey[700])),
+            Text("Email: $email",
+                style: TextStyle(fontSize: 14, color: Colors.grey[700])),
             SizedBox(height: 4),
-            Text("Phone: $phone", style: TextStyle(fontSize: 14, color: Colors.grey[700])),
+            Text("Phone: $phone",
+                style: TextStyle(fontSize: 14, color: Colors.grey[700])),
             SizedBox(height: 6),
-      
+
             /// Extra Info
-            Text(extraInfo, style: TextStyle(fontSize: 14, color: Colors.black)),
+            Text(extraInfo,
+                style: TextStyle(fontSize: 14, color: Colors.black)),
             SizedBox(height: 10),
-      
+
             /// Action Buttons
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -76,10 +83,11 @@ class UserCard extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.white,
                     backgroundColor: ThemeConstants.primaryColor,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8)),
                   ),
                 ),
-      
+
                 /// Edit and Delete Buttons
                 Row(
                   children: [

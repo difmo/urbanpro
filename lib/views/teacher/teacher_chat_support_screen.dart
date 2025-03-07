@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class TeacherChatSupportScreen extends StatefulWidget {
+  const TeacherChatSupportScreen({super.key});
+
   @override
   _TeacherChatSupportScreenState createState() =>
       _TeacherChatSupportScreenState();
@@ -142,9 +144,9 @@ class _TeacherChatSupportScreenState extends State<TeacherChatSupportScreen> {
                 SizedBox(width: 8),
                 FloatingActionButton(
                   onPressed: _sendMessage,
-                  child: Icon(Icons.send, color: Colors.white),
                   backgroundColor: Colors.blueAccent,
                   mini: true,
+                  child: Icon(Icons.send, color: Colors.white),
                 ),
               ],
             ),

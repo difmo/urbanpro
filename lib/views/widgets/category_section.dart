@@ -1,5 +1,4 @@
 import 'package:URBANPRO/utils/app__text_style.dart';
-import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 
@@ -22,7 +21,6 @@ class ExploreCategories extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-    
         GridView.builder(
           padding: EdgeInsets.zero,
           physics: NeverScrollableScrollPhysics(),
@@ -47,7 +45,7 @@ class ExploreCategories extends StatelessWidget {
                       Icon(categories[index]['icon'],
                           size: 35,
                           color: const Color.fromARGB(255, 198, 198, 198)),
-                          // color: const Color.fromARGB(255, 46, 185, 255)),
+                      // color: const Color.fromARGB(255, 46, 185, 255)),
                       SizedBox(height: 8),
                     ],
                   ),

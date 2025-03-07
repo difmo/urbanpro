@@ -2,12 +2,10 @@ import 'package:URBANPRO/controllers/auth_controller.dart';
 import 'package:URBANPRO/routes/app_routes.dart';
 import 'package:URBANPRO/utils/app__text_style.dart';
 import 'package:URBANPRO/utils/theme_constants.dart';
-import 'package:URBANPRO/utils/user_role.dart';
 import 'package:URBANPRO/utils/validators.dart';
 import 'package:URBANPRO/views/auth/otp_screen.dart';
 import 'package:URBANPRO/views/widgets/applogo.dart';
 import 'package:URBANPRO/views/widgets/custom_dropdown%20copy.dart';
-import 'package:URBANPRO/views/widgets/custom_dropdown.dart';
 import 'package:URBANPRO/views/widgets/custom_text_field.dart';
 import 'package:URBANPRO/views/widgets/loading_widget.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +21,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  late int selectedRole=1;
+  late int selectedRole = 1;
   final TextEditingController phoneController = TextEditingController();
   final AuthController _authController = Get.put(AuthController());
   bool isLoading = false;
@@ -157,5 +155,4 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
-
 }

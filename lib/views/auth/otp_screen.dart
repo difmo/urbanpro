@@ -56,7 +56,7 @@ class _OTPScreenState extends State<OTPScreen> {
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('${resposnse.message}'),
+          content: Text(resposnse.message),
           duration: Duration(seconds: 2), // Duration before it disappears
           backgroundColor: Colors.blue, // Background color of the Snackbar
         ),

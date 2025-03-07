@@ -5,8 +5,7 @@ class LeadCard extends StatelessWidget {
   final Lead lead;
   final VoidCallback onConnect;
 
-  const LeadCard({Key? key, required this.lead, required this.onConnect})
-      : super(key: key);
+  const LeadCard({super.key, required this.lead, required this.onConnect});
 
   @override
   Widget build(BuildContext context) {

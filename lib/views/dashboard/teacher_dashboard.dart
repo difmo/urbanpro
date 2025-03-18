@@ -1,7 +1,7 @@
 import 'package:URBANPRO/views/teacher/account_screen.dart';
 import 'package:URBANPRO/views/teacher/enquiries_screen.dart';
+import 'package:URBANPRO/views/teacher/follow_up_screen.dart';
 import 'package:URBANPRO/views/teacher/teacher_chat_support_screen.dart';
-import 'package:URBANPRO/views/widgets/drawer.dart';
 import 'package:URBANPRO/views/widgets/teacher_bottom_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +17,7 @@ class _TeacherDashBoard extends State<TeacherDashBoard> {
   int _selectedIndex = 0;
   final List<Widget> screens = [
     EnquiriesScreen(),
-    EnquiriesScreen(),
+    FollowUpScreen(),
     EnquiriesScreen(),
     TeacherChatSupportScreen(),
     AccountScreen()
@@ -33,10 +33,6 @@ class _TeacherDashBoard extends State<TeacherDashBoard> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      drawer: CustomDrawer(
-        userName: '',
-        userImage: '',
-      ),
       backgroundColor: Colors.white,
       body: screens[_selectedIndex],
       bottomNavigationBar: TeacherBottomNavigationBar(

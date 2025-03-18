@@ -1,14 +1,26 @@
 import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:URBANPRO/views/widgets/applogo.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;
+  final int notificationCount;
+  final Color? backgroundColor;
+  final Color? actionBarColor; // New: Color for action bar only
+  final String? title;
 
-  const CustomAppBar({super.key, required this.scaffoldKey});
+  const CustomAppBar({
+    super.key,
+    required this.scaffoldKey,
+    this.notificationCount = 1,
+    this.backgroundColor,
+    this.actionBarColor,
+    this.title,
+  });
 
   @override
-  Size get preferredSize => Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
   @override
   Widget build(BuildContext context) {
@@ -19,56 +31,70 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         elevation: 0,
         flexibleSpace: Container(
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                const Color.fromARGB(255, 255, 255, 255),
-                const Color.fromARGB(255, 255, 255, 255)
-              ],
-            ),
-            borderRadius: BorderRadius.only(),
+            gradient: backgroundColor == null
+                ? const LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Color(0xFF4A90E2), // Smooth blue gradient
+                      Color(0xFF50E3C2),
+                    ],
+                  )
+                : null,
+            color: backgroundColor ?? Colors.white,
           ),
         ),
         leading: IconButton(
           icon: Container(
-              padding: EdgeInsets.only(left: 16), child: Applogo(width: 48)),
+            padding: const EdgeInsets.only(left: 16),
+            child: Applogo(width: 48),
+          ),
           onPressed: () {
             scaffoldKey.currentState?.openDrawer();
           },
         ),
-        title: const Text(
-          'Urban Tutors',
+        title: Text(
+          title!,
           style: TextStyle(
-            color: Colors.black,
+            color: ThemeConstants.secondaryColor,
             fontWeight: FontWeight.bold,
             fontSize: 18,
           ),
         ),
         actions: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(right: 8.0),
-            child: OutlinedButton(
+          // Coins button with icon
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            color: actionBarColor ?? Colors.transparent, // Action bar color
+            child: OutlinedButton.icon(
               onPressed: () {},
               style: OutlinedButton.styleFrom(
                 side: BorderSide(color: Colors.white),
+                backgroundColor: Colors.black.withOpacity(0.1), // Slight tint
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30), // Border radius
+                  borderRadius: BorderRadius.circular(30),
                 ),
-                // padding: EdgeInsets.symmetric(horizontal: 20, vertical:0), // Optional padding
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
               ),
-              child: Text(
-                'Coins | Pro',
+              icon: const Icon(
+                FontAwesomeIcons.coins,
+                color: Color(0xFFFFD700),
+                size: 18,
+              ),
+              label: const Text(
+                '120 cons | Pro',
                 style: TextStyle(
-                  color: ThemeConstants.secondaryColor, // Text color
+                  color: ThemeConstants.secondaryColor,
                   fontWeight: FontWeight.bold,
-                  fontSize: 16, // Adjust text size
+                  fontSize: 16,
                 ),
               ),
             ),
           ),
 
-          // Notifications Button
+          // Optional notification button
+          const SizedBox(width: 8),
         ],
       ),
     );

@@ -21,6 +21,16 @@ class MyApp extends StatelessWidget {
       getPages: AppPages.pages,
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Color(0xFF4A90E2), // Global ActionBar Color
+          elevation: 0,
+          iconTheme: IconThemeData(color: Colors.white),
+          titleTextStyle: TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
     );
   }

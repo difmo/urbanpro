@@ -41,8 +41,8 @@ class TeacherBottomNavigationBar extends StatelessWidget {
             label: 'Enquiries',
           ),
           const BottomNavigationBarItem(
-            icon: Icon(Icons.label_off_rounded),
-            label: 'Fds',
+            icon: Icon(Icons.swap_horiz),
+            label: 'Follow-Up',
           ),
           const BottomNavigationBarItem(
             icon: Icon(Icons.message),

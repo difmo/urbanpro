@@ -9,6 +9,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     super.key,
     required this.title,
     this.showBackButton = true,
+    required GlobalKey<ScaffoldState> scaffoldKey,
   });
 
   @override

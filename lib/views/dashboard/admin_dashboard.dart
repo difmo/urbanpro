@@ -1,7 +1,5 @@
 import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:URBANPRO/views/admin/admin_enquiries_screen.dart';
-import 'package:URBANPRO/views/widgets/admin_bottom_bar.dart';
-import 'package:URBANPRO/views/widgets/custom_app_bar.dart';
 import 'package:URBANPRO/views/widgets/drawer.dart';
 import 'package:URBANPRO/views/widgets/menu_app_bar.dart';
 import 'package:flutter/material.dart';
@@ -15,14 +13,6 @@ class AdminDashBoard extends StatefulWidget {
 
 class _AdminDashBoard extends State<AdminDashBoard> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  final int _selectedIndex = 0;
-  final List<Widget> screens = [
-    AdminEnquiriesScreen(),
-    AdminEnquiriesScreen(),
-    AdminEnquiriesScreen(),
-    AdminEnquiriesScreen(),
-    AdminEnquiriesScreen()
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +22,13 @@ class _AdminDashBoard extends State<AdminDashBoard> {
         notificationCount: 5,
       ),
       key: _scaffoldKey,
-      drawer: CustomDrawer(),
+      drawer: CustomDrawer(
+        userName: 'Dinesh Kumar',
+        userImage:
+            'https://i.ibb.co/LD68ZwXH/360-F-227450952-KQCMSh-HPOPeb-UXkl-ULs-Ks-ROk5-Av-N6-H1-H.jpg',
+      ),
       backgroundColor: Colors.white,
-      body: screens[_selectedIndex],
+      body: AdminEnquiriesScreen(),
     );
   }
 }

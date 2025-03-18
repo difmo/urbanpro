@@ -1,14 +1,21 @@
 import 'package:URBANPRO/utils/theme_constants.dart';
+import 'package:URBANPRO/views/admin/create_newlead_screen.dart';
 import 'package:flutter/material.dart';
 
 class MenuAppBar extends StatelessWidget implements PreferredSizeWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;
   final int notificationCount; // Notification count passed from dashboard
+  final Color? backgroundColor; // New optional background color field
 
-  const MenuAppBar({super.key, required this.scaffoldKey, this.notificationCount = 1});
+  const MenuAppBar({
+    super.key,
+    required this.scaffoldKey,
+    this.notificationCount = 1,
+    this.backgroundColor, // Allow custom color
+  });
 
   @override
-  Size get preferredSize => Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
   @override
   Widget build(BuildContext context) {
@@ -19,20 +26,27 @@ class MenuAppBar extends StatelessWidget implements PreferredSizeWidget {
         elevation: 0,
         flexibleSpace: Container(
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                const Color.fromARGB(255, 255, 255, 255),
-                const Color.fromARGB(255, 255, 255, 255),
-              ],
-            ),
+            gradient: backgroundColor == null
+                ? LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: const [
+                      Color(0xFF4A90E2), // A smooth blue gradient
+                      Color(0xFF50E3C2)
+                    ],
+                  )
+                : null,
+            color: backgroundColor ?? Colors.white, // Solid color fallback
           ),
         ),
         leading: IconButton(
           icon: Container(
-            padding: EdgeInsets.all(4),
-            child: Image.asset("assets/images/menus.png", height: 48),
+            padding: const EdgeInsets.all(4),
+            child: Image.asset(
+              "assets/images/menus.png",
+              height: 48,
+              color: backgroundColor ?? Colors.white,
+            ),
           ),
           onPressed: () {
             scaffoldKey.currentState?.openDrawer();
@@ -41,9 +55,9 @@ class MenuAppBar extends StatelessWidget implements PreferredSizeWidget {
         title: const Text(
           'Urban Tutors',
           style: TextStyle(
-            color: Colors.black,
+            color: Colors.white,
             fontWeight: FontWeight.bold,
-            fontSize: 24,
+            fontSize: 18,
           ),
         ),
         actions: [
@@ -51,10 +65,13 @@ class MenuAppBar extends StatelessWidget implements PreferredSizeWidget {
           Stack(
             children: [
               IconButton(
-                icon: Icon(Icons.notifications_outlined, color: ThemeConstants.primaryColor),
+                icon: Icon(
+                  Icons.notifications_outlined,
+                  color: ThemeConstants.white,
+                ),
                 onPressed: () {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text("Opening Notifications...")),
+                    const SnackBar(content: Text("Opening Notifications...")),
                   );
                 },
               ),
@@ -65,18 +82,18 @@ class MenuAppBar extends StatelessWidget implements PreferredSizeWidget {
                   right: 8,
                   top: 8,
                   child: Container(
-                    padding: EdgeInsets.all(1),
+                    padding: const EdgeInsets.all(1),
                     decoration: BoxDecoration(
                       color: ThemeConstants.red,
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    constraints: BoxConstraints(
+                    constraints: const BoxConstraints(
                       minWidth: 18,
                       minHeight: 16,
                     ),
                     child: Text(
                       notificationCount.toString(),
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 11,
                         fontWeight: FontWeight.bold,
@@ -88,19 +105,30 @@ class MenuAppBar extends StatelessWidget implements PreferredSizeWidget {
             ],
           ),
 
-          SizedBox(width: 16),
+          const SizedBox(width: 8),
 
           /// **Add Button**
           TextButton(
             onPressed: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text("Adding new content...")),
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CreateNewLeadScreen()),
               );
             },
-            child: Text("+ Add", style: TextStyle(color: ThemeConstants.primaryColor)),
+            child: Container(
+              padding: EdgeInsets.only(left: 16, right: 16, top: 2, bottom: 2),
+              decoration: BoxDecoration(
+                  border: Border.all(
+                      width: 1, color: ThemeConstants.backgroundColor),
+                  borderRadius: BorderRadius.all(Radius.circular(8))),
+              child: Text(
+                "+ Add",
+                style: TextStyle(color: ThemeConstants.white),
+              ),
+            ),
           ),
 
-          SizedBox(width: 16),
+          const SizedBox(width: 16),
         ],
       ),
     );

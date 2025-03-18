@@ -37,7 +37,10 @@ class _StudentDashBoardState extends State<StudentDashBoard> {
     return Scaffold(
       // appBar: CustomAppBar(scaffoldKey: _scaffoldKey),
       key: _scaffoldKey,
-      drawer: CustomDrawer(),
+      drawer: CustomDrawer(
+        userName: '',
+        userImage: '',
+      ),
       backgroundColor: Colors.white,
       body: screens[_selectedIndex],
       bottomNavigationBar: StudentBottomNavigationBar(

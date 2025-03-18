@@ -3,88 +3,111 @@ import 'package:flutter/material.dart';
 
 class LeadCard extends StatelessWidget {
   final Lead lead;
-  final VoidCallback onConnect;
 
-  const LeadCard({super.key, required this.lead, required this.onConnect});
+  const LeadCard({Key? key, required this.lead}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        double cardWidth = constraints.maxWidth;
-
-        return Card(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-          elevation: 3,
-          margin: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-          child: Padding(
-            padding: EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+    return Card(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+      elevation: 3,
+      margin: const EdgeInsets.all(8),
+      child: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                /// Name
-                Text(
-                  lead.name,
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-
-                SizedBox(height: 6),
-
-                /// Subject & Distance
-                Row(
-                  children: [
-                    Icon(Icons.book, size: 18, color: Colors.blueAccent),
-                    SizedBox(width: 4),
-                    Text(
-                      lead.subject,
-                      style: TextStyle(fontSize: 14, color: Colors.black87),
-                    ),
-                    Spacer(),
-                    Icon(Icons.location_on, size: 18, color: Colors.redAccent),
-                    SizedBox(width: 4),
-                    Text(
-                      "${lead.distance} km away",
-                      style: TextStyle(fontSize: 14, color: Colors.black87),
-                    ),
-                  ],
-                ),
-
-                SizedBox(height: 6),
-
-                /// Class & School/College
-                Text(
-                  "${lead.classSection} • ${lead.schoolOrCollege}",
-                  style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.black87,
-                      fontWeight: FontWeight.w500),
-                ),
-
-                SizedBox(height: 12),
-
-                /// Connect Button - Full width for small screens, fixed width for large screens
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: SizedBox(
-                    width: cardWidth > 400 ? 120 : double.infinity,
-                    child: ElevatedButton(
-                      onPressed: onConnect,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.green,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8)),
+                RichText(
+                  text: TextSpan(
+                    style: const TextStyle(fontSize: 16, color: Colors.black87),
+                    children: [
+                      const TextSpan(
+                        text: "Lead No: ",
+                        style: TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      child: Text("Connect",
-                          style: TextStyle(color: Colors.white)),
-                    ),
+                      TextSpan(
+                        text: lead.leadNo,
+                        style: const TextStyle(
+                            color: Colors.red, fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                ),
+                Text(
+                  lead.date,
+                  style: const TextStyle(color: Colors.black54),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            _buildInfoRow(Icons.bookmark, "Class: ${lead.classInfo}"),
+            _buildInfoRow(Icons.school, "Subject: ${lead.subject}"),
+            _buildInfoRow(Icons.location_city, "Location: ${lead.location}"),
+            _buildInfoRow(Icons.sync_alt, "Mode: ${lead.mode}"),
+            _buildInfoRow(
+              Icons.attach_money,
+              "Fee: ${lead.fee}",
+              action: TextButton(
+                onPressed: () {},
+                child: const Text(
+                  "Read more",
+                  style: TextStyle(color: Colors.blue, fontSize: 12),
+                ),
+              ),
+            ),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
+                  decoration: BoxDecoration(
+                    color: Colors.blueAccent,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Text(
+                    "${lead.responses}/${lead.maxResponses}",
+                    style: const TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Text(
+                  lead.status,
+                  style: TextStyle(
+                    color: lead.status == "Responded"
+                        ? Colors.green
+                        : Colors.orange,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ],
             ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildInfoRow(IconData icon, String text, {Widget? action}) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 6.0),
+      child: Row(
+        children: [
+          Icon(icon, color: Colors.green, size: 20),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Text(
+              text,
+              style: const TextStyle(fontSize: 16, color: Colors.black87),
+            ),
           ),
-        );
-      },
+          if (action != null) action,
+        ],
+      ),
     );
   }
 }

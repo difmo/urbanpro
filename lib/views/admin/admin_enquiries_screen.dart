@@ -1,7 +1,10 @@
 import 'package:URBANPRO/models/admin/enquiry_model.dart';
-import 'package:URBANPRO/services/admin/enquiry_service.dart';
+import 'package:URBANPRO/models/leads/lead_model.dart'; // Ensure correct Lead model is imported
+import 'package:URBANPRO/services/lead_service.dart';
 import 'package:URBANPRO/utils/theme_constants.dart';
-import 'package:URBANPRO/views/widgets/admin/enquiry_card.dart';
+import 'package:URBANPRO/views/admin/create_newlead_screen.dart';
+import 'package:URBANPRO/views/admin/lead_details_screen.dart';
+import 'package:URBANPRO/views/widgets/lead_card.dart';
 import 'package:flutter/material.dart';
 
 class AdminEnquiriesScreen extends StatefulWidget {
@@ -12,23 +15,21 @@ class AdminEnquiriesScreen extends StatefulWidget {
 }
 
 class _AdminEnquiriesScreenState extends State<AdminEnquiriesScreen> {
-  final int _selectedTabIndex = 0;
-  late Future<List<Enquiry>> _enquiryFuture;
-  final EnquiryService _enquiryService = EnquiryService();
+  late Future<List<Lead>> _enquiryFuture; // Updated to Lead class
+  final LeadService _leadService = LeadService();
 
   @override
   void initState() {
     super.initState();
-    _enquiryFuture = _enquiryService.fetchEnquiries();
+    _enquiryFuture = _leadService.fetchLeads(); // Fetch leads from the service
   }
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        backgroundColor: ThemeConstants.white,
-        body: FutureBuilder<List<Enquiry>>(
+    return Scaffold(
+      backgroundColor: ThemeConstants.white,
+      body: SafeArea(
+        child: FutureBuilder<List<Lead>>(
           future: _enquiryFuture,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
@@ -38,20 +39,33 @@ class _AdminEnquiriesScreenState extends State<AdminEnquiriesScreen> {
               return Center(child: Text("Failed to load enquiries"));
             }
 
-            List<Enquiry> enquiries = snapshot.data!;
-            List<Enquiry> filteredEnquiries = _selectedTabIndex == 0
-                ? enquiries.where((e) => e.type == "Student").toList()
-                : enquiries.where((e) => e.type == "Teacher").toList();
+            List<Lead> enquiries = snapshot.data!;
 
-            return _buildEnquiriesList(filteredEnquiries);
+            return _buildEnquiriesList(enquiries);
           },
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: ThemeConstants.primaryColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(48), // Set radius to 24
+        ),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => CreateNewLeadScreen()),
+          );
+        },
+        child: Icon(
+          Icons.add,
+          color: ThemeConstants.white,
         ),
       ),
     );
   }
 
   /// Builds Enquiries List
-  Widget _buildEnquiriesList(List<Enquiry> enquiries) {
+  Widget _buildEnquiriesList(List<Lead> enquiries) {
     if (enquiries.isEmpty) {
       return Center(child: Text("No enquiries found"));
     }
@@ -62,32 +76,21 @@ class _AdminEnquiriesScreenState extends State<AdminEnquiriesScreen> {
         itemCount: enquiries.length,
         itemBuilder: (context, index) {
           final enquiry = enquiries[index];
-          return EnquiryCard(
-            enquiry: enquiry,
-            onApprove: () => _handleApprove(enquiry),
-            onReject: () => _handleReject(enquiry),
-            onViewDetails: () => _handleViewDetails(enquiry),
+          return GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => LeadDetailsScreen(lead: enquiry),
+                ),
+              );
+            },
+            child: LeadCard(
+              lead: enquiry,
+            ),
           );
         },
       ),
-    );
-  }
-
-  void _handleApprove(Enquiry enquiry) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text("${enquiry.name} approved")),
-    );
-  }
-
-  void _handleReject(Enquiry enquiry) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text("${enquiry.name} rejected")),
-    );
-  }
-
-  void _handleViewDetails(Enquiry enquiry) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text("Viewing details for ${enquiry.name}")),
     );
   }
 }

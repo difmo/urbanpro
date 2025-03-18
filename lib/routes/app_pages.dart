@@ -1,5 +1,11 @@
+import 'package:URBANPRO/views/admin/amount_setting_screen.dart';
+import 'package:URBANPRO/views/admin/feedback_screen.dart';
+import 'package:URBANPRO/views/admin/promotions_screen.dart';
+import 'package:URBANPRO/views/admin/send_notification_screen.dart';
+import 'package:URBANPRO/views/admin/terms_conditions_screen.dart';
 import 'package:URBANPRO/views/admin/transactions_screen.dart';
 import 'package:URBANPRO/views/admin/users_screen.dart';
+import 'package:URBANPRO/views/admin/wallete_history_screen.dart';
 import 'package:URBANPRO/views/auth/otp_screen.dart';
 import 'package:URBANPRO/views/dashboard/admin_dashboard.dart';
 import 'package:URBANPRO/views/dashboard/student_dashboard.dart';
@@ -15,57 +21,57 @@ import 'app_routes.dart';
 class AppPages {
   static final pages = [
     GetPage(
-      name: AppRoutes.SPLASHSCREEN, 
+      name: AppRoutes.SPLASHSCREEN,
       page: () => SplashScreen(),
-      transition: Transition.circularReveal,  
-      transitionDuration: Duration(milliseconds: 500), 
+      transition: Transition.circularReveal,
+      transitionDuration: Duration(milliseconds: 500),
     ),
     GetPage(
-      name: AppRoutes.LOGIN, 
+      name: AppRoutes.LOGIN,
       page: () => LoginPage(),
-       transition: Transition.circularReveal,  
+      transition: Transition.circularReveal,
       transitionDuration: Duration(milliseconds: 500),
     ),
     GetPage(
-      name: AppRoutes.SIGNUP, 
+      name: AppRoutes.SIGNUP,
       page: () => SignupPage(),
-      transition: Transition.fadeIn, 
+      transition: Transition.fadeIn,
       transitionDuration: Duration(milliseconds: 500),
     ),
     GetPage(
-      name: AppRoutes.STUDENTHOME, 
+      name: AppRoutes.STUDENTHOME,
       page: () => StudyMaterialScreen(),
-      transition: Transition.fadeIn, 
+      transition: Transition.fadeIn,
       transitionDuration: Duration(milliseconds: 500),
     ),
     GetPage(
-      name: AppRoutes.ONBOARDING, 
+      name: AppRoutes.ONBOARDING,
       page: () => OnboardingScreen(),
-      transition: Transition.circularReveal,  
+      transition: Transition.circularReveal,
       transitionDuration: Duration(milliseconds: 2000),
     ),
     GetPage(
-      name: AppRoutes.STUDENTDASHBOARD, 
+      name: AppRoutes.STUDENTDASHBOARD,
       page: () => StudentDashBoard(),
-      transition: Transition.fadeIn, 
+      transition: Transition.fadeIn,
       transitionDuration: Duration(milliseconds: 500),
     ),
     GetPage(
-      name: AppRoutes.TEACHERDASHBOARD, 
+      name: AppRoutes.TEACHERDASHBOARD,
       page: () => TeacherDashBoard(),
-      transition: Transition.fadeIn, 
+      transition: Transition.fadeIn,
       transitionDuration: Duration(milliseconds: 500),
     ),
     GetPage(
-      name: AppRoutes.ADMINDASHBOARD, 
+      name: AppRoutes.ADMINDASHBOARD,
       page: () => AdminDashBoard(),
-      transition: Transition.fadeIn, 
+      transition: Transition.fadeIn,
       transitionDuration: Duration(milliseconds: 500),
     ),
     GetPage(
       name: AppRoutes.OTPSCREEN,
       page: () {
-        final arguments = Get.arguments;  
+        final arguments = Get.arguments;
         return OTPScreen(
           phone: arguments['mobile'],
           otp: arguments['otp'],
@@ -74,22 +80,61 @@ class AppPages {
           role: arguments['role'],
         );
       },
-      transition: Transition.fadeIn, 
+      transition: Transition.fadeIn,
       transitionDuration: Duration(milliseconds: 500),
     ),
 
     // admin
     GetPage(
-      name: AppRoutes.USERSSCREEN, 
+      name: AppRoutes.USERSSCREEN,
       page: () => UsersScreen(),
-      transition: Transition.fadeIn, 
+      transition: Transition.fadeIn,
       transitionDuration: Duration(milliseconds: 500),
     ),
 
-        GetPage(
-      name: AppRoutes.TRANSACTIONSCREEN, 
-      page: () =>TransactionsScreen(),
-      transition: Transition.fadeIn, 
+    GetPage(
+      name: AppRoutes.TRANSACTIONSCREEN,
+      page: () => TransactionsScreen(),
+      transition: Transition.fadeIn,
+      transitionDuration: Duration(milliseconds: 500),
+    ),
+
+    GetPage(
+      name: AppRoutes.AMOUNTSETTINSCREEN,
+      page: () => AmountSettingScreen(),
+      transition: Transition.fadeIn,
+      transitionDuration: Duration(milliseconds: 500),
+    ),
+
+    GetPage(
+      name: AppRoutes.SENDNOTIFICATION,
+      page: () => SendNotificationScreen(),
+      transition: Transition.fadeIn,
+      transitionDuration: Duration(milliseconds: 500),
+    ),
+
+    GetPage(
+      name: AppRoutes.PROMOTIONS,
+      page: () => PromotionsScreen(),
+      transition: Transition.fadeIn,
+      transitionDuration: Duration(milliseconds: 500),
+    ),
+    GetPage(
+      name: AppRoutes.FEEDBACK,
+      page: () => FeedbackScreen(),
+      transition: Transition.fadeIn,
+      transitionDuration: Duration(milliseconds: 500),
+    ),
+    GetPage(
+      name: AppRoutes.TERMCONDITION,
+      page: () => TermsConditionsScreen(),
+      transition: Transition.fadeIn,
+      transitionDuration: Duration(milliseconds: 500),
+    ),
+    GetPage(
+      name: AppRoutes.WALLETSCREEN,
+      page: () => WalletHistoryScreen(),
+      transition: Transition.fadeIn,
       transitionDuration: Duration(milliseconds: 500),
     ),
   ];

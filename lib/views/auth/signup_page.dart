@@ -4,7 +4,7 @@ import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:URBANPRO/utils/validators.dart';
 import 'package:URBANPRO/views/auth/otp_screen.dart';
 import 'package:URBANPRO/views/widgets/applogo.dart';
-import 'package:URBANPRO/views/widgets/custom_dropdown%20copy.dart';
+import 'package:URBANPRO/views/widgets/simple_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:URBANPRO/controllers/auth_controller.dart';

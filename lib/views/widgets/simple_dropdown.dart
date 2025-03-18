@@ -6,10 +6,14 @@ import 'dart:developer';
 const List<String> _list = ["Admin", "Teacher", "Student"];
 
 class SimpleDropdown extends StatefulWidget {
-  final ValueChanged<int> onSelectedValueChanged; // Change callback to return integer ID
+  final ValueChanged<int>
+      onSelectedValueChanged; // Change callback to return integer ID
   final String initialValue;
 
-  const SimpleDropdown({super.key, required this.onSelectedValueChanged, required this.initialValue});
+  const SimpleDropdown(
+      {super.key,
+      required this.onSelectedValueChanged,
+      required this.initialValue});
 
   @override
   _SimpleDropdownState createState() => _SimpleDropdownState();
@@ -21,7 +25,8 @@ class _SimpleDropdownState extends State<SimpleDropdown> {
   @override
   void initState() {
     super.initState();
-    _selectedValue = widget.initialValue.isNotEmpty ? widget.initialValue : _list[0];
+    _selectedValue =
+        widget.initialValue.isNotEmpty ? widget.initialValue : _list[0];
   }
 
   // Function to map role to integer ID
@@ -41,8 +46,10 @@ class _SimpleDropdownState extends State<SimpleDropdown> {
   @override
   Widget build(BuildContext context) {
     return CustomDropdown<String>(
-      closedHeaderPadding: const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
-      expandedHeaderPadding: const EdgeInsets.symmetric(vertical: 6, horizontal: 16),
+      closedHeaderPadding:
+          const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
+      expandedHeaderPadding:
+          const EdgeInsets.symmetric(vertical: 6, horizontal: 16),
       listItemPadding: const EdgeInsets.symmetric(vertical: 6, horizontal: 16),
       decoration: CustomDropdownDecoration(
         closedBorder: Border.all(
@@ -59,7 +66,7 @@ class _SimpleDropdownState extends State<SimpleDropdown> {
       ),
       hintText: 'Select job role',
       items: _list,
-      initialItem: _selectedValue,  // Set initial item value from _selectedValue
+      initialItem: _selectedValue, // Set initial item value from _selectedValue
       onChanged: (value) {
         log('Changing value to: $value');
         setState(() {

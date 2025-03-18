@@ -6,11 +6,12 @@ class CustomButton extends StatelessWidget {
   final VoidCallback onPressed;
   final Color backgroundColor;
   final Color textColor;
-  final Widget? icon; 
+  final Widget? icon;
   final double borderRadius;
   final bool left;
   final double? width; // Nullable width, calculated dynamically if not provided
-  final double? height; // Nullable height, calculated dynamically if not provided
+  final double?
+      height; // Nullable height, calculated dynamically if not provided
   final Color? borderColor; // Optional border color
   final Color baseTextColor; // Base text color
   final double fontSize; // Font size
@@ -64,7 +65,7 @@ class CustomButton extends StatelessWidget {
               style: TextStyle(
                 fontSize: fontSize, // Use the provided font size
                 fontWeight: FontWeight.bold,
-                color: textColor != Colors.white ? textColor : baseTextColor, // Use baseTextColor if textColor is default
+                color: textColor,
               ),
             ),
             if (!left && icon != null) ...[

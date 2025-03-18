@@ -19,6 +19,8 @@ class CommonTextField extends StatefulWidget {
   final IconData? icon;
   final IconData? suffixicon;
   final String? Function(String?)? validator;
+  final int? maxLines;
+  final FocusNode? focusNode;
 
   const CommonTextField({
     super.key,
@@ -35,6 +37,8 @@ class CommonTextField extends StatefulWidget {
     this.borderColor,
     this.icon,
     this.suffixicon,
+    this.maxLines,
+    this.focusNode,
   });
 
   @override
@@ -79,10 +83,10 @@ class _CommonTextFieldState extends State<CommonTextField> {
 
   @override
   Widget build(BuildContext context) {
-    Color defaultBorderColor =
-        widget.borderColor ?? ThemeConstants.grey;
+    Color defaultBorderColor = widget.borderColor ?? ThemeConstants.grey;
 
     return TextFormField(
+      focusNode: widget.focusNode,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       autofocus: widget.autofocus,
       controller: widget.controller,
@@ -91,6 +95,7 @@ class _CommonTextFieldState extends State<CommonTextField> {
       readOnly: widget.readOnly,
       onChanged: widget.onChanged,
       validator: widget.validator,
+      maxLines: widget.maxLines,
       style: TextStyle(
         color: widget.readOnly ? Colors.grey : ThemeConstants.grey,
         letterSpacing: 1.5,
@@ -119,7 +124,7 @@ class _CommonTextFieldState extends State<CommonTextField> {
         ),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: widget.borderColor ?? Colors.grey[100]!,
+            color: widget.borderColor ?? Colors.grey[300]!,
             width: 1.5,
           ),
           borderRadius: BorderRadius.circular(widget.borderRadius ?? 16.0),
@@ -132,7 +137,7 @@ class _CommonTextFieldState extends State<CommonTextField> {
           borderRadius: BorderRadius.circular(widget.borderRadius ?? 16.0),
         ),
         contentPadding:
-            EdgeInsets.symmetric(vertical: widget.height ?? 0, horizontal: 20),
+            EdgeInsets.symmetric(vertical: widget.height ?? 16, horizontal: 20),
       ),
     );
   }

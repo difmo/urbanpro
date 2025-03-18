@@ -4,7 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CustomDrawer extends StatelessWidget {
-  const CustomDrawer({super.key});
+  final String userName;
+  final String userImage;
+
+  const CustomDrawer(
+      {super.key, required this.userName, required this.userImage});
 
   @override
   Widget build(BuildContext context) {
@@ -13,28 +17,49 @@ class CustomDrawer extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // Drawer Header
+          UserAccountsDrawerHeader(
+            accountName: Text(
+              userName,
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            accountEmail: const Text("user@example.com"),
+            currentAccountPicture: CircleAvatar(
+              backgroundImage: NetworkImage(userImage),
+            ),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: const [
+                  Color(0xFF4A90E2), // A smooth blue gradient
+                  Color(0xFF50E3C2)
+                ],
+              ),
+              color: ThemeConstants.primaryColor,
+            ),
+          ),
+
           Expanded(
             child: ListView(
-              padding: const EdgeInsets.only(top: 100),
+              padding: EdgeInsets.zero,
               children: [
                 _buildDrawerItem(
                     Icons.person, 'Users', AppRoutes.USERSSCREEN, context),
                 _buildDrawerItem(Icons.account_balance, 'Transactions',
                     AppRoutes.TRANSACTIONSCREEN, context),
                 _buildDrawerItem(Icons.wallet, 'Wallet History',
-                    AppRoutes.STUDENTHOME, context),
+                    AppRoutes.WALLETSCREEN, context),
                 _buildDrawerItem(Icons.account_circle_outlined,
-                    'Account Option', AppRoutes.STUDENTHOME, context),
+                    'Account Option', AppRoutes.AMOUNTSETTINSCREEN, context),
                 _buildDrawerItem(Icons.notification_add, 'Send Notification',
-                    AppRoutes.STUDENTHOME, context),
+                    AppRoutes.SENDNOTIFICATION, context),
                 _buildDrawerItem(Icons.offline_share_rounded,
-                    'Promotions & Offers', AppRoutes.STUDENTHOME, context),
+                    'Promotions & Offers', AppRoutes.PROMOTIONS, context),
                 _buildDrawerItem(
-                    Icons.feedback, 'Feedback', AppRoutes.STUDENTHOME, context),
-                _buildDrawerItem(Icons.arrow_drop_down, 'Dynamic Dropdown',
-                    AppRoutes.STUDENTHOME, context),
+                    Icons.feedback, 'Feedback', AppRoutes.FEEDBACK, context),
                 _buildDrawerItem(Icons.security, 'Terms & Condition',
-                    AppRoutes.STUDENTHOME, context),
+                    AppRoutes.TERMCONDITION, context),
                 Divider(
                     color: Colors.grey[300],
                     thickness: 1,

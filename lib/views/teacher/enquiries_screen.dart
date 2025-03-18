@@ -26,7 +26,7 @@ class _EnquiriesScreenState extends State<EnquiriesScreen> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text("Connect with ${lead.name}?"),
+          title: Text("Connect with ${lead.leadNo}?"),
           content: Text(
               "You are about to connect with a student for ${lead.subject}."),
           actions: [
@@ -36,7 +36,7 @@ class _EnquiriesScreenState extends State<EnquiriesScreen> {
               onPressed: () {
                 Navigator.pop(context);
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text("Connected with ${lead.name}!")),
+                  SnackBar(content: Text("Connected with ${lead.location}!")),
                 );
               },
               child: Text("Confirm"),
@@ -66,7 +66,7 @@ class _EnquiriesScreenState extends State<EnquiriesScreen> {
             itemBuilder: (context, index) {
               return LeadCard(
                 lead: leads[index],
-                onConnect: () => _connectWithStudent(leads[index]),
+                // onConnect: () => _connectWithStudent(leads[index]),
               );
             },
           );

@@ -9,6 +9,12 @@ class AppRoutes {
   static const ONBOARDING = '/onboarding';
   static const OTPSCREEN = '/otpscreen';
   // admin
-    static const USERSSCREEN = '/usersscreen';
-        static const TRANSACTIONSCREEN = '/transactionscreen';
+  static const USERSSCREEN = '/usersscreen';
+  static const TRANSACTIONSCREEN = '/transactionscreen';
+  static const WALLETSCREEN = '/walletscreen';
+  static const AMOUNTSETTINSCREEN = '/amountsettingscreen';
+  static const SENDNOTIFICATION = '/sendnotification';
+  static const PROMOTIONS = '/promotions';
+  static const FEEDBACK = '/feedback';
+  static const TERMCONDITION = '/termscondition';
 }

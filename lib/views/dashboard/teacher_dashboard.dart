@@ -33,7 +33,10 @@ class _TeacherDashBoard extends State<TeacherDashBoard> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      drawer: CustomDrawer(),
+      drawer: CustomDrawer(
+        userName: '',
+        userImage: '',
+      ),
       backgroundColor: Colors.white,
       body: screens[_selectedIndex],
       bottomNavigationBar: TeacherBottomNavigationBar(

@@ -1,7 +1,8 @@
 import 'package:URBANPRO/views/teacher/account_screen.dart';
-import 'package:URBANPRO/views/teacher/enquiries_screen.dart';
+import 'package:URBANPRO/views/teacher/teacher_enquiries.dart';
 import 'package:URBANPRO/views/teacher/follow_up_screen.dart';
 import 'package:URBANPRO/views/teacher/teacher_chat_support_screen.dart';
+import 'package:URBANPRO/views/teacher/teacher_messages.dart';
 import 'package:URBANPRO/views/widgets/teacher_bottom_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -16,9 +17,9 @@ class _TeacherDashBoard extends State<TeacherDashBoard> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   int _selectedIndex = 0;
   final List<Widget> screens = [
-    EnquiriesScreen(),
+    TeacherEnquiries(),
     FollowUpScreen(),
-    EnquiriesScreen(),
+    TeacherMessages(),
     TeacherChatSupportScreen(),
     AccountScreen()
   ];

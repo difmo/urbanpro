@@ -1,5 +1,6 @@
 import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class TeacherBottomNavigationBar extends StatelessWidget {
   final int currentIndex;
@@ -14,9 +15,6 @@ class TeacherBottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(
-        top: 8,
-      ), // Added padding
       decoration: const BoxDecoration(
         color: Colors.white,
         boxShadow: [
@@ -35,25 +33,25 @@ class TeacherBottomNavigationBar extends StatelessWidget {
         unselectedItemColor: Colors.grey,
         showUnselectedLabels: true,
         type: BottomNavigationBarType.fixed,
-        items: [
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.equalizer_rounded),
+        items: const [
+          BottomNavigationBarItem(
+            icon: FaIcon(FontAwesomeIcons.chartLine),
             label: 'Enquiries',
           ),
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.swap_horiz),
+          BottomNavigationBarItem(
+            icon: FaIcon(FontAwesomeIcons.calendarCheck),
             label: 'Follow-Up',
           ),
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.message),
-            label: 'Message ',
+          BottomNavigationBarItem(
+            icon: FaIcon(FontAwesomeIcons.solidComments),
+            label: 'Messages',
           ),
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+          BottomNavigationBarItem(
+            icon: FaIcon(FontAwesomeIcons.headset),
             label: 'Support',
           ),
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.account_box),
+          BottomNavigationBarItem(
+            icon: FaIcon(FontAwesomeIcons.userCircle),
             label: 'Account',
           ),
         ],

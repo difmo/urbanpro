@@ -26,6 +26,8 @@ dependencies:
   google_fonts: ^6.2.1
   flutter_feather_icons: ^2.0.0+1
   font_awesome_flutter: ^10.8.0
+  pdf: ^3.11.3
+  qr_flutter: ^4.1.0
 
 dev_dependencies:
   flutter_test:

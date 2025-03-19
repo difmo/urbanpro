@@ -56,7 +56,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         title: Text(
           title!,
           style: TextStyle(
-            color: ThemeConstants.secondaryColor,
+            color: ThemeConstants.black,
             fontWeight: FontWeight.bold,
             fontSize: 18,
           ),
@@ -79,13 +79,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               ),
               icon: const Icon(
                 FontAwesomeIcons.coins,
-                color: Color(0xFFFFD700),
+                color: ThemeConstants.black,
                 size: 18,
               ),
               label: const Text(
-                '120 cons | Pro',
+                '120 coins | Pro',
                 style: TextStyle(
-                  color: ThemeConstants.secondaryColor,
+                  color: ThemeConstants.black,
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
                 ),

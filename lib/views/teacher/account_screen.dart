@@ -1,204 +1,132 @@
 import 'package:URBANPRO/models/teacher/account_model.dart';
-import 'package:URBANPRO/routes/app_routes.dart';
 import 'package:URBANPRO/services/account_service.dart';
 import 'package:URBANPRO/utils/theme_constants.dart';
-import 'package:URBANPRO/views/widgets/toggle_switch.dart';
+import 'package:URBANPRO/views/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class AccountScreen extends StatefulWidget {
   const AccountScreen({super.key});
 
   @override
-  _AccountScreenState createState() => _AccountScreenState();
+  State<AccountScreen> createState() => _AccountScreenState();
 }
 
 class _AccountScreenState extends State<AccountScreen> {
   final AccountService _accountService = AccountService();
   late Future<Account> _accountFuture;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  bool isProfileVisible = true; // ✅ Track Profile Visibility Status
 
   @override
   void initState() {
     super.initState();
-    _accountFuture = _accountService.fetchAccountDetails();
-  }
-
-  void _editProfile(Account account) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text("Edit Profile Clicked")),
-    );
+    _accountFuture = _accountService.fetchAccountDetails().then((account) {
+      isProfileVisible = account.isProfileOn; // Initialize profile status
+      return account;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ThemeConstants.white,
-      body: SafeArea(
-        child: FutureBuilder<Account>(
-          future: _accountFuture,
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(child: CircularProgressIndicator());
-            }
-            if (snapshot.hasError) {
-              return Center(child: Text("Failed to load account details"));
-            }
-            Account account = snapshot.data!;
+      appBar: CustomAppBar(
+        title: "My Profile",
+        backgroundColor: ThemeConstants.primaryColor,
+        scaffoldKey: _scaffoldKey,
+      ),
+      body: FutureBuilder<Account>(
+        future: _accountFuture,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          if (snapshot.hasError) {
+            return const Center(child: Text("Failed to load account details"));
+          }
 
-            return LayoutBuilder(
-              builder: (context, constraints) {
-                return SingleChildScrollView(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: constraints.maxWidth > 600 ? 32 : 16,
-                      vertical: 16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      /// **Profile Section**
-                      _buildProfileSection(account, constraints),
+          final account = snapshot.data!;
 
-                      SizedBox(height: 20),
+          return SingleChildScrollView(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // 🌟 Profile Section with Toggle Switch
+                _buildProfileSection(account),
 
-                      /// **Settings Card**
-                      Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                                color: ThemeConstants.lightGrey, width: 1)),
-                        child: Padding(
-                          padding: EdgeInsets.all(16),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              ToggleSwitch(
-                                title: "Profile Visibility",
-                                value: account.isProfileOn,
-                                onChanged: (newValue) {
-                                  setState(() {
-                                    account.isProfileOn = newValue;
-                                  });
-                                },
-                              ),
-                              if (account.isProfileOn)
-                                Padding(
-                                  padding: EdgeInsets.only(top: 8, bottom: 16),
-                                  child: Text(
-                                    "Max Calls per Day: ${account.maxCallsPerDay}",
-                                    style: TextStyle(
-                                        fontSize: 14, color: Colors.black54),
-                                  ),
-                                ),
-                              ToggleSwitch(
-                                title: "Allow Reviews",
-                                value: account.allowReviews,
-                                onChanged: (newValue) {
-                                  setState(() {
-                                    account.allowReviews = newValue;
-                                  });
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                const SizedBox(height: 20),
 
-                      SizedBox(height: 16),
+                // 🔍 Tutor Details Section
+                _buildTutorDetailsSection(account),
 
-                      /// **Quick Access Links**
-                      _buildInfoTile(
-                          "Share Leads Link", account.leadsLink, Icons.link),
-                      _buildInfoTile("Sell Your Courses", account.coursesLink,
-                          Icons.school),
-                      _buildInfoTile("Contact for Studio Setup",
-                          account.studioContact, Icons.spatial_audio),
+                const SizedBox(height: 20),
 
-                      SizedBox(height: 24),
+                // 🏅 Certifications Section
+                _buildCertificationsSection(account.certifications),
 
-                      /// **Logout Button**
-                      Center(
-                        child: ElevatedButton.icon(
-                          onPressed: () {
-                            Get.toNamed(AppRoutes.LOGIN);
-                          },
-                          icon: Icon(Icons.logout, color: Colors.white),
-                          label: Text("Logout",
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 16)),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.red,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8)),
-                            padding: EdgeInsets.symmetric(
-                                horizontal:
-                                    constraints.maxWidth > 600 ? 40 : 20,
-                                vertical: 12),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                );
-              },
-            );
-          },
-        ),
+                const SizedBox(height: 20),
+
+                // ⭐ Performance Stats Section
+                _buildPerformanceStatsSection(account),
+
+                const SizedBox(height: 20),
+              ],
+            ),
+          );
+        },
       ),
     );
   }
 
-  /// **Profile Section**
-  Widget _buildProfileSection(Account account, BoxConstraints constraints) {
-    bool isWideScreen = constraints.maxWidth > 600;
-
-    return Container(
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(4)),
-          border: Border.all(color: ThemeConstants.lighterGrey, width: 1)),
+  /// 🌟 **Profile Section with Visibility Switch**
+  Widget _buildProfileSection(Account account) {
+    return Card(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      elevation: 3,
       child: Padding(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Row(
           children: [
-            /// **Profile Image**
             CircleAvatar(
-              radius: isWideScreen ? 50 : 40,
+              radius: 50,
               backgroundImage: NetworkImage(account.profileImage),
             ),
-
-            SizedBox(width: isWideScreen ? 24 : 16),
-
-            /// **User Details**
+            const SizedBox(width: 16),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     account.name,
-                    style: TextStyle(
-                      fontSize: isWideScreen ? 20 : 18,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: const TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: ThemeConstants.primaryColor),
                   ),
-                  SizedBox(height: 6),
+                  const SizedBox(height: 6),
                   Text(
-                    "Qualification: ${account.qualification}",
-                    style: TextStyle(
-                        fontSize: isWideScreen ? 16 : 14,
-                        color: Colors.black87),
+                    account.qualification,
+                    style: const TextStyle(fontSize: 16, color: Colors.black87),
                   ),
-                  SizedBox(height: 4),
+                  const SizedBox(height: 4),
                   Text(
-                    "Experience: ${account.experience} years",
-                    style: TextStyle(
-                        fontSize: isWideScreen ? 16 : 14,
-                        color: Colors.black87),
+                    "${account.experience} years of experience",
+                    style: const TextStyle(fontSize: 16, color: Colors.black54),
                   ),
                 ],
               ),
             ),
 
-            /// **Edit Profile Button**
-            IconButton(
-              icon: Icon(Icons.edit, color: Colors.blue, size: 24),
-              onPressed: () => _editProfile(account),
+            // 🔥 Profile Visibility Switch
+            Switch(
+              value: isProfileVisible,
+              onChanged: (value) => setState(() {
+                isProfileVisible = value;
+                _updateProfileVisibility(value);
+              }),
+              activeColor: ThemeConstants.primaryColor,
+              inactiveTrackColor: Colors.grey[300],
             ),
           ],
         ),
@@ -206,24 +134,149 @@ class _AccountScreenState extends State<AccountScreen> {
     );
   }
 
-  /// **Reusable Info Tile**
-  Widget _buildInfoTile(String title, String value, IconData icon) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 8),
-      child: Card(
-        elevation: 3,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        child: ListTile(
-          contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          leading: Icon(icon, color: Colors.blue),
-          title: Text(title,
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
-          subtitle:
-              Text(value, style: TextStyle(fontSize: 14, color: Colors.blue)),
-          trailing: Icon(Icons.arrow_forward_ios, color: Colors.grey),
-          onTap: () {},
+  /// 🔍 **Tutor Details Section**
+  Widget _buildTutorDetailsSection(Account account) {
+    return Card(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      elevation: 3,
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildInfoTile(Icons.email, "Email", account.email),
+            _buildInfoTile(Icons.phone, "Phone", account.phone),
+            _buildInfoTile(Icons.location_city, "City", account.city),
+            _buildInfoTile(
+                Icons.menu_book, "Subjects", account.subjects.join(", ")),
+            _buildInfoTile(
+                Icons.computer, "Teaching Mode", account.teachingMode),
+            _buildInfoTile(
+                Icons.attach_money, "Hourly Rate", "₹${account.hourlyRate}/hr"),
+            _buildInfoTile(
+                Icons.access_time, "Availability", account.availability),
+            _buildInfoTile(Icons.info_outline, "Bio", account.bio),
+          ],
         ),
       ),
     );
+  }
+
+  /// 🏅 **Certifications Section**
+  Widget _buildCertificationsSection(List<String> certifications) {
+    return Card(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      elevation: 3,
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              "Certifications",
+              style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: ThemeConstants.primaryColor),
+            ),
+            const SizedBox(height: 8),
+            Wrap(
+              spacing: 8,
+              children: certifications
+                  .map((cert) => Chip(
+                        label: Text(cert),
+                        backgroundColor: ThemeConstants.secondaryColor,
+                      ))
+                  .toList(),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  /// ⭐ **Performance Stats Section**
+  Widget _buildPerformanceStatsSection(Account account) {
+    return Card(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      elevation: 3,
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            _buildStatTile("⭐ Rating", "${account.rating}/5"),
+            _buildStatTile("💬 Reviews", "${account.totalReviews}"),
+            _buildStatTile("🎓 Students", "${account.totalStudents}"),
+            _buildStatTile("📚 Courses", "${account.totalCourses}"),
+          ],
+        ),
+      ),
+    );
+  }
+
+  /// ⭐ **Reusable Stats Tile**
+  Widget _buildStatTile(String title, String value) {
+    return Column(
+      children: [
+        Text(
+          value,
+          style: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: ThemeConstants.primaryColor,
+          ),
+        ),
+        const SizedBox(height: 4),
+        Text(
+          title,
+          style: const TextStyle(
+            fontSize: 14,
+            color: Colors.black54,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+      ],
+    );
+  }
+
+  /// 🔧 **Reusable Info Tile**
+  Widget _buildInfoTile(IconData icon, String title, String value) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      child: Row(
+        children: [
+          Icon(icon, color: ThemeConstants.primaryColor),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Text(
+              "$title:",
+              style: const TextStyle(
+                  fontSize: 16,
+                  color: Colors.black54,
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
+          Expanded(
+            child: Text(
+              value,
+              textAlign: TextAlign.end,
+              style: const TextStyle(
+                fontSize: 16,
+                color: ThemeConstants.primaryColor,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// 🛠️ **Update Profile Visibility (API Placeholder)**
+  void _updateProfileVisibility(bool isVisible) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text("Profile visibility turned ${isVisible ? "ON" : "OFF"}"),
+      duration: const Duration(seconds: 1),
+    ));
   }
 }

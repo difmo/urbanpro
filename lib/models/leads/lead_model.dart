@@ -15,6 +15,7 @@ class Lead {
   final String contactName;
   final String contactNumber;
   final String contactEmail;
+  final String imageUrl; // New image field!
 
   Lead({
     required this.leadNo,
@@ -33,8 +34,10 @@ class Lead {
     required this.contactName,
     required this.contactNumber,
     required this.contactEmail,
+    required this.imageUrl,
   });
 
+  // Factory constructor to create Lead from JSON
   factory Lead.fromJson(Map<String, dynamic> json) {
     return Lead(
       leadNo: json['leadNo'],
@@ -53,9 +56,12 @@ class Lead {
       contactName: json['contactName'] ?? "Not provided",
       contactNumber: json['contactNumber'] ?? "Not provided",
       contactEmail: json['contactEmail'] ?? "Not provided",
+      imageUrl: json['imageUrl'] ??
+          "https://via.placeholder.com/150", // Default image URL
     );
   }
 
+  // Convert Lead to JSON
   Map<String, dynamic> toJson() {
     return {
       'leadNo': leadNo,
@@ -74,6 +80,7 @@ class Lead {
       'contactName': contactName,
       'contactNumber': contactNumber,
       'contactEmail': contactEmail,
+      'imageUrl': imageUrl,
     };
   }
 }

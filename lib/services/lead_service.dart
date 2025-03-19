@@ -2,7 +2,7 @@ import 'package:URBANPRO/models/leads/lead_model.dart';
 
 class LeadService {
   Future<List<Lead>> fetchLeads() async {
-    await Future.delayed(Duration(seconds: 2)); // Simulate network delay
+    await Future.delayed(const Duration(seconds: 2)); // Simulate network delay
     return [
       Lead(
         leadNo: "UP001",
@@ -22,6 +22,8 @@ class LeadService {
         contactName: "Mr. Johnson",
         contactNumber: "+1 123 456 7890",
         contactEmail: "johnson.parent@example.com",
+        imageUrl:
+            "https://randomuser.me/api/portraits/men/1.jpg", // Dummy Image
       ),
       Lead(
         leadNo: "UP002",
@@ -40,6 +42,8 @@ class LeadService {
         contactName: "Mrs. Carter",
         contactNumber: "+1 234 567 8901",
         contactEmail: "carter.parent@example.com",
+        imageUrl:
+            "https://randomuser.me/api/portraits/women/2.jpg", // Dummy Image
       ),
       Lead(
         leadNo: "UP003",
@@ -58,6 +62,8 @@ class LeadService {
         contactName: "Mr. Roberts",
         contactNumber: "+1 345 678 9012",
         contactEmail: "roberts.parent@example.com",
+        imageUrl:
+            "https://randomuser.me/api/portraits/men/3.jpg", // Dummy Image
       ),
       Lead(
         leadNo: "UP004",
@@ -76,6 +82,8 @@ class LeadService {
         contactName: "Ms. Green",
         contactNumber: "+1 456 789 0123",
         contactEmail: "green.parent@example.com",
+        imageUrl:
+            "https://randomuser.me/api/portraits/women/4.jpg", // Dummy Image
       ),
       Lead(
         leadNo: "UP005",
@@ -94,6 +102,8 @@ class LeadService {
         contactName: "Mrs. Brown",
         contactNumber: "+1 567 890 1234",
         contactEmail: "brown.parent@example.com",
+        imageUrl:
+            "https://randomuser.me/api/portraits/men/5.jpg", // Dummy Image
       ),
     ];
   }

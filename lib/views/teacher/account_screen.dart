@@ -3,6 +3,7 @@ import 'package:URBANPRO/services/account_service.dart';
 import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:URBANPRO/views/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class AccountScreen extends StatefulWidget {
   const AccountScreen({super.key});
@@ -24,66 +25,76 @@ class _AccountScreenState extends State<AccountScreen> {
       isProfileVisible = account.isProfileOn; // Initialize profile status
       return account;
     });
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      statusBarColor: Color(0xFF4A90E2), // Your desired color
+      statusBarIconBrightness:
+          Brightness.light, // Light icons (for dark backgrounds)
+      statusBarBrightness: Brightness.dark, // For iOS
+    ));
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: ThemeConstants.white,
-      appBar: CustomAppBar(
-        title: "My Profile",
-        backgroundColor: ThemeConstants.primaryColor,
-        scaffoldKey: _scaffoldKey,
-      ),
-      body: FutureBuilder<Account>(
-        future: _accountFuture,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          }
-          if (snapshot.hasError) {
-            return const Center(child: Text("Failed to load account details"));
-          }
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: ThemeConstants.white,
+        appBar: CustomAppBar(
+          title: "Account",
+          backgroundColor: ThemeConstants.white,
+          scaffoldKey: _scaffoldKey,
+        ),
+        body: FutureBuilder<Account>(
+          future: _accountFuture,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            if (snapshot.hasError) {
+              return const Center(
+                  child: Text("Failed to load account details"));
+            }
 
-          final account = snapshot.data!;
+            final account = snapshot.data!;
 
-          return SingleChildScrollView(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // 🌟 Profile Section with Toggle Switch
-                _buildProfileSection(account),
+            return SingleChildScrollView(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // 🌟 Profile Section with Toggle Switch
+                  _buildProfileSection(account),
 
-                const SizedBox(height: 20),
+                  const SizedBox(height: 20),
+                  // ⭐ Performance Stats Section
+                  _buildPerformanceStatsSection(account),
 
-                // 🔍 Tutor Details Section
-                _buildTutorDetailsSection(account),
+                  const SizedBox(height: 20),
 
-                const SizedBox(height: 20),
+                  // 🔍 Tutor Details Section
+                  _buildTutorDetailsSection(account),
 
-                // 🏅 Certifications Section
-                _buildCertificationsSection(account.certifications),
+                  const SizedBox(height: 20),
 
-                const SizedBox(height: 20),
+                  // 🏅 Certifications Section
+                  _buildCertificationsSection(account.certifications),
 
-                // ⭐ Performance Stats Section
-                _buildPerformanceStatsSection(account),
-
-                const SizedBox(height: 20),
-              ],
-            ),
-          );
-        },
+                  const SizedBox(height: 20),
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }
 
   /// 🌟 **Profile Section with Visibility Switch**
   Widget _buildProfileSection(Account account) {
-    return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      elevation: 3,
+    return Container(
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(8)),
+          border:
+              Border.all(color: ThemeConstants.primaryColor.withOpacity(0.2))),
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Row(
@@ -136,14 +147,24 @@ class _AccountScreenState extends State<AccountScreen> {
 
   /// 🔍 **Tutor Details Section**
   Widget _buildTutorDetailsSection(Account account) {
-    return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      elevation: 3,
+    return Container(
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(8)),
+          border:
+              Border.all(color: ThemeConstants.primaryColor.withOpacity(0.2))),
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const Text(
+              "Personal Details",
+              style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: ThemeConstants.primaryColor),
+            ),
+            const SizedBox(height: 8),
             _buildInfoTile(Icons.email, "Email", account.email),
             _buildInfoTile(Icons.phone, "Phone", account.phone),
             _buildInfoTile(Icons.location_city, "City", account.city),
@@ -164,9 +185,11 @@ class _AccountScreenState extends State<AccountScreen> {
 
   /// 🏅 **Certifications Section**
   Widget _buildCertificationsSection(List<String> certifications) {
-    return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      elevation: 3,
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+          border:
+              Border.all(color: ThemeConstants.primaryColor.withOpacity(0.2))),
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -197,18 +220,36 @@ class _AccountScreenState extends State<AccountScreen> {
 
   /// ⭐ **Performance Stats Section**
   Widget _buildPerformanceStatsSection(Account account) {
-    return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      elevation: 3,
+    return Container(
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(8)),
+          border:
+              Border.all(color: ThemeConstants.primaryColor.withOpacity(0.2))),
       child: Padding(
         padding: const EdgeInsets.all(16),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+        child: Column(
           children: [
-            _buildStatTile("⭐ Rating", "${account.rating}/5"),
-            _buildStatTile("💬 Reviews", "${account.totalReviews}"),
-            _buildStatTile("🎓 Students", "${account.totalStudents}"),
-            _buildStatTile("📚 Courses", "${account.totalCourses}"),
+            Row(
+              children: [
+                const Text(
+                  "Achivements",
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: ThemeConstants.primaryColor),
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                _buildStatTile("Rating", "${account.rating}/5"),
+                _buildStatTile("Reviews", "${account.totalReviews}"),
+                _buildStatTile("Students", "${account.totalStudents}"),
+                _buildStatTile("Courses", "${account.totalCourses}"),
+              ],
+            ),
           ],
         ),
       ),
@@ -244,29 +285,38 @@ class _AccountScreenState extends State<AccountScreen> {
   Widget _buildInfoTile(IconData icon, String title, String value) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
-      child: Row(
+      child: Column(
         children: [
-          Icon(icon, color: ThemeConstants.primaryColor),
-          const SizedBox(width: 10),
-          Expanded(
-            child: Text(
-              "$title:",
-              style: const TextStyle(
-                  fontSize: 16,
-                  color: Colors.black54,
-                  fontWeight: FontWeight.bold),
-            ),
-          ),
-          Expanded(
-            child: Text(
-              value,
-              textAlign: TextAlign.end,
-              style: const TextStyle(
-                fontSize: 16,
-                color: ThemeConstants.primaryColor,
+          Row(
+            children: [
+              Expanded(
+                child: Text(
+                  "$title",
+                  style: const TextStyle(
+                      fontSize: 16,
+                      color: Colors.black54,
+                      fontWeight: FontWeight.bold),
+                ),
               ),
-            ),
+            ],
           ),
+          Container(
+            padding: EdgeInsets.only(top: 8),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    value,
+                    textAlign: TextAlign.left,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      color: ThemeConstants.grey,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          )
         ],
       ),
     );

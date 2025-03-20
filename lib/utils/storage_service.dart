@@ -6,7 +6,7 @@ class StorageService {
     final prefs = await SharedPreferences.getInstance();
     prefs.setString(key, jsonEncode(value));
   }
-
+// changes
   Map<String, dynamic>? read(String key) {
     final prefs = SharedPreferences.getInstance();
     final data = prefs.then((prefs) => prefs.getString(key));

@@ -18,7 +18,7 @@ class _StudentDashBoardState extends State<StudentDashBoard> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   int _selectedIndex = 0;
   final List<Widget> screens = [
-    StudentNewHomeScreen(),
+    // StudentNewHomeScreen(),
     TestSeriesScreen(),
     CoursesScreen(),
     StudyMaterialScreen(),

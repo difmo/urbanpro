@@ -8,15 +8,15 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    fetchUserDetails();
+    // fetchUserDetails();
   }
 
-  void fetchUserDetails() {
-    final userData = StorageService().read('user');
-    if (userData != null) {
-      user.value = UserModel.fromJson(userData);
-    }
-  }
+  // void fetchUserDetails() {
+  //   final userData = StorageService().read('user');
+  //   if (userData != null) {
+  //     user.value = UserModel.fromJson(userData);
+  //   }
+  // }
 
   void logout() {
     StorageService().clear();

@@ -4,7 +4,6 @@ import 'package:URBANPRO/utils/app__text_style.dart';
 import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:URBANPRO/views/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class TermsConditionsScreen extends StatefulWidget {
   @override

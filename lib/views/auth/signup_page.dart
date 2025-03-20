@@ -11,6 +11,8 @@ import 'package:URBANPRO/controllers/auth_controller.dart';
 import 'package:URBANPRO/views/widgets/custom_button.dart';
 import 'package:URBANPRO/views/widgets/custom_text_field.dart';
 import 'package:URBANPRO/views/widgets/loading_widget.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -19,7 +21,7 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
-  late int selectedRole;
+  int selectedRole = 0;
   final TextEditingController nameController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
   final AuthController _authController = Get.put(AuthController());
@@ -62,7 +64,7 @@ class _SignupPageState extends State<SignupPage> {
 
                 SimpleDropdown(
                     onSelectedValueChanged: (value) => {selectedRole = value},
-                    initialValue: "Admin"),
+                    initialValue: "Select Role"),
                 const SizedBox(height: 20),
                 Form(
                   key: _nameFormKey,
@@ -112,6 +114,19 @@ class _SignupPageState extends State<SignupPage> {
                           _mobileFormKey.currentState?.validate() ?? false;
 
                       if (isNameValid && isPhoneValid) {
+                        if (selectedRole == 0) {
+                          setState(() {
+                          isLoading = false;
+                          });
+                          Get.snackbar(
+                          "Error",
+                          "Please select a role",
+                          snackPosition: SnackPosition.BOTTOM,
+                          backgroundColor: Colors.red,
+                          colorText: Colors.white,
+                          );
+                          return;
+                        }
                         // Send OTP
                         await _authController.sendOtpcontroller(
                           phoneController.text,
@@ -124,22 +139,17 @@ class _SignupPageState extends State<SignupPage> {
                           isLoading = false;
                         });
 
-                        // Show OTP screen as a modal from bottom to top
-                        showModalBottomSheet(
-                          context: context,
-                          isScrollControlled: true,
-                          backgroundColor: Colors
-                              .transparent, // Remove background color to show transparency
-                          builder: (context) => OTPScreen(
-                            phone: phoneController.text,
-                            otp:
-                                123456, // This should come from your OTP controller or backend
-                            email:
-                                'email@gmail.com', // Replace with actual email
-                            name: nameController.text,
-                            role: selectedRole, // Replace with actual role
-                          ),
-                        );
+                     showMaterialModalBottomSheet(
+  context: context,
+  builder: (context) => OTPScreen(
+    phone: phoneController.text,
+    otp: 123456, // Replace with actual OTP logic
+    email: 'email@gmail.com', // Replace with actual email
+    name: nameController.text,
+    role: selectedRole, // Replace with actual role
+  ),
+);
+
                       } else {
                         setState(() {
                           isLoading = false;

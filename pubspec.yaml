@@ -29,6 +29,7 @@ dependencies:
   pdf: ^3.11.3
   qr_flutter: ^4.1.0
   image_picker: ^1.1.2
+  modal_bottom_sheet: ^3.0.0
 
 dev_dependencies:
   flutter_test:

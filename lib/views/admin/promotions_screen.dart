@@ -6,7 +6,6 @@ import 'package:URBANPRO/views/widgets/admin/promotion_card.dart';
 import 'package:URBANPRO/views/widgets/custom_button.dart';
 import 'package:URBANPRO/views/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class PromotionsScreen extends StatefulWidget {
   @override

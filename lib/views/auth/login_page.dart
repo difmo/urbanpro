@@ -25,7 +25,6 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController phoneController = TextEditingController();
   final AuthController _authController = Get.put(AuthController());
   bool isLoading = false;
-  final _nameFormKey = GlobalKey<FormState>();
   final _mobileFormKey = GlobalKey<FormState>();
 
   @override
@@ -100,18 +99,18 @@ class _LoginPageState extends State<LoginPage> {
                         });
 
                         // Show OTP screen as a modal from bottom to top
-                        showModalBottomSheet(
-                          context: context,
-                          isScrollControlled: true,
-                          backgroundColor: Colors.transparent,
-                          builder: (context) => OTPScreen(
-                            phone: phoneController.text,
-                            otp: response.otpData.mobileOtp,
-                            email: 'email@gmail.com',
-                            name: "nameController.text",
-                            role: selectedRole,
-                          ),
-                        );
+                        // showModalBottomSheet(
+                        //   context: context,
+                        //   isScrollControlled: true,
+                        //   backgroundColor: Colors.transparent,
+                        //   builder: (context) => OTPScreen(
+                        //     phone: phoneController.text,
+                        //     otp: response.otpData.mobileOtp,
+                        //     email: 'email@gmail.com',
+                        //     name: "nameController.text",
+                        //     role: selectedRole,
+                        //   ),
+                        // );
                       } else {
                         setState(() {
                           isLoading = false;

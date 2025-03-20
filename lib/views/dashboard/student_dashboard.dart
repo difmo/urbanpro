@@ -1,6 +1,5 @@
 import 'package:URBANPRO/views/student/courses_screen.dart';
 import 'package:URBANPRO/views/student/find_tutors_screen.dart';
-import 'package:URBANPRO/views/student/home_screen_student.dart';
 import 'package:URBANPRO/views/student/study_meterial_screen.dart';
 import 'package:URBANPRO/views/student/support_screen.dart';
 import 'package:URBANPRO/views/student/test_series_screen.dart';
@@ -18,7 +17,7 @@ class _StudentDashBoardState extends State<StudentDashBoard> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   int _selectedIndex = 0;
   final List<Widget> screens = [
-    StudentNewHomeScreen(),
+    // StudentNewHomeScreen(),
     TestSeriesScreen(),
     CoursesScreen(),
     StudyMaterialScreen(),

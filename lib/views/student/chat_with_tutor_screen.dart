@@ -1,3 +1,4 @@
+import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:flutter/material.dart';
 
 class ChatWithTutorScreen extends StatefulWidget {
@@ -35,6 +36,7 @@ class _ChatScreenState extends State<ChatWithTutorScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ThemeConstants.white,
       appBar: AppBar(
         title: Text("Chat with ${widget.tutorName}"),
         backgroundColor: Colors.blueAccent,

@@ -1,4 +1,6 @@
+import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:URBANPRO/views/student/chat_with_tutor_screen.dart';
+import 'package:URBANPRO/views/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 
 class TutorDetailScreen extends StatelessWidget {
@@ -20,6 +22,7 @@ class TutorDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ThemeConstants.white,
       appBar: AppBar(title: Text(name)),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
@@ -63,22 +66,21 @@ class TutorDetailScreen extends StatelessWidget {
 
             const SizedBox(height: 30),
 
-            // Join Class Button
-            _buildGradientButton("Join Class", () {
-              // Join class functionality
-            }),
-
+            CustomButton(width: 150, text: "Join Class", onPressed: () {}),
             const SizedBox(height: 15),
 
-            // Chat with Tutor Button
-            _buildOutlinedButton("Chat with Tutor", () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ChatWithTutorScreen(tutorName: name),
-                ),
-              );
-            }),
+            CustomButton(
+                text: "Chat with Tutor",
+                width: 300,
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          ChatWithTutorScreen(tutorName: name),
+                    ),
+                  );
+                }),
           ],
         ),
       ),
@@ -101,58 +103,6 @@ class TutorDetailScreen extends StatelessWidget {
       child: Text(
         text,
         style: const TextStyle(fontSize: 16, color: Colors.black87),
-      ),
-    );
-  }
-
-  Widget _buildGradientButton(String text, VoidCallback onTap) {
-    return SizedBox(
-      width: double.infinity,
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          padding: const EdgeInsets.symmetric(vertical: 12),
-          backgroundColor: Colors.transparent,
-          shadowColor: Colors.transparent,
-        ),
-        onPressed: onTap,
-        child: Ink(
-          decoration: BoxDecoration(
-            gradient: const LinearGradient(
-                colors: [Color(0xFF6A82FB), Color(0xFFFC5C7D)]),
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: Container(
-            alignment: Alignment.center,
-            padding: const EdgeInsets.symmetric(vertical: 12),
-            child: Text(
-              text,
-              style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildOutlinedButton(String text, VoidCallback onTap) {
-    return SizedBox(
-      width: double.infinity,
-      child: OutlinedButton(
-        style: OutlinedButton.styleFrom(
-          padding: const EdgeInsets.symmetric(vertical: 12),
-          side: const BorderSide(color: Colors.blueAccent, width: 2),
-        ),
-        onPressed: onTap,
-        child: Text(
-          text,
-          style: const TextStyle(
-              color: Colors.blueAccent,
-              fontSize: 16,
-              fontWeight: FontWeight.bold),
-        ),
       ),
     );
   }

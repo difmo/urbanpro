@@ -27,7 +27,6 @@ class _LeadDetailsScreenState extends State<LeadDetailsScreen>
   }
 
   late AnimationController _animationController;
-  late Animation<double> _animateIcon;
 
   @override
   void initState() {
@@ -36,8 +35,6 @@ class _LeadDetailsScreenState extends State<LeadDetailsScreen>
       vsync: this,
       duration: const Duration(milliseconds: 250),
     );
-    _animateIcon =
-        Tween<double>(begin: 0, end: 1).animate(_animationController);
   }
 
   void toggleFab() {
@@ -142,7 +139,7 @@ class _LeadDetailsScreenState extends State<LeadDetailsScreen>
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               Text(
-                widget.lead.note ?? "No special requirements.",
+                widget.lead.note,
                 style: const TextStyle(color: Colors.blue),
               ),
               const SizedBox(height: 16),

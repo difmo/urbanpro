@@ -180,20 +180,20 @@ class _CreateNewLeadScreenState extends State<CreateNewLeadScreen> {
     );
   }
 
-  Widget _buildChips(List<String> items) {
-    return Wrap(
-      spacing: 8,
-      children: items.map((e) {
-        return Chip(
-          label: Text(e),
-          deleteIcon: Icon(Icons.close),
-          onDeleted: () {
-            setState(() => items.remove(e));
-          },
-        );
-      }).toList(),
-    );
-  }
+  // Widget _buildChips(List<String> items) {
+  //   return Wrap(
+  //     spacing: 8,
+  //     children: items.map((e) {
+  //       return Chip(
+  //         label: Text(e),
+  //         deleteIcon: Icon(Icons.close),
+  //         onDeleted: () {
+  //           setState(() => items.remove(e));
+  //         },
+  //       );
+  //     }).toList(),
+  //   );
+  // }
 
   Widget _buildClassSelector() {
     return GestureDetector(

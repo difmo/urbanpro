@@ -1,3 +1,5 @@
+import 'package:URBANPRO/utils/theme_constants.dart';
+import 'package:URBANPRO/views/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
 class LiveChatScreen extends StatefulWidget {
@@ -44,10 +46,11 @@ class _LiveChatScreenState extends State<LiveChatScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ThemeConstants.white,
       appBar: AppBar(
         title: const Text("Live Chat Support"),
         centerTitle: true,
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: ThemeConstants.primaryColor,
       ),
       body: Column(
         children: [
@@ -67,8 +70,17 @@ class _LiveChatScreenState extends State<LiveChatScreen> {
                     padding: const EdgeInsets.all(12),
                     constraints: const BoxConstraints(maxWidth: 250),
                     decoration: BoxDecoration(
-                      color: isUser ? Colors.blueAccent : Colors.grey[300],
+                      color: isUser
+                          ? ThemeConstants.primaryColor
+                          : ThemeConstants.white,
                       borderRadius: BorderRadius.circular(15),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black12,
+                          blurRadius: 5,
+                          offset: const Offset(0, 2),
+                        ),
+                      ],
                     ),
                     child: Text(
                       _messages[index]["message"]!,
@@ -97,16 +109,16 @@ class _LiveChatScreenState extends State<LiveChatScreen> {
       child: Row(
         children: [
           Expanded(
-            child: TextField(
+            child: CommonTextField(
+              inputType: InputType.name,
               controller: _messageController,
-              decoration: const InputDecoration(
-                hintText: "Type a message...",
-                border: InputBorder.none,
-              ),
+              onChanged: (value) {},
+              label: "",
+              hint: "Type a message...",
             ),
           ),
           IconButton(
-            icon: const Icon(Icons.send, color: Colors.blueAccent),
+            icon: const Icon(Icons.send, color: ThemeConstants.primaryColor),
             onPressed: _sendMessage,
           ),
         ],

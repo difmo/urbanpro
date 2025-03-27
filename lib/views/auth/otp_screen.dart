@@ -1,5 +1,6 @@
 import 'package:URBANPRO/routes/app_routes.dart';
 import 'package:URBANPRO/utils/app__text_style.dart';
+import 'package:URBANPRO/utils/storage_service.dart';
 import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:URBANPRO/views/widgets/custom_button.dart';
 import 'package:URBANPRO/views/widgets/loading_widget.dart';
@@ -7,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:get/get.dart';
 import 'package:URBANPRO/controllers/auth_controller.dart';
-
 class OTPScreen extends StatefulWidget {
   final String phone;
   final int otp;
@@ -28,27 +28,31 @@ class OTPScreen extends StatefulWidget {
 }
 
 class _OTPScreenState extends State<OTPScreen> {
-  bool isLoading = false; // To control the loader visibility
+  bool isLoading = false;
 
-  Future<void> verifyOtp(
-      String mobile, int otp, String email, String name, int role) async {
+  // Function to verify OTP
+  Future<void> verifyOtp() async {
     final authController = Get.find<AuthController>();
+
+    if (widget.phone.isEmpty || widget.otp == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Please enter a valid phone number and OTP")),
+      );
+      return;
+    }
+
     setState(() {
       isLoading = true; // Show loader
     });
-    print("Verifying OTP with the following details:");
-    print("Mobile: $mobile");
-    print("OTP: $otp");
-    print("Email: $email");
-    print("Name: $name");
-    print("Role: $role");
 
-    var resposnse = await authController.OtpSuccesscontroller(
-        mobile, email, otp, name, role);
-    if (resposnse.success) {
-      if (resposnse.userData.roles[0].roleId == 1) {
+    var response = await authController.OtpSuccesscontroller(
+        widget.phone, widget.email, widget.otp, widget.name, widget.role);
+
+    if (response.success) {
+      if (response.userData.roles[0].roleId == 1) {
+        StorageService().write("login", {"login": true});
         Get.toNamed(AppRoutes.ADMINDASHBOARD);
-      } else if (resposnse.userData.roles[0].roleId == 2) {
+      } else if (response.userData.roles[0].roleId == 2) {
         Get.toNamed(AppRoutes.TEACHERDASHBOARD);
       } else {
         Get.toNamed(AppRoutes.STUDENTDASHBOARD);
@@ -56,26 +60,20 @@ class _OTPScreenState extends State<OTPScreen> {
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(resposnse.message),
-          duration: Duration(seconds: 2), // Duration before it disappears
-          backgroundColor: Colors.blue, // Background color of the Snackbar
+          content: Text(response.message),
+          duration: Duration(seconds: 2),
+          backgroundColor: Colors.blue,
         ),
       );
     }
+
     setState(() {
-      isLoading = false; // Hide loader after OTP verification
+      isLoading = false;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    print("Incoming data to OTP screen:");
-    print("Phone: ${widget.phone}");
-    print("OTP: ${widget.otp}");
-    print("Email: ${widget.email}");
-    print("Name: ${widget.name}");
-    print("Role: ${widget.role}");
-
     return Scaffold(
       backgroundColor: ThemeConstants.whiteColor,
       body: isLoading
@@ -105,11 +103,10 @@ class _OTPScreenState extends State<OTPScreen> {
                       filled: true,
                       onSubmit: (code) {
                         print("OTP is => $code");
-                        if (widget.phone.isNotEmpty && code.isNotEmpty) {
-                          verifyOtp(widget.phone, widget.otp, widget.email,
-                              widget.name, widget.role);
+                        if (code.isNotEmpty) {
+                          verifyOtp(); // Verify OTP when entered
                         } else {
-                          print("Please enter a valid phone number and OTP");
+                          print("Please enter a valid OTP");
                         }
                       },
                     ),
@@ -119,12 +116,7 @@ class _OTPScreenState extends State<OTPScreen> {
                       child: CustomButton(
                         text: "Next",
                         onPressed: () {
-                          if (widget.phone.isNotEmpty) {
-                            verifyOtp(widget.phone, widget.otp, widget.email,
-                                widget.name, widget.role);
-                          } else {
-                            print("Please enter a valid phone number");
-                          }
+                          verifyOtp(); // Verify OTP when "Next" is clicked
                         },
                       ),
                     ),

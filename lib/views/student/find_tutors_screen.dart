@@ -1,4 +1,6 @@
 import 'package:URBANPRO/views/student/tutor_details_screen.dart';
+import 'package:URBANPRO/views/widgets/custom_status_bar.dart';
+import 'package:URBANPRO/views/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
 class FindTutorsScreen extends StatefulWidget {
@@ -9,43 +11,7 @@ class FindTutorsScreen extends StatefulWidget {
 }
 
 class _FindTutorsScreenState extends State<FindTutorsScreen> {
-  List<Map<String, String>> tutors = [
-    {
-      "name": "John Doe",
-      "subject": "Mathematics",
-      "experience": "5 Years",
-      "rating": "4.8",
-      "image": "https://randomuser.me/api/portraits/men/1.jpg"
-    },
-    {
-      "name": "Jane Smith",
-      "subject": "Science",
-      "experience": "3 Years",
-      "rating": "4.6",
-      "image": "https://randomuser.me/api/portraits/women/2.jpg"
-    },
-    {
-      "name": "Robert Brown",
-      "subject": "Physics",
-      "experience": "6 Years",
-      "rating": "4.9",
-      "image": "https://randomuser.me/api/portraits/men/3.jpg"
-    },
-    {
-      "name": "Emily White",
-      "subject": "English",
-      "experience": "4 Years",
-      "rating": "4.7",
-      "image": "https://randomuser.me/api/portraits/women/4.jpg"
-    },
-    {
-      "name": "Michael Green",
-      "subject": "Chemistry",
-      "experience": "8 Years",
-      "rating": "4.9",
-      "image": "https://randomuser.me/api/portraits/men/5.jpg"
-    }
-  ];
+  final TextEditingController _searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -54,27 +20,24 @@ class _FindTutorsScreenState extends State<FindTutorsScreen> {
 
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        title: const Text(
-          "Find Tutors",
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        centerTitle: true,
-        automaticallyImplyLeading: false,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(0),
+        child: CustomStatusBar(),
       ),
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [Color.fromARGB(255, 255, 255, 255), Color.fromARGB(255, 255, 255, 255)], // Dark Gradient
+            colors: [
+              Color.fromARGB(255, 255, 255, 255),
+              Color.fromARGB(255, 255, 255, 255)
+            ], // Dark Gradient
           ),
         ),
         child: Column(
           children: [
-            const SizedBox(height: 90),
+            const SizedBox(height: 40),
             _buildSearchBar(),
             Expanded(child: _buildTutorList(fontSize, screenWidth)),
           ],
@@ -86,18 +49,26 @@ class _FindTutorsScreenState extends State<FindTutorsScreen> {
   Widget _buildSearchBar() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-      child: TextField(
-        decoration: InputDecoration(
-          hintText: "Search for tutors...",
-          filled: true,
-          fillColor: Colors.white,
-          prefixIcon: const Icon(Icons.search, color: Colors.grey),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(30),
-            borderSide: BorderSide.none,
-          ),
-        ),
+      child: CommonTextField(
+        inputType: InputType.name,
+        label: "",
+        hint: "Search for tutors...",
+        icon: Icons.search,
+        controller: _searchController,
+        onChanged: (String) {},
       ),
+      // child: TextField(
+      //   decoration: InputDecoration(
+      //     hintText: "Search for tutors...",
+      //     filled: true,
+      //     fillColor: Colors.white,
+      //     prefixIcon: const Icon(Icons.search, color: Colors.grey),
+      //     border: OutlineInputBorder(
+      //       borderRadius: BorderRadius.circular(30),
+      //       borderSide: BorderSide.none,
+      //     ),
+      //   ),
+      // ),
     );
   }
 
@@ -213,3 +184,104 @@ class _FindTutorsScreenState extends State<FindTutorsScreen> {
     );
   }
 }
+
+List<Map<String, String>> tutors = [
+  {
+    "name": "John Doe",
+    "subject": "Mathematics",
+    "experience": "5 Years",
+    "rating": "4.8",
+    "image": "https://randomuser.me/api/portraits/men/1.jpg"
+  },
+  {
+    "name": "Jane Smith",
+    "subject": "Science",
+    "experience": "3 Years",
+    "rating": "4.6",
+    "image": "https://randomuser.me/api/portraits/women/2.jpg"
+  },
+  {
+    "name": "Robert Brown",
+    "subject": "Physics",
+    "experience": "6 Years",
+    "rating": "4.9",
+    "image": "https://randomuser.me/api/portraits/men/3.jpg"
+  },
+  {
+    "name": "Emily White",
+    "subject": "English",
+    "experience": "4 Years",
+    "rating": "4.7",
+    "image": "https://randomuser.me/api/portraits/women/4.jpg"
+  },
+  {
+    "name": "Michael Green",
+    "subject": "Chemistry",
+    "experience": "8 Years",
+    "rating": "4.9",
+    "image": "https://randomuser.me/api/portraits/men/5.jpg"
+  },
+  {
+    "name": "Michael Green",
+    "subject": "Chemistry",
+    "experience": "8 Years",
+    "rating": "4.9",
+    "image": "https://randomuser.me/api/portraits/men/5.jpg"
+  },
+  {
+    "name": "Michael Green",
+    "subject": "Chemistry",
+    "experience": "8 Years",
+    "rating": "4.9",
+    "image": "https://randomuser.me/api/portraits/men/5.jpg"
+  },
+  {
+    "name": "Michael Green",
+    "subject": "Chemistry",
+    "experience": "8 Years",
+    "rating": "4.9",
+    "image": "https://randomuser.me/api/portraits/men/5.jpg"
+  },
+  {
+    "name": "Michael Green",
+    "subject": "Chemistry",
+    "experience": "8 Years",
+    "rating": "4.9",
+    "image": "https://randomuser.me/api/portraits/men/5.jpg"
+  },
+  {
+    "name": "Michael Green",
+    "subject": "Chemistry",
+    "experience": "8 Years",
+    "rating": "4.9",
+    "image": "https://randomuser.me/api/portraits/men/5.jpg"
+  },
+  {
+    "name": "Michael Green",
+    "subject": "Chemistry",
+    "experience": "8 Years",
+    "rating": "4.9",
+    "image": "https://randomuser.me/api/portraits/men/5.jpg"
+  },
+  {
+    "name": "Michael Green",
+    "subject": "Chemistry",
+    "experience": "8 Years",
+    "rating": "4.9",
+    "image": "https://randomuser.me/api/portraits/men/5.jpg"
+  },
+  {
+    "name": "Michael Green",
+    "subject": "Chemistry",
+    "experience": "8 Years",
+    "rating": "4.9",
+    "image": "https://randomuser.me/api/portraits/men/5.jpg"
+  },
+  {
+    "name": "Michael Green",
+    "subject": "Chemistry",
+    "experience": "8 Years",
+    "rating": "4.9",
+    "image": "https://randomuser.me/api/portraits/men/5.jpg"
+  },
+];

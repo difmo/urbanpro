@@ -15,7 +15,6 @@ class FollowUpScreen extends StatefulWidget {
 
 class _FollowUpScreenState extends State<FollowUpScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  int _selectedIndex = 1;
   int _activeTabIndex = 0;
   final List<String> tabs = ['Contacted', 'Demos', 'Payments', 'Starred'];
   List<FollowUpModel> followups = FollowUpService.getStudents();

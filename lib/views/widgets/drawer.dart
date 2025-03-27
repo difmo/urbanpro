@@ -1,4 +1,5 @@
 import 'package:URBANPRO/routes/app_routes.dart';
+import 'package:URBANPRO/utils/storage_service.dart';
 import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -118,7 +119,8 @@ class CustomDrawer extends StatelessWidget {
             child: const Text("Cancel"),
           ),
           TextButton(
-            onPressed: () {
+            onPressed: () async {
+              await StorageService().clear();
               Get.toNamed(AppRoutes.LOGIN);
             },
             child: const Text("Logout"),

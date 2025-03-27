@@ -1,5 +1,6 @@
 import 'package:URBANPRO/models/teacher/account_model.dart';
 import 'package:URBANPRO/services/account_service.dart';
+import 'package:URBANPRO/utils/storage_service.dart';
 import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:URBANPRO/views/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
@@ -108,6 +109,7 @@ class _AccountScreenState extends State<AccountScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  
                   Text(
                     account.name,
                     style: const TextStyle(

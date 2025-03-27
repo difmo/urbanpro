@@ -3,7 +3,7 @@ import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer';
 
-const List<String> _list = ["Admin", "Teacher", "Student"];
+const List<String> _list = ["Select Role","Admin", "Teacher", "Student"];
 
 class SimpleDropdown extends StatefulWidget {
   final ValueChanged<int>

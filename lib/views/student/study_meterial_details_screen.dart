@@ -1,3 +1,5 @@
+import 'package:URBANPRO/views/widgets/custom_button.dart';
+import 'package:URBANPRO/views/widgets/custom_status_bar.dart';
 import 'package:flutter/material.dart';
 
 class StudyMaterialDetailsScreen extends StatelessWidget {
@@ -24,11 +26,9 @@ class StudyMaterialDetailsScreen extends StatelessWidget {
     double fontSize = screenWidth * 0.045;
 
     return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        title: const Text("Material Details"),
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(0),
+        child: CustomStatusBar(),
       ),
       body: Column(
         children: [
@@ -93,57 +93,12 @@ class StudyMaterialDetailsScreen extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 15),
       child: Row(
         children: [
-          Expanded(flex: 1, child: _buildDownloadButton(fontSize)),
+          Expanded(
+              flex: 1, child: CustomButton(text: "Download", onPressed: () {})),
           const SizedBox(width: 10),
-          Expanded(flex: 2, child: _buildBuyButton(fontSize, context)),
+          Expanded(
+              flex: 1, child: CustomButton(text: "Buy Now", onPressed: () {})),
         ],
-      ),
-    );
-  }
-
-  Widget _buildDownloadButton(double fontSize) {
-    return ElevatedButton.icon(
-      onPressed: () {
-        // Download functionality
-      },
-      icon: const Icon(Icons.download, size: 20),
-      label: const Text("Download"),
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.blueAccent,
-        foregroundColor: Colors.white,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        textStyle: TextStyle(fontSize: fontSize * 0.9),
-        padding: const EdgeInsets.symmetric(vertical: 12),
-      ),
-    );
-  }
-
-  Widget _buildBuyButton(double fontSize, BuildContext context) {
-    return InkWell(
-      onTap: () {
-        // Navigate to Payment Page or Confirm Purchase
-      },
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 14),
-        decoration: BoxDecoration(
-          gradient: const LinearGradient(
-            colors: [Color(0xFF6A82FB), Color(0xFFFC5C7D)],
-          ),
-          borderRadius: BorderRadius.circular(8),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.15),
-              blurRadius: 6,
-              offset: const Offset(0, 3),
-            ),
-          ],
-        ),
-        alignment: Alignment.center,
-        child: Text(
-          "Buy Now - $price",
-          style: const TextStyle(
-              color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
-        ),
       ),
     );
   }

@@ -1,10 +1,9 @@
-import 'package:URBANPRO/utils/app__text_style.dart';
 import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:URBANPRO/views/student/start_test_screen.dart';
 import 'package:URBANPRO/views/widgets/custom_button.dart';
+import 'package:URBANPRO/views/widgets/custom_status_bar.dart';
+import 'package:URBANPRO/views/widgets/custom_tab_bar.dart';
 import 'package:flutter/material.dart';
-
-const Color E2E8F0 = Color.fromARGB(255, 255, 255, 255);
 
 class TestSeriesScreen extends StatefulWidget {
   const TestSeriesScreen({super.key});
@@ -32,91 +31,41 @@ class _TestSeriesScreenState extends State<TestSeriesScreen>
     double screenWidth = MediaQuery.of(context).size.width;
     double fontSize = screenWidth * 0.04;
     return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(0),
+        child: CustomStatusBar(),
+      ),
       extendBodyBehindAppBar: true,
       body: Container(
-        decoration: const BoxDecoration(color: E2E8F0),
-        child: Column(
+        decoration: const BoxDecoration(color: Colors.white),
+        child: Stack(
           children: [
-            _buildTabBar(),
-            Expanded(
-              child: TabBarView(
-                controller: _tabController,
-                children: [
-                  _buildTestSeriesList("Mathematics", fontSize),
-                  _buildTestSeriesList("Science", fontSize),
-                  _buildTestSeriesList("English", fontSize),
-                ],
-              ),
-            ),
-            // SizedBox(height: ,)
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildTabBar() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "Test Series",
-            style: AppTextStyle.Text18600,
-          ),
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
-            ),
-            child: TabBar(
-              controller: _tabController,
-              indicator: BoxDecoration(
-                borderRadius: BorderRadius.circular(25),
-              ),
-              labelColor: Colors.black,
-              unselectedLabelColor: Colors.white,
-              labelPadding:
-                  const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-              tabs: [
-                _buildTabs("Math", Icons.calculate),
-                _buildTabs("Science", Icons.science),
-                _buildTabs("English", Icons.book),
+            Column(
+              children: [
+                SizedBox(
+                  height: 30,
+                ),
+                CustomTabBar(
+                  controller: _tabController,
+                  tabs: [
+                    {'label': 'Math', 'icon': Icons.calculate},
+                    {'label': 'Science', 'icon': Icons.science},
+                    {'label': 'English', 'icon': Icons.book},
+                  ],
+                ),
+                Expanded(
+                  child: TabBarView(
+                    controller: _tabController,
+                    children: [
+                      _buildTestSeriesList("Mathematics", fontSize),
+                      _buildTestSeriesList("Science", fontSize),
+                      _buildTestSeriesList("English", fontSize),
+                    ],
+                  ),
+                ),
+                // SizedBox(height: ,)
               ],
             ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildTabs(String label, IconData icon) {
-    return Tab(
-      child: Container(
-        padding: EdgeInsets.symmetric(vertical: 10),
-        decoration: BoxDecoration(
-            border: Border.all(
-                width: 1, color: const Color.fromARGB(255, 175, 231, 255)),
-            borderRadius: BorderRadius.circular(10),
-            color: ThemeConstants.backgroundColor),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 1),
-              decoration: BoxDecoration(
-                color: Colors.blue[100],
-                borderRadius: BorderRadius.circular(25),
-              ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(icon, color: Colors.black),
-                  SizedBox(width: 1),
-                ],
-              ),
-            ),
-            Text(label, style: TextStyle(color: Colors.black)),
           ],
         ),
       ),
@@ -124,49 +73,6 @@ class _TestSeriesScreenState extends State<TestSeriesScreen>
   }
 
   Widget _buildTestSeriesList(String subject, double fontSize) {
-    List<Map<String, String>> testSeries = [
-      {
-        "title": "Basic Algebra Test",
-        "questions": "20",
-        "duration": "30 min",
-        "level": "Easy",
-        "image":
-            "https://fastly.picsum.photos/id/1010/200/200.jpg?hmac=030jCT8DyI2wW-CYue7-l9xlHBAGpacaSJ6tYnnka3I"
-      },
-      {
-        "title": "Trigonometry Challenge",
-        "questions": "25",
-        "duration": "40 min",
-        "level": "Medium",
-        "image":
-            "https://fastly.picsum.photos/id/1010/200/200.jpg?hmac=030jCT8DyI2wW-CYue7-l9xlHBAGpacaSJ6tYnnka3I"
-      },
-      {
-        "title": "Probability & Statistics",
-        "questions": "15",
-        "duration": "25 min",
-        "level": "Hard",
-        "image":
-            "https://fastly.picsum.photos/id/1010/200/200.jpg?hmac=030jCT8DyI2wW-CYue7-l9xlHBAGpacaSJ6tYnnka3I"
-      },
-      {
-        "title": "Probability & Statistics",
-        "questions": "15",
-        "duration": "25 min",
-        "level": "Hard",
-        "image":
-            "https://fastly.picsum.photos/id/1010/200/200.jpg?hmac=030jCT8DyI2wW-CYue7-l9xlHBAGpacaSJ6tYnnka3I"
-      },
-      {
-        "title": "Probability & Statistics",
-        "questions": "15",
-        "duration": "25 min",
-        "level": "Hard",
-        "image":
-            "https://fastly.picsum.photos/id/1010/200/200.jpg?hmac=030jCT8DyI2wW-CYue7-l9xlHBAGpacaSJ6tYnnka3I"
-      },
-    ];
-
     return ListView.builder(
       padding: const EdgeInsets.all(10),
       itemCount: testSeries.length,
@@ -281,3 +187,46 @@ class _TestSeriesScreenState extends State<TestSeriesScreen>
     );
   }
 }
+
+List<Map<String, String>> testSeries = [
+  {
+    "title": "Basic Algebra Test",
+    "questions": "20",
+    "duration": "30 min",
+    "level": "Easy",
+    "image":
+        "https://fastly.picsum.photos/id/1010/200/200.jpg?hmac=030jCT8DyI2wW-CYue7-l9xlHBAGpacaSJ6tYnnka3I"
+  },
+  {
+    "title": "Trigonometry Challenge",
+    "questions": "25",
+    "duration": "40 min",
+    "level": "Medium",
+    "image":
+        "https://fastly.picsum.photos/id/1010/200/200.jpg?hmac=030jCT8DyI2wW-CYue7-l9xlHBAGpacaSJ6tYnnka3I"
+  },
+  {
+    "title": "Probability & Statistics",
+    "questions": "15",
+    "duration": "25 min",
+    "level": "Hard",
+    "image":
+        "https://fastly.picsum.photos/id/1010/200/200.jpg?hmac=030jCT8DyI2wW-CYue7-l9xlHBAGpacaSJ6tYnnka3I"
+  },
+  {
+    "title": "Probability & Statistics",
+    "questions": "15",
+    "duration": "25 min",
+    "level": "Hard",
+    "image":
+        "https://fastly.picsum.photos/id/1010/200/200.jpg?hmac=030jCT8DyI2wW-CYue7-l9xlHBAGpacaSJ6tYnnka3I"
+  },
+  {
+    "title": "Probability & Statistics",
+    "questions": "15",
+    "duration": "25 min",
+    "level": "Hard",
+    "image":
+        "https://fastly.picsum.photos/id/1010/200/200.jpg?hmac=030jCT8DyI2wW-CYue7-l9xlHBAGpacaSJ6tYnnka3I"
+  },
+];

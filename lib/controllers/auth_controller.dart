@@ -35,15 +35,18 @@ class AuthController extends GetxController {
   }
 
   Future<OtpSuccessResponse> OtpSuccesscontroller(
-      String mobile, String email, int otp, String name,int  role) async {
+      String mobile, String email, int otp, String name, int role) async {
     isLoading.value = true;
     try {
       final responsedata =
           await _authRepository.verifyOtpRepo(mobile, email, otp, name, role);
       Get.snackbar('Success', responsedata.message);
       print(responsedata.success);
+      responsedata.userData.roles.forEach((role) {
+        print(role.roleId);
+      });
       await _saveLoginData(responsedata);
-     
+
       return responsedata;
     } catch (e) {
       Get.snackbar('Error', e.toString());
@@ -59,8 +62,12 @@ class AuthController extends GetxController {
       'isLoggedIn': true,
       'userId': responsedata.userData.id,
       'userName': responsedata.userData.name,
-      'userRoles':
-          responsedata.userData.roles.map((role) => role.roleName).toList(),
+      'roleData': responsedata.userData.roles
+          .map((role) => {
+                'roleId': role.roleId.toString(),
+                'roleName': role.roleName,
+              })
+          .toList()
     };
     await storageService.write('login_details', loginData);
   }

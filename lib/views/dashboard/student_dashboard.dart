@@ -1,6 +1,5 @@
 import 'package:URBANPRO/views/student/courses_screen.dart';
 import 'package:URBANPRO/views/student/find_tutors_screen.dart';
-import 'package:URBANPRO/views/student/home_screen_student.dart';
 import 'package:URBANPRO/views/student/study_meterial_screen.dart';
 import 'package:URBANPRO/views/student/support_screen.dart';
 import 'package:URBANPRO/views/student/test_series_screen.dart';

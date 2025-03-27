@@ -1,4 +1,5 @@
 import 'package:URBANPRO/views/student/study_meterial_details_screen.dart';
+import 'package:URBANPRO/views/widgets/custom_button.dart';
 import 'package:URBANPRO/views/widgets/custom_status_bar.dart';
 import 'package:URBANPRO/views/widgets/custom_tab_bar.dart';
 import 'package:flutter/material.dart';
@@ -50,8 +51,9 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
         ),
         child: Column(
           children: [
-            const SizedBox(height: 30), // Push content below app bar
+            const SizedBox(height: 40), // Push content below app bar
             CustomTabBar(
+              title: "Study Material",
               controller: _tabController,
               tabs: [
                 {
@@ -139,53 +141,31 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
                               color: Colors.blue,
                             ),
                           ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      StudyMaterialDetailsScreen(
-                                    title: studyMaterials[index]["title"]!,
-                                    description: studyMaterials[index]
-                                        ["description"]!,
-                                    rating: studyMaterials[index]["rating"]!,
-                                    fileSize: studyMaterials[index]
-                                        ["fileSize"]!,
-                                    image: studyMaterials[index]["image"]!,
-                                    price: '',
-                                  ),
-                                ),
-                              );
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                gradient: const LinearGradient(
-                                  colors: [
-                                    Color(0xFF6A82FB),
-                                    Color(0xFFFC5C7D)
-                                  ],
-                                ),
-                                borderRadius: BorderRadius.circular(48),
-                              ),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 16, vertical: 8),
-                              child: Row(
-                                children: [
-                                  const Icon(Icons.download,
-                                      color: Colors.white),
-                                  const SizedBox(width: 5),
-                                  Text(
-                                    "Download",
-                                    style: TextStyle(
-                                      fontSize: fontSize * 0.85,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
+                          CustomButton(
+                            fontSize: 12,
+                            icon: Icon(Icons.download,color: Colors.white,),
+                              text: "Download",
+                              onPressed: () => {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            StudyMaterialDetailsScreen(
+                                          title: studyMaterials[index]
+                                              ["title"]!,
+                                          description: studyMaterials[index]
+                                              ["description"]!,
+                                          rating: studyMaterials[index]
+                                              ["rating"]!,
+                                          fileSize: studyMaterials[index]
+                                              ["fileSize"]!,
+                                          image: studyMaterials[index]
+                                              ["image"]!,
+                                          price: '',
+                                        ),
+                                      ),
+                                    )
+                                  }),
                         ],
                       ),
                     ],

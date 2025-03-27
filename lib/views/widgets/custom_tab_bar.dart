@@ -4,13 +4,14 @@ import 'package:flutter/material.dart';
 class CustomTabBar extends StatelessWidget {
   final TabController controller;
   final List<Map<String, dynamic>> tabs;
-  final String title; // Added a title parameter
+  final String title; 
+  
 
   // Make the title parameter required and icon optional in the tabs list
   CustomTabBar({
     required this.controller,
     required this.tabs,
-    this.title = "Test Series", // Default title is "Test Series"
+    this.title = "Title", // Default title is "Test Series"
   });
 
   @override

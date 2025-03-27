@@ -52,19 +52,20 @@ class _CoursesScreenState extends State<CoursesScreen>
         child: Column(
           children: [
             SizedBox(
-              height: 30,
+              height: 40,
             ),
             CustomTabBar(
+              title: "Courses (Classwise)",
               controller: _tabController,
               tabs: [
                 {
-                  'label': '1st - 4th Class',
+                  'label': '1st - 4th',
                 },
                 {
-                  'label': '1st - 4th Class',
+                  'label': '5th - 8th',
                 },
                 {
-                  'label': '1st - 4th Class',
+                  'label': '9th - 12th',
                 }
               ],
             ),

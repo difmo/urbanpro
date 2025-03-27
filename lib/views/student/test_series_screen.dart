@@ -37,13 +37,13 @@ class _TestSeriesScreenState extends State<TestSeriesScreen>
       ),
       extendBodyBehindAppBar: true,
       body: Container(
-        decoration: const BoxDecoration(color: Colors.white),
+        decoration: const BoxDecoration(color: ThemeConstants.primaryColorSoft),
         child: Stack(
           children: [
             Column(
               children: [
                 SizedBox(
-                  height: 30,
+                  height: 40,
                 ),
                 CustomTabBar(
                   controller: _tabController,
@@ -162,6 +162,7 @@ class _TestSeriesScreenState extends State<TestSeriesScreen>
                 SizedBox(
                     width: double.infinity,
                     child: CustomButton(
+                      hPadding: 0,
                       text: "Start text",
                       onPressed: () {
                         Navigator.push(

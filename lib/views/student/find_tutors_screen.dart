@@ -1,4 +1,5 @@
 import 'package:URBANPRO/views/student/tutor_details_screen.dart';
+import 'package:URBANPRO/views/widgets/custom_button.dart';
 import 'package:URBANPRO/views/widgets/custom_status_bar.dart';
 import 'package:URBANPRO/views/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +38,7 @@ class _FindTutorsScreenState extends State<FindTutorsScreen> {
         ),
         child: Column(
           children: [
-            const SizedBox(height: 40),
+            const SizedBox(height: 50),
             _buildSearchBar(),
             Expanded(child: _buildTutorList(fontSize, screenWidth)),
           ],
@@ -143,39 +144,24 @@ class _FindTutorsScreenState extends State<FindTutorsScreen> {
                     ],
                   ),
                 ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => TutorDetailScreen(
-                          name: tutors[index]["name"]!,
-                          subject: tutors[index]["subject"]!,
-                          experience: tutors[index]["experience"]!,
-                          rating: tutors[index]["rating"]!,
-                          image: tutors[index]["image"]!,
-                        ),
-                      ),
-                    );
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      gradient: const LinearGradient(
-                        colors: [Color(0xFF6A82FB), Color(0xFFFC5C7D)],
-                      ),
-                      borderRadius: BorderRadius.circular(48),
-                    ),
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    child: const Text(
-                      "Join Class",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 13,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ),
+                CustomButton(
+                    // icon: Icon(Icons.download),
+                    fontSize: 12,
+                    text: "Join Class",
+                    onPressed: () => {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => TutorDetailScreen(
+                                name: tutors[index]["name"]!,
+                                subject: tutors[index]["subject"]!,
+                                experience: tutors[index]["experience"]!,
+                                rating: tutors[index]["rating"]!,
+                                image: tutors[index]["image"]!,
+                              ),
+                            ),
+                          )
+                        }),
               ],
             ),
           ),

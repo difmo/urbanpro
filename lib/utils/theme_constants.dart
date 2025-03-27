@@ -25,7 +25,7 @@ class ThemeConstants {
   static const Color secondHeadingBlack = Color(0xff4e555e);
   static const Color textBlack = Color(0xff444950);
   static const Color black = Color(0xff000000);
-  static const Color lightGrey = Color.fromARGB(255, 206, 204, 204);
+  static const Color lightGrey = Color.fromARGB(255, 192, 191, 191);
   static const Color lighterGrey = Color(0xfff6f6f6);
   static const Color placeholderColor = Color(0xFFb0b0b0);
   static const Color dividerColor = Color(0xFFEEEDED);

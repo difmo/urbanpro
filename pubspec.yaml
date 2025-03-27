@@ -49,7 +49,7 @@ flutter:
     - assets/icons/applogo.svg
     - assets/bg/circle.svg
     - assets/images/menus.png
-    - assets\icons\edit.svg
+    - assets/icons/edit.svg
   fonts:
     - family: Poppins
       fonts:

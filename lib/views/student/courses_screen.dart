@@ -33,28 +33,8 @@ class _CoursesScreenState extends State<CoursesScreen>
     double fontSize = screenWidth * 0.04;
 
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(0),
-        child: CustomStatusBar(),
-      ),
-      extendBodyBehindAppBar: true,
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color.fromARGB(255, 255, 255, 255),
-              Color.fromARGB(255, 255, 255, 255)
-            ],
-          ),
-        ),
-        child: Column(
-          children: [
-            SizedBox(
-              height: 40,
-            ),
-            CustomTabBar(
+      appBar:CustomTabBar(
+        height: 124,
               title: "Courses (Classwise)",
               controller: _tabController,
               tabs: [
@@ -69,6 +49,20 @@ class _CoursesScreenState extends State<CoursesScreen>
                 }
               ],
             ),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Color.fromARGB(255, 255, 255, 255),
+              Color.fromARGB(255, 255, 255, 255)
+            ],
+          ),
+        ),
+        child: Column(
+          children: [
+      
             Expanded(
               child: TabBarView(
                 controller: _tabController,

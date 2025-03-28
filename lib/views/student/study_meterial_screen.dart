@@ -33,26 +33,8 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
     double fontSize = screenWidth * 0.04;
 
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(0),
-        child: CustomStatusBar(),
-      ),
-      extendBodyBehindAppBar: true,
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color.fromARGB(255, 255, 255, 255),
-              Color.fromARGB(255, 255, 255, 255)
-            ], // Gradient background
-          ),
-        ),
-        child: Column(
-          children: [
-            const SizedBox(height: 40), // Push content below app bar
-            CustomTabBar(
+      appBar:      CustomTabBar(
+        height: 124,
               title: "Study Material",
               controller: _tabController,
               tabs: [
@@ -67,6 +49,20 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
                 }
               ],
             ),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Color.fromARGB(255, 255, 255, 255),
+              Color.fromARGB(255, 255, 255, 255)
+            ], // Gradient background
+          ),
+        ),
+        child: Column(
+          children: [
+      
             Expanded(
               child: TabBarView(
                 controller: _tabController,

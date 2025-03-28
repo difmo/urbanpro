@@ -1,3 +1,5 @@
+import 'package:URBANPRO/utils/theme_constants.dart';
+import 'package:URBANPRO/views/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 
 class CourseDetailScreen extends StatelessWidget {
@@ -24,6 +26,7 @@ class CourseDetailScreen extends StatelessWidget {
     double fontSize = screenWidth * 0.045;
 
     return Scaffold(
+      backgroundColor: ThemeConstants.white,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -34,7 +37,11 @@ class CourseDetailScreen extends StatelessWidget {
         children: [
           _buildImageSection(),
           Expanded(child: _buildCourseDetails(fontSize)),
-          _buildEnrollButton(fontSize, context),
+          // _buildEnrollButton(fontSize, context),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 28.0),
+            child: CustomButton(text: "Enroll Now - Rs/-500", onPressed: () {}),
+          )
         ],
       ),
     );
@@ -116,14 +123,6 @@ class CourseDetailScreen extends StatelessWidget {
   }
 
   Widget _buildCourseSyllabus(double fontSize) {
-    List<String> syllabus = [
-      "Introduction to the subject",
-      "Fundamentals and Basic Concepts",
-      "Intermediate Level Topics",
-      "Advanced Applications",
-      "Final Project & Practical Assignments"
-    ];
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -150,24 +149,6 @@ class CourseDetailScreen extends StatelessWidget {
   }
 
   Widget _buildStudentReviews(double fontSize) {
-    List<Map<String, String>> reviews = [
-      {
-        "name": "John Doe",
-        "comment": "Great course! The instructor explained everything clearly.",
-        "rating": "4.8"
-      },
-      {
-        "name": "Emily Smith",
-        "comment": "Loved the hands-on projects and practical assignments!",
-        "rating": "4.7"
-      },
-      {
-        "name": "Michael Johnson",
-        "comment": "Best course for beginners and professionals alike!",
-        "rating": "5.0"
-      }
-    ];
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -215,37 +196,30 @@ class CourseDetailScreen extends StatelessWidget {
       ],
     );
   }
-
-  Widget _buildEnrollButton(double fontSize, BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 15),
-      child: InkWell(
-        onTap: () {
-          // Navigate to Enrollment Page or Confirm Enrollment
-        },
-        child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 14),
-          decoration: BoxDecoration(
-            gradient: const LinearGradient(
-              colors: [Color(0xFF6A82FB), Color(0xFFFC5C7D)],
-            ),
-            borderRadius: BorderRadius.circular(8),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.15),
-                blurRadius: 6,
-                offset: const Offset(0, 3),
-              ),
-            ],
-          ),
-          alignment: Alignment.center,
-          child: Text(
-            "Enroll Now - $price",
-            style: const TextStyle(
-                color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-        ),
-      ),
-    );
-  }
 }
+
+List<Map<String, String>> reviews = [
+  {
+    "name": "John Doe",
+    "comment": "Great course! The instructor explained everything clearly.",
+    "rating": "4.8"
+  },
+  {
+    "name": "Emily Smith",
+    "comment": "Loved the hands-on projects and practical assignments!",
+    "rating": "4.7"
+  },
+  {
+    "name": "Michael Johnson",
+    "comment": "Best course for beginners and professionals alike!",
+    "rating": "5.0"
+  }
+];
+
+List<String> syllabus = [
+  "Introduction to the subject",
+  "Fundamentals and Basic Concepts",
+  "Intermediate Level Topics",
+  "Advanced Applications",
+  "Final Project & Practical Assignments"
+];

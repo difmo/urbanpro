@@ -1,5 +1,6 @@
 import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:URBANPRO/views/student/chat_with_tutor_screen.dart';
+import 'package:URBANPRO/views/widgets/back_app_bar.dart';
 import 'package:URBANPRO/views/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +24,7 @@ class TutorDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ThemeConstants.white,
-      appBar: AppBar(title: Text(name)),
+      appBar:  BackAppBar(title:name),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Column(

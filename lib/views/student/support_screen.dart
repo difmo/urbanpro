@@ -6,7 +6,6 @@ import 'package:URBANPRO/views/widgets/custom_button.dart';
 import 'package:URBANPRO/views/widgets/custom_status_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class SupportScreen extends StatelessWidget {
   const SupportScreen({super.key});
@@ -66,8 +65,7 @@ class SupportScreen extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 35,
-                backgroundImage:
-                    NetworkImage("https://picsum.photos/seed/picsum/200/300"),
+                backgroundImage: AssetImage('assets/images/4.jpg'),
               ),
               const SizedBox(width: 15),
               Column(
@@ -85,17 +83,10 @@ class SupportScreen extends StatelessWidget {
               Spacer(),
               GestureDetector(
                 onTap: () {
-                  CupertinoScaffold.showCupertinoModalBottomSheet(
-                    context: context,
-                    expand: true,
-                    backgroundColor: Colors.transparent,
-                    builder: (BuildContext context) {
-                      return FractionallySizedBox(
-                        alignment: Alignment.bottomCenter,
-                        heightFactor: 0.5,
-                        child: ProfileEditForm(),
-                      );
-                    },
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ProfileEditForm()),
                   );
                 },
                 child: SvgPicture.asset(
@@ -160,12 +151,9 @@ class SupportScreen extends StatelessWidget {
   Widget _buildContactSection(double fontSize) {
     return Container(
       decoration: BoxDecoration(
-        // color: ThemeConstants.secondaryColorSoft,
-        color: ThemeConstants.white,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(30),
-          bottomLeft: Radius.circular(30),
-        ),
+        color: Colors.white.withOpacity(0.9),
+        borderRadius: BorderRadius.horizontal(left: Radius.circular(30)),
+        
       ),
       child: Padding(
         padding: const EdgeInsets.all(16),
@@ -202,10 +190,10 @@ class SupportScreen extends StatelessWidget {
         borderRadius: BorderRadius.horizontal(left: Radius.circular(30)),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withOpacity(0.1),
             spreadRadius: 1,
             blurRadius: 6,
-            offset: const Offset(0, 3),
+            offset: const Offset(0, 5),
           ),
         ],
       ),

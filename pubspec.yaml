@@ -50,6 +50,7 @@ flutter:
     - assets/bg/circle.svg
     - assets/images/menus.png
     - assets/icons/edit.svg
+    - assets/images/4.jpg
   fonts:
     - family: Poppins
       fonts:

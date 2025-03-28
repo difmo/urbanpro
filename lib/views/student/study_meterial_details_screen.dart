@@ -1,5 +1,6 @@
+import 'package:URBANPRO/utils/theme_constants.dart';
+import 'package:URBANPRO/views/widgets/back_app_bar.dart';
 import 'package:URBANPRO/views/widgets/custom_button.dart';
-import 'package:URBANPRO/views/widgets/custom_status_bar.dart';
 import 'package:flutter/material.dart';
 
 class StudyMaterialDetailsScreen extends StatelessWidget {
@@ -26,10 +27,8 @@ class StudyMaterialDetailsScreen extends StatelessWidget {
     double fontSize = screenWidth * 0.045;
 
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(0),
-        child: CustomStatusBar(),
-      ),
+      backgroundColor: ThemeConstants.white,
+      appBar: BackAppBar(title: title),
       body: Column(
         children: [
           _buildImageSection(),

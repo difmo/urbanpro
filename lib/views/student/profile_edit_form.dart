@@ -1,4 +1,5 @@
 import 'package:URBANPRO/utils/theme_constants.dart';
+import 'package:URBANPRO/views/widgets/back_app_bar.dart';
 import 'package:URBANPRO/views/widgets/custom_button.dart';
 import 'package:URBANPRO/views/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
@@ -19,10 +20,9 @@ class _ProfileEditFormState extends State<ProfileEditForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Edit Profile'),
-        backgroundColor: ThemeConstants.primaryColor,
-      ),
+      backgroundColor: ThemeConstants.white,
+      appBar: BackAppBar(title: "Profile Edit"),
+      
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(

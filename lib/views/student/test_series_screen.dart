@@ -31,28 +31,21 @@ class _TestSeriesScreenState extends State<TestSeriesScreen>
     double screenWidth = MediaQuery.of(context).size.width;
     double fontSize = screenWidth * 0.04;
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(0),
-        child: CustomStatusBar(),
+      appBar: CustomTabBar(
+        controller: _tabController,
+        tabs: [
+          {'label': 'Math', 'icon': Icons.calculate},
+          {'label': 'Science', 'icon': Icons.science},
+          {'label': 'English', 'icon': Icons.book},
+        ],
       ),
-      extendBodyBehindAppBar: true,
       body: Container(
         decoration: const BoxDecoration(color: ThemeConstants.primaryColorSoft),
         child: Stack(
           children: [
             Column(
               children: [
-                SizedBox(
-                  height: 40,
-                ),
-                CustomTabBar(
-                  controller: _tabController,
-                  tabs: [
-                    {'label': 'Math', 'icon': Icons.calculate},
-                    {'label': 'Science', 'icon': Icons.science},
-                    {'label': 'English', 'icon': Icons.book},
-                  ],
-                ),
+                
                 Expanded(
                   child: TabBarView(
                     controller: _tabController,

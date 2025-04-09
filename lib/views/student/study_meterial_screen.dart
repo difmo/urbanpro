@@ -1,5 +1,7 @@
-import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:URBANPRO/views/student/study_meterial_details_screen.dart';
+import 'package:URBANPRO/views/widgets/custom_button.dart';
+import 'package:URBANPRO/views/widgets/custom_status_bar.dart';
+import 'package:URBANPRO/views/widgets/custom_tab_bar.dart';
 import 'package:flutter/material.dart';
 
 class StudyMaterialScreen extends StatefulWidget {
@@ -31,24 +33,22 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
     double fontSize = screenWidth * 0.04;
 
     return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        title: const Text(
-          "Study Material",
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        centerTitle: true,
-        automaticallyImplyLeading: false, // 🚀 Hides the back button
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.search, color: Colors.white),
-            onPressed: () {
-            },
-          ),
-        ],
-      ),
+      appBar:      CustomTabBar(
+        height: 124,
+              title: "Study Material",
+              controller: _tabController,
+              tabs: [
+                {
+                  'label': 'Notes',
+                },
+                {
+                  'label': 'Videos',
+                },
+                {
+                  'label': 'Books',
+                }
+              ],
+            ),
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -62,8 +62,7 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
         ),
         child: Column(
           children: [
-            const SizedBox(height: 90), // Push content below app bar
-            _buildTabBar(),
+      
             Expanded(
               child: TabBarView(
                 controller: _tabController,
@@ -80,112 +79,7 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
     );
   }
 
-  Widget _buildTabBar() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-          horizontal: 16, vertical: 8), // Add padding
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.2),
-          borderRadius: BorderRadius.circular(30),
-        ),
-        child: TabBar(
-          controller: _tabController,
-          indicator: BoxDecoration(
-            // color: Colors.white,
-            borderRadius:
-                BorderRadius.circular(25), // Rounded selection indicator
-          ),
-          labelColor: Colors.black,
-          unselectedLabelColor: Colors.white,
-          labelPadding: const EdgeInsets.symmetric(
-              horizontal: 12, vertical: 6), // Padding inside selected tab
-          tabs: [
-            _buildTabs("Notes"),
-            _buildTabs("Videos"),
-            _buildTabs("Books")
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildTabs(String label) {
-    return Tab(
-      child: Container(
-        padding: EdgeInsets.symmetric(vertical: 10),
-        decoration: BoxDecoration(
-            border: Border.all(
-                width: 1, color: const Color.fromARGB(255, 175, 231, 255)),
-            borderRadius: BorderRadius.circular(10),
-            color: ThemeConstants.backgroundColor),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 1),
-              decoration: BoxDecoration(
-                color: Colors.blue[100],
-                borderRadius: BorderRadius.circular(25),
-              ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  SizedBox(width: 1),
-                ],
-              ),
-            ),
-            Text(label, style: TextStyle(color: Colors.black)),
-          ],
-        ),
-      ),
-    );
-  }
-
   Widget _buildStudyMaterialList(String category, double fontSize) {
-    final List<Map<String, String>> studyMaterials = [
-      {
-        "title": "Mathematics Notes",
-        "description":
-            "Comprehensive math study material with solved examples.",
-        "price": "\$9.99",
-        "rating": "4.8",
-        "fileSize": "2.5 MB",
-        "image": "https://picsum.photos/200/300"
-      },
-      {
-        "title": "Physics Video Lectures",
-        "description": "High-quality physics video lectures from experts.",
-        "price": "\$14.99",
-        "rating": "4.7",
-        "fileSize": "1.8 GB",
-        "image": "https://picsum.photos/201/300"
-      },
-      {
-        "title": "Chemistry Book",
-        "description": "Detailed chemistry book with practical experiments.",
-        "price": "\$19.99",
-        "rating": "4.9",
-        "fileSize": "5.2 MB",
-        "image": "https://picsum.photos/202/300"
-      },
-      {
-        "title": "Chemistry Book",
-        "description": "Detailed chemistry book with practical experiments.",
-        "price": "\$19.99",
-        "rating": "4.9",
-        "fileSize": "5.2 MB",
-        "image": "https://picsum.photos/202/300"
-      },
-      {
-        "title": "Chemistry Book",
-        "description": "Detailed chemistry book with practical experiments.",
-        "price": "\$19.99",
-        "rating": "4.9",
-        "fileSize": "5.2 MB",
-        "image": "https://picsum.photos/202/300"
-      },
-    ];
     return ListView.builder(
       padding: const EdgeInsets.all(10),
       itemCount: studyMaterials.length, // Replace with actual data
@@ -243,53 +137,31 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
                               color: Colors.blue,
                             ),
                           ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      StudyMaterialDetailsScreen(
-                                    title: studyMaterials[index]["title"]!,
-                                    description: studyMaterials[index]
-                                        ["description"]!,
-                                    rating: studyMaterials[index]["rating"]!,
-                                    fileSize: studyMaterials[index]
-                                        ["fileSize"]!,
-                                    image: studyMaterials[index]["image"]!,
-                                    price: '',
-                                  ),
-                                ),
-                              );
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                gradient: const LinearGradient(
-                                  colors: [
-                                    Color(0xFF6A82FB),
-                                    Color(0xFFFC5C7D)
-                                  ],
-                                ),
-                                borderRadius: BorderRadius.circular(48),
-                              ),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 16, vertical: 8),
-                              child: Row(
-                                children: [
-                                  const Icon(Icons.download,
-                                      color: Colors.white),
-                                  const SizedBox(width: 5),
-                                  Text(
-                                    "Download",
-                                    style: TextStyle(
-                                      fontSize: fontSize * 0.85,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
+                          CustomButton(
+                            fontSize: 12,
+                            icon: Icon(Icons.download,color: Colors.white,),
+                              text: "Download",
+                              onPressed: () => {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            StudyMaterialDetailsScreen(
+                                          title: studyMaterials[index]
+                                              ["title"]!,
+                                          description: studyMaterials[index]
+                                              ["description"]!,
+                                          rating: studyMaterials[index]
+                                              ["rating"]!,
+                                          fileSize: studyMaterials[index]
+                                              ["fileSize"]!,
+                                          image: studyMaterials[index]
+                                              ["image"]!,
+                                          price: '',
+                                        ),
+                                      ),
+                                    )
+                                  }),
                         ],
                       ),
                     ],
@@ -303,3 +175,46 @@ class _StudyMaterialScreenState extends State<StudyMaterialScreen>
     );
   }
 }
+
+final List<Map<String, String>> studyMaterials = [
+  {
+    "title": "Mathematics Notes",
+    "description": "Comprehensive math study material with solved examples.",
+    "price": "\$9.99",
+    "rating": "4.8",
+    "fileSize": "2.5 MB",
+    "image": "https://picsum.photos/200/300"
+  },
+  {
+    "title": "Physics Video Lectures",
+    "description": "High-quality physics video lectures from experts.",
+    "price": "\$14.99",
+    "rating": "4.7",
+    "fileSize": "1.8 GB",
+    "image": "https://picsum.photos/201/300"
+  },
+  {
+    "title": "Chemistry Book",
+    "description": "Detailed chemistry book with practical experiments.",
+    "price": "\$19.99",
+    "rating": "4.9",
+    "fileSize": "5.2 MB",
+    "image": "https://picsum.photos/202/300"
+  },
+  {
+    "title": "Chemistry Book",
+    "description": "Detailed chemistry book with practical experiments.",
+    "price": "\$19.99",
+    "rating": "4.9",
+    "fileSize": "5.2 MB",
+    "image": "https://picsum.photos/202/300"
+  },
+  {
+    "title": "Chemistry Book",
+    "description": "Detailed chemistry book with practical experiments.",
+    "price": "\$19.99",
+    "rating": "4.9",
+    "fileSize": "5.2 MB",
+    "image": "https://picsum.photos/202/300"
+  },
+];

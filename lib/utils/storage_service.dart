@@ -3,22 +3,19 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 
 class StorageService {
-  // Write method is already correct
   Future<void> write(String key, Map<String, dynamic> value) async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setString(key, jsonEncode(value));
   }
 
-  // Corrected read method
   Future<Map<String, dynamic>?> read(String key) async {
-    final prefs = await SharedPreferences.getInstance(); // Ensure it's awaited
-    final data = prefs.getString(key); // Get the string associated with the key
+    final prefs = await SharedPreferences.getInstance(); 
+    final data = prefs.getString(key); 
 
-    // If the data is not null, decode and return it, otherwise return null
     if (data != null) {
       return jsonDecode(data) as Map<String, dynamic>;
     } else {
-      return null; // Return null if no data is found
+      return null;
     }
   }
 
@@ -27,11 +24,9 @@ class StorageService {
     await prefs.clear();
   }
 
-  // Save OtpSuccessResponse to SharedPreferences
   Future<void> setUserData(OtpSuccessResponse otpSuccessResponse) async {
     final prefs = await SharedPreferences.getInstance();
 
-    // Convert OtpSuccessResponse to JSON and save it
     final Map<String, dynamic> otpData = {
       'success': otpSuccessResponse.success,
       'token': otpSuccessResponse.token,
@@ -55,7 +50,6 @@ class StorageService {
     await prefs.setString('otpSuccessResponse', jsonEncode(otpData));
   }
 
-  // Read and convert OtpSuccessResponse from SharedPreferences
   Future<OtpSuccessResponse?> readUserData() async {
     final prefs = await SharedPreferences.getInstance();
     final String? data = prefs.getString('otpSuccessResponse');

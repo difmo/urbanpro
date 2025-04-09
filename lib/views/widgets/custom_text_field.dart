@@ -83,7 +83,7 @@ class _CommonTextFieldState extends State<CommonTextField> {
 
   @override
   Widget build(BuildContext context) {
-    Color defaultBorderColor = widget.borderColor ?? ThemeConstants.grey;
+    Color defaultBorderColor = widget.borderColor ?? ThemeConstants.primaryColor;
 
     return TextFormField(
       focusNode: widget.focusNode,
@@ -120,11 +120,11 @@ class _CommonTextFieldState extends State<CommonTextField> {
         ),
         floatingLabelBehavior: FloatingLabelBehavior.always,
         floatingLabelStyle: AppTextStyle.Text16600.copyWith(
-          color: widget.readOnly ? Colors.grey : ThemeConstants.secondaryColor,
+          color: widget.readOnly ? Colors.grey : ThemeConstants.primaryColor,
         ),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: widget.borderColor ?? Colors.grey[300]!,
+            color: widget.borderColor ?? ThemeConstants.lightGrey,
             width: 1.5,
           ),
           borderRadius: BorderRadius.circular(widget.borderRadius ?? 16.0),

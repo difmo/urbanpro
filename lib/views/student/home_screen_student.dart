@@ -270,20 +270,15 @@ class _StudentNewHomeScreenState extends State<StudentNewHomeScreen> {
               ],
             ),
           ),
-          Stack(
-            children: [
-        
-              Positioned(
-                top: 0,
-                left: 0,
-                right: 0,
-                child: Container(
-                  width: double.infinity,
-                  height: 40,
-                  color: const Color.fromARGB(255, 88, 216, 255),
-                ),
-              ),
-            ],
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              width: double.infinity,
+              height: 40,
+              color: const Color.fromARGB(255, 88, 216, 255),
+            ),
           ),
         ],
       ),

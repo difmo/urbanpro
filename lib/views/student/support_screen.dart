@@ -1,6 +1,11 @@
+import 'package:URBANPRO/utils/app__text_style.dart';
 import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:URBANPRO/views/student/live_chat_support_screen.dart';
+import 'package:URBANPRO/views/student/profile_edit_form.dart';
+import 'package:URBANPRO/views/widgets/custom_button.dart';
+import 'package:URBANPRO/views/widgets/custom_status_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class SupportScreen extends StatelessWidget {
   const SupportScreen({super.key});
@@ -12,126 +17,157 @@ class SupportScreen extends StatelessWidget {
 
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        title: const Text("Get Help Support"),
-        centerTitle: true,
-        automaticallyImplyLeading: false,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(0),
+        child: CustomStatusBar(),
       ),
       body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [Color.fromARGB(255, 255, 255, 255), Color.fromARGB(255, 255, 255, 255)],
-          ),
-        ),
-        child: Column(
-          children: [
-            const SizedBox(height: 90),
-            _buildProfileSection(),
-            const SizedBox(height: 20),
-            _buildContactSection(fontSize),
-            const SizedBox(height: 20),
-            Expanded(child: _buildFaqSection(fontSize)),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-              child: _buildChatButton(context),
+        decoration: const BoxDecoration(color: ThemeConstants.primaryColorSoft),
+        child: Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                const SizedBox(height: 50),
+                _buildProfileSection(context),
+                const SizedBox(height: 20),
+                _buildStudentAcadmicDetialsCard(context),
+                const SizedBox(height: 20),
+                _buildContactSection(fontSize),
+                const SizedBox(height: 20),
+                _buildFaqSection(fontSize),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                  child: _buildChatButton(context),
+                ),
+                const SizedBox(height: 20),
+              ],
             ),
-            const SizedBox(height: 20),
-          ],
+          ),
         ),
       ),
     );
   }
 
-  Widget _buildProfileSection() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.9),
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: Colors.black12, width: 0.6),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.05),
-              spreadRadius: 1,
-              blurRadius: 6,
-              offset: const Offset(0, 3),
-            ),
-          ],
-        ),
-        child: Row(
-          children: [
-            CircleAvatar(
-              radius: 35,
-              backgroundImage: NetworkImage(
-                  "https://picsum.photos/seed/picsum/200/300"), // Replace with user's image URL
-            ),
-            const SizedBox(width: 15),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "John Doe", // Replace with user's name
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
+  Widget _buildProfileSection(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SizedBox(height: 10),
+        Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: ThemeConstants.primaryColor,
+            borderRadius: BorderRadius.horizontal(left: Radius.circular(30)),
+          ),
+          child: Row(
+            children: [
+              CircleAvatar(
+                radius: 35,
+                backgroundImage: AssetImage('assets/images/4.jpg'),
+              ),
+              const SizedBox(width: 15),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Pritam Kumar Sharma",
+                      style: AppTextStyle.Text16500.copyWith(
+                          color: ThemeConstants.white)),
+                  const SizedBox(height: 2),
+                  Text("7800730968",
+                      style: AppTextStyle.Text14500.copyWith(
+                          color: ThemeConstants.white)),
+                ],
+              ),
+              Spacer(),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ProfileEditForm()),
+                  );
+                },
+                child: SvgPicture.asset(
+                  "assets/icons/edit.svg",
+                  color: ThemeConstants.white,
                 ),
-                const SizedBox(height: 5),
-                Text(
-                  "johndoe@example.com", // Replace with user's email
-                  style: const TextStyle(
-                    fontSize: 14,
-                    color: Colors.black54,
-                  ),
-                ),
-              ],
-            ),
-          ],
+              ),
+            ],
+          ),
         ),
+      ],
+    );
+  }
+
+  Widget _buildStudentAcadmicDetialsCard(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+      decoration: BoxDecoration(
+        color: ThemeConstants.secondaryColorSoft,
+        borderRadius: BorderRadius.horizontal(left: Radius.circular(30)),
+      ),
+      child: Row(
+        children: [
+          const SizedBox(width: 15),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Text("Enrolled Course : ", style: AppTextStyle.Text14500),
+                  Text("None", style: AppTextStyle.Text14500),
+                ],
+              ),
+              SizedBox(height: 15),
+              Row(
+                children: [
+                  Text("Board Name          :", style: AppTextStyle.Text14500),
+                  Text(" None", style: AppTextStyle.Text14500),
+                ],
+              ),
+            ],
+          ),
+          Spacer(),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const ProfileEditForm()),
+              );
+            },
+            child: SvgPicture.asset(
+              "assets/icons/edit.svg",
+              color: ThemeConstants.black,
+            ),
+          ),
+        ],
       ),
     );
   }
 
   Widget _buildContactSection(double fontSize) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.9),
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: Colors.black12, width: 0.6),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.05),
-              spreadRadius: 1,
-              blurRadius: 6,
-              offset: const Offset(0, 3),
-            ),
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white.withOpacity(0.9),
+        borderRadius: BorderRadius.horizontal(left: Radius.circular(30)),
+        
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text("Contact Support",
+                style: AppTextStyle.Text18600.copyWith(
+                    color: ThemeConstants.secondaryColor)),
+            const SizedBox(height: 10),
+            _buildContactItem(Icons.call, "+1 800 123 4567"),
+            const Divider(),
+            _buildContactItem(Icons.email, "support@urbanpro.com"),
           ],
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text("Contact Support",
-                  style: TextStyle(
-                      fontSize: fontSize,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black)),
-              const SizedBox(height: 10),
-              _buildContactItem(Icons.call, "+1 800 123 4567"),
-              const Divider(),
-              _buildContactItem(Icons.email, "support@edulearn.com"),
-            ],
-          ),
         ),
       ),
     );
@@ -139,8 +175,8 @@ class SupportScreen extends StatelessWidget {
 
   Widget _buildContactItem(IconData icon, String text) {
     return ListTile(
-      leading: Icon(icon, color: Colors.blueAccent),
-      title: Text(text, style: const TextStyle(color: Colors.black)),
+      leading: Icon(icon, color: ThemeConstants.lightGrey),
+      title: Text(text, style: AppTextStyle.Text14400),
       onTap: () {
         // Add call or email functionality
       },
@@ -148,97 +184,79 @@ class SupportScreen extends StatelessWidget {
   }
 
   Widget _buildFaqSection(double fontSize) {
-    List<Map<String, String>> faqs = [
-      {
-        "question": "How do I reset my password?",
-        "answer": "Go to settings > account > reset password."
-      },
-      {
-        "question": "How do I join a live class?",
-        "answer": "Click on the 'Join' button in your course dashboard."
-      },
-      {
-        "question": "How do I contact my tutor?",
-        "answer": "Use the 'Message Tutor' button in your course page."
-      },
-      {
-        "question": "How do I change my subscription?",
-        "answer": "Go to settings > subscription > change plan."
-      },
-    ];
-
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.9),
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: Colors.black12, width: 0.6),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.05),
-              spreadRadius: 1,
-              blurRadius: 6,
-              offset: const Offset(0, 3),
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white.withOpacity(0.9),
+        borderRadius: BorderRadius.horizontal(left: Radius.circular(30)),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            spreadRadius: 1,
+            blurRadius: 6,
+            offset: const Offset(0, 5),
+          ),
+        ],
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Text("Frequently Asked Questions",
+                    style: AppTextStyle.Text18600.copyWith(
+                        color: ThemeConstants.secondaryColor)),
+              ],
             ),
-          ],
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(10),
-          child: Column(
-            children: [
-              Text("Frequently Asked Questions",
-                  style: TextStyle(
-                      fontSize: fontSize,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black)),
-              Expanded(
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: faqs.length,
-                  itemBuilder: (context, index) {
-                    return Column(
-                      children: [
-                        ListTile(
-                          title: Text(faqs[index]["question"]!,
-                              style: TextStyle(
-                                  fontSize: fontSize * 0.9,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black)),
-                          trailing: const Icon(Icons.keyboard_arrow_down,
-                              color: Colors.black),
-                          onTap: () {
-                            showDialog(
-                              context: context,
-                              builder: (context) {
-                                return AlertDialog(
-                                  title: Text(faqs[index]["question"]!,
-                                      style: TextStyle(
-                                          fontSize: fontSize * 0.9,
-                                          fontWeight: FontWeight.bold)),
-                                  content: Text(faqs[index]["answer"]!,
-                                      style: TextStyle(
-                                          fontSize: fontSize * 0.85,
-                                          color: Colors.grey[700])),
-                                  actions: [
-                                    TextButton(
-                                      onPressed: () => Navigator.pop(context),
-                                      child: const Text("Close"),
-                                    ),
-                                  ],
-                                );
-                              },
+            ListView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: faqs.length,
+              itemBuilder: (context, index) {
+                return Column(
+                  children: [
+                    ListTile(
+                      title: Text(faqs[index]["question"]!,
+                          style: AppTextStyle.Text14400),
+                      trailing: const Icon(Icons.keyboard_arrow_down,
+                          color: Colors.black),
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              icon: Icon(
+                                Icons.help,
+                                color: ThemeConstants.white,
+                              ),
+                              backgroundColor: ThemeConstants.primaryColor,
+                              title: Text(faqs[index]["question"]!,
+                                  style: AppTextStyle.Text18600.copyWith(
+                                      color: ThemeConstants.white)),
+                              content: Text(faqs[index]["answer"]!,
+                                  style: AppTextStyle.Text14600.copyWith(
+                                      color: ThemeConstants.white)),
+                              actions: [
+                                TextButton(
+                                  onPressed: () => Navigator.pop(context),
+                                  child: Text(
+                                    "Close",
+                                    style: AppTextStyle.Text16600.copyWith(
+                                        color: ThemeConstants.white),
+                                  ),
+                                ),
+                              ],
                             );
                           },
-                        ),
-                        if (index < faqs.length - 1) const Divider(),
-                      ],
-                    );
-                  },
-                ),
-              ),
-            ],
-          ),
+                        );
+                      },
+                    ),
+                    if (index < faqs.length - 1) const Divider(),
+                  ],
+                );
+              },
+            ),
+          ],
         ),
       ),
     );
@@ -246,23 +264,35 @@ class SupportScreen extends StatelessWidget {
 
   Widget _buildChatButton(BuildContext context) {
     return SizedBox(
-      width: double.infinity,
-      height: 50,
-      child: ElevatedButton.icon(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const LiveChatScreen()),
-          );
-        },
-        icon: const Icon(Icons.chat, color: Colors.white),
-        label: const Text("Live Chat Support",
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-        style: ElevatedButton.styleFrom(
-          backgroundColor: ThemeConstants.secondaryColor,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        ),
-      ),
-    );
+        width: double.infinity,
+        height: 50,
+        child: CustomButton(
+          text: "Live Chat Support",
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const LiveChatScreen()),
+            );
+          },
+        ));
   }
 }
+
+List<Map<String, String>> faqs = [
+  {
+    "question": "How do I reset my password?",
+    "answer": "Go to settings > account > reset password."
+  },
+  {
+    "question": "How do I join a live class?",
+    "answer": "Click on the 'Join' button in your course dashboard."
+  },
+  {
+    "question": "How do I contact my tutor?",
+    "answer": "Use the 'Message Tutor' button in your course page."
+  },
+  {
+    "question": "How do I change my subscription?",
+    "answer": "Go to settings > subscription > change plan."
+  },
+];

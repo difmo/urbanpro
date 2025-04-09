@@ -14,8 +14,8 @@ class StudentBottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    double iconSize = screenWidth * 0.065;
-    double baseFontSize = screenWidth * 0.035; // 3.5% of screen width
+    double iconSize = screenWidth * 0.055;
+    double baseFontSize = screenWidth * 0.030; // 3.5% of screen width
     double fontSize = baseFontSize.clamp(10, 14); // Min: 10px, Max: 14px
 
     return BottomNavigationBar(
@@ -23,7 +23,7 @@ class StudentBottomNavigationBar extends StatelessWidget {
       onTap: onTap,
       backgroundColor: Colors.white,
       selectedItemColor: ThemeConstants.primaryColor,
-      unselectedItemColor: ThemeConstants.softgrey,
+      unselectedItemColor: ThemeConstants.lightGrey,
       showUnselectedLabels: true,
       type: BottomNavigationBarType.fixed,
       items: [

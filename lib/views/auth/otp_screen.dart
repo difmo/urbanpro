@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:get/get.dart';
 import 'package:URBANPRO/controllers/auth_controller.dart';
+
 class OTPScreen extends StatefulWidget {
   final String phone;
   final int otp;

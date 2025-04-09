@@ -68,41 +68,41 @@ class AppPages {
       transition: Transition.fadeIn,
       transitionDuration: Duration(milliseconds: 500),
     ),
-   GetPage(
-  name: AppRoutes.OTPSCREEN,
-  page: () {
-    final arguments = Get.arguments;
+    GetPage(
+      name: AppRoutes.OTPSCREEN,
+      page: () {
+        final arguments = Get.arguments;
 
-    // Check for necessary arguments
-    if (arguments == null ||
-        !arguments.containsKey('phone') ||
-        !arguments.containsKey('otp') ||
-        !arguments.containsKey('email') ||
-        !arguments.containsKey('name') ||
-        !arguments.containsKey('role')) {
-      // Handle error: Missing arguments
-      // You can show a dialog or redirect to an error screen
-      Get.snackbar('Error', 'Required arguments are missing!');
-    }
+        // Check for necessary arguments
+        // if (arguments == null ||
+        //     !arguments.containsKey('phone') ||
+        //     !arguments.containsKey('otp') ||
+        //     !arguments.containsKey('email') ||
+        //     !arguments.containsKey('name') ||
+        //     !arguments.containsKey('role')) {
+        //   // Handle error: Missing arguments
+        //   // You can show a dialog or redirect to an error screen
+        //   Get.snackbar('Error', 'Required arguments are missing!');
+        // }
 
-    // Safe argument extraction and passing to OTP screen
-    final phone = arguments['phone'] ?? '';
-    final otp = arguments['otp'] ?? 0; // Ensure it's a number
-    final email = arguments['email'] ?? '';
-    final name = arguments['name'] ?? '';
-    final role = arguments['role'] ?? 0; // Ensure it's an integer
+        // Safe argument extraction and passing to OTP screen
+        final phone = arguments['phone'] ?? '';
+        final otp = arguments['otp'] ?? 0; // Ensure it's a number
+        final email = arguments['email'] ?? '';
+        final name = arguments['name'] ?? '';
+        final role = arguments['role'] ?? 0; // Ensure it's an integer
 
-    return OTPScreen(
-      phone: phone,
-      otp: otp,
-      email: email,
-      name: name,
-      role: role,
-    );
-  },
-  transition: Transition.fadeIn,
-  transitionDuration: Duration(milliseconds: 500),
-),
+        return OTPScreen(
+          phone: phone,
+          otp: otp,
+          email: email,
+          name: name,
+          role: role,
+        );
+      },
+      transition: Transition.fadeIn,
+      transitionDuration: Duration(milliseconds: 500),
+    ),
 
     // admin
     GetPage(

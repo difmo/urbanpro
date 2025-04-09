@@ -19,7 +19,7 @@ class AuthController extends GetxController {
       Get.snackbar('Success', responsedata.message);
       print(responsedata.otpData.mobileOtp);
       Get.toNamed(AppRoutes.OTPSCREEN, arguments: {
-        'mobile': mobile,
+        'phone': mobile,
         'email': email,
         'name': name,
         'role': role,

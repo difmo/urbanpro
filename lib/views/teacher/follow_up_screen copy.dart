@@ -21,6 +21,8 @@ class FollowUp {
 }
 
 class FollowUpScreen extends StatefulWidget {
+  const FollowUpScreen({super.key});
+
   @override
   State<FollowUpScreen> createState() => _FollowUpScreenState();
 }
@@ -28,7 +30,7 @@ class FollowUpScreen extends StatefulWidget {
 class _FollowUpScreenState extends State<FollowUpScreen> {
   final TextEditingController _searchController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
-  List<FollowUp> _followUpsList = [];
+  final List<FollowUp> _followUpsList = [];
   List<FollowUp> _filteredFollowUps = [];
   int _page = 0;
   bool _isLoadingMore = false;

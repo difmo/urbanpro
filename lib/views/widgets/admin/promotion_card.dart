@@ -9,7 +9,7 @@ class PromotionCard extends StatelessWidget {
   final VoidCallback onEdit;
   final VoidCallback onDelete;
 
-  const PromotionCard({
+  const PromotionCard({super.key, 
     required this.promotion,
     required this.onEdit,
     required this.onDelete,

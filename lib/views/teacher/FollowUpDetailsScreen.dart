@@ -6,8 +6,7 @@ import 'package:URBANPRO/utils/theme_constants.dart';
 class FollowUpDetailsScreen extends StatelessWidget {
   final FollowUpModel followUp;
 
-  const FollowUpDetailsScreen({Key? key, required this.followUp})
-      : super(key: key);
+  const FollowUpDetailsScreen({super.key, required this.followUp});
 
   @override
   Widget build(BuildContext context) {

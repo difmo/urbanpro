@@ -7,6 +7,8 @@ import 'package:URBANPRO/views/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
 class AmountSettingScreen extends StatefulWidget {
+  const AmountSettingScreen({super.key});
+
   @override
   _AmountSettingScreenState createState() => _AmountSettingScreenState();
 }

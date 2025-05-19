@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class SendNotificationScreen extends StatefulWidget {
+  const SendNotificationScreen({super.key});
+
   @override
   _SendNotificationScreenState createState() => _SendNotificationScreenState();
 }

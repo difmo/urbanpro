@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class FollowUpCard extends StatelessWidget {
   final FollowUpModel followUp;
 
-  const FollowUpCard({Key? key, required this.followUp}) : super(key: key);
+  const FollowUpCard({super.key, required this.followUp});
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +21,12 @@ class FollowUpCard extends StatelessWidget {
             // Avatar
             CircleAvatar(
               radius: 24,
+              backgroundColor: Colors.blue[200],
               child: Text(
                 followUp.name[0].toUpperCase(),
                 style:
                     const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
-              backgroundColor: Colors.blue[200],
             ),
             const SizedBox(width: 12),
 
@@ -44,7 +44,7 @@ class FollowUpCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    '${followUp.studentClass}',
+                    followUp.studentClass,
                     style: TextStyle(color: Colors.grey[600], fontSize: 14),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,

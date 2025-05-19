@@ -5,7 +5,7 @@ import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:flutter/material.dart';
 
 class WalletHistoryScreen extends StatefulWidget {
-  const WalletHistoryScreen({Key? key}) : super(key: key);
+  const WalletHistoryScreen({super.key});
 
   @override
   State<WalletHistoryScreen> createState() => _WalletHistoryScreenState();

@@ -73,17 +73,6 @@ class AppPages {
   page: () {
     final arguments = Get.arguments;
 
-    // Check for necessary arguments
-    if (arguments == null ||
-        !arguments.containsKey('phone') ||
-        !arguments.containsKey('otp') ||
-        !arguments.containsKey('email') ||
-        !arguments.containsKey('name') ||
-        !arguments.containsKey('role')) {
-      // Handle error: Missing arguments
-      // You can show a dialog or redirect to an error screen
-      Get.snackbar('Error', 'Required arguments are missing!');
-    }
 
     // Safe argument extraction and passing to OTP screen
     final phone = arguments['phone'] ?? '';

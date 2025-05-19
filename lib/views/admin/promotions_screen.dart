@@ -8,6 +8,8 @@ import 'package:URBANPRO/views/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
 class PromotionsScreen extends StatefulWidget {
+  const PromotionsScreen({super.key});
+
   @override
   _PromotionsScreenState createState() => _PromotionsScreenState();
 }

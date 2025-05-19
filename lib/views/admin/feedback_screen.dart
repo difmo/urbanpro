@@ -4,6 +4,8 @@ import 'package:URBANPRO/views/widgets/admin/feedback_card.dart';
 import 'package:flutter/material.dart';
 
 class FeedbackScreen extends StatefulWidget {
+  const FeedbackScreen({super.key});
+
   @override
   _FeedbackScreenState createState() => _FeedbackScreenState();
 }

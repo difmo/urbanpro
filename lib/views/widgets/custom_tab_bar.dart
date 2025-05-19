@@ -8,7 +8,7 @@ class CustomTabBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final double? height; // Optional height parameter
 
-  CustomTabBar({
+  const CustomTabBar({super.key, 
     required this.controller,
     required this.tabs,
     this.title = "Title", // Default title is "Title"

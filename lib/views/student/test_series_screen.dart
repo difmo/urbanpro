@@ -1,7 +1,6 @@
 import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:URBANPRO/views/student/start_test_screen.dart';
 import 'package:URBANPRO/views/widgets/custom_button.dart';
-import 'package:URBANPRO/views/widgets/custom_status_bar.dart';
 import 'package:URBANPRO/views/widgets/custom_tab_bar.dart';
 import 'package:flutter/material.dart';
 

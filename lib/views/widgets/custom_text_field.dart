@@ -3,7 +3,7 @@ import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-enum InputType { phone, email, name, address }
+enum InputType { phone, email, name, address, price }
 
 class CommonTextField extends StatefulWidget {
   final InputType inputType;
@@ -64,6 +64,14 @@ class _CommonTextFieldState extends State<CommonTextField> {
           LengthLimitingTextInputFormatter(10),
         ];
         break;
+      case InputType.price:
+        _keyboardType = const TextInputType.numberWithOptions(decimal: true);
+        _inputFormatters = [
+          FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')),
+          LengthLimitingTextInputFormatter(10),
+        ];
+        break;
+
       case InputType.email:
         _keyboardType = TextInputType.emailAddress;
         _inputFormatters = [];
@@ -83,7 +91,8 @@ class _CommonTextFieldState extends State<CommonTextField> {
 
   @override
   Widget build(BuildContext context) {
-    Color defaultBorderColor = widget.borderColor ?? ThemeConstants.primaryColor;
+    Color defaultBorderColor =
+        widget.borderColor ?? ThemeConstants.primaryColor;
 
     return TextFormField(
       focusNode: widget.focusNode,

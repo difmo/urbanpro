@@ -3,7 +3,6 @@ import 'package:URBANPRO/routes/app_routes.dart';
 import 'package:URBANPRO/utils/app__text_style.dart';
 import 'package:URBANPRO/utils/theme_constants.dart';
 import 'package:URBANPRO/utils/validators.dart';
-import 'package:URBANPRO/views/auth/otp_screen.dart';
 import 'package:URBANPRO/views/widgets/applogo.dart';
 import 'package:URBANPRO/views/widgets/custom_text_field.dart';
 import 'package:URBANPRO/views/widgets/loading_widget.dart';

@@ -7,7 +7,7 @@ import 'package:URBANPRO/utils/theme_constants.dart';
 class EditAccountScreen extends StatefulWidget {
   final Account account;
 
-  const EditAccountScreen({Key? key, required this.account}) : super(key: key);
+  const EditAccountScreen({super.key, required this.account});
 
   @override
   State<EditAccountScreen> createState() => _EditAccountScreenState();

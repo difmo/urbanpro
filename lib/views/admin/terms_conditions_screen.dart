@@ -6,6 +6,8 @@ import 'package:URBANPRO/views/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
 class TermsConditionsScreen extends StatefulWidget {
+  const TermsConditionsScreen({super.key});
+
   @override
   _TermsConditionsScreenState createState() => _TermsConditionsScreenState();
 }

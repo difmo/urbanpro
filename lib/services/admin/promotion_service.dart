@@ -1,7 +1,7 @@
 import 'package:URBANPRO/models/admin/promotion_model.dart';
 
 class PromotionService {
-  List<Promotion> _promotions = [
+  final List<Promotion> _promotions = [
     Promotion(
       id: "1",
       title: "New Year Offer",

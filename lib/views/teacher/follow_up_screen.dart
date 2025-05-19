@@ -9,6 +9,8 @@ import 'package:URBANPRO/models/teacher/follow_up_model.dart';
 import 'package:flutter/services.dart';
 
 class FollowUpScreen extends StatefulWidget {
+  const FollowUpScreen({super.key});
+
   @override
   State<FollowUpScreen> createState() => _FollowUpScreenState();
 }

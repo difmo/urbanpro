@@ -10,14 +10,19 @@ class AuthController extends GetxController {
 
   var isLoading = false.obs;
   final StorageService storageService = StorageService();
+
   Future<OtpGetResponse> sendOtpcontroller(
       String mobile, String email, String name, int role) async {
     isLoading.value = true;
+    print("🔄 Sending OTP for mobile: $mobile, email: $email, name: $name, role: $role");
     try {
       final responsedata =
           await _authRepository.sendOtpRepo(mobile, email, name, role);
+
+      print("✅ OTP Response: ${responsedata.otpData.mobileOtp}");
       Get.snackbar('Success', responsedata.message);
-      print(responsedata.otpData.mobileOtp);
+
+      // Navigating to OTP screen
       Get.toNamed(AppRoutes.OTPSCREEN, arguments: {
         'mobile': mobile,
         'email': email,
@@ -25,8 +30,10 @@ class AuthController extends GetxController {
         'role': role,
         'otp': responsedata.otpData.mobileOtp
       });
+
       return responsedata;
     } catch (e) {
+      print("❌ Error sending OTP: $e");
       Get.snackbar('Error', e.toString());
       rethrow;
     } finally {
@@ -37,18 +44,25 @@ class AuthController extends GetxController {
   Future<OtpSuccessResponse> OtpSuccesscontroller(
       String mobile, String email, int otp, String name, int role) async {
     isLoading.value = true;
+    print("🔄 Verifying OTP: $otp for mobile: $mobile, email: $email, name: $name, role: $role");
     try {
       final responsedata =
           await _authRepository.verifyOtpRepo(mobile, email, otp, name, role);
-      Get.snackbar('Success', responsedata.message);
-      print(responsedata.success);
-      responsedata.userData.roles.forEach((role) {
-        print(role.roleId);
-      });
-      await _saveLoginData(responsedata);
 
+      print("✅ OTP Verification Success: ${responsedata.success}");
+      print("👤 User Data:");
+      print("   ID: ${responsedata.userData.id}");
+      print("   Name: ${responsedata.userData.name}");
+      print("   Token: ${responsedata.token}");
+
+      for (var role in responsedata.userData.roles) {
+        print("   Role: ${role.roleId} - ${role.roleName}");
+      }
+
+      await _saveLoginData(responsedata);
       return responsedata;
     } catch (e) {
+      print("❌ Error verifying OTP: $e");
       Get.snackbar('Error', e.toString());
       rethrow;
     } finally {
@@ -57,6 +71,7 @@ class AuthController extends GetxController {
   }
 
   Future<void> _saveLoginData(OtpSuccessResponse responsedata) async {
+    print("💾 Saving login data...");
     Map<String, dynamic> loginData = {
       'token': responsedata.token,
       'isLoggedIn': true,
@@ -70,5 +85,6 @@ class AuthController extends GetxController {
           .toList()
     };
     await storageService.write('login_details', loginData);
+    print("✅ Login data saved: $loginData");
   }
 }

@@ -292,7 +292,7 @@ class _AccountScreenState extends State<AccountScreen> {
             children: [
               Expanded(
                 child: Text(
-                  "$title",
+                  title,
                   style: const TextStyle(
                       fontSize: 16,
                       color: Colors.black54,

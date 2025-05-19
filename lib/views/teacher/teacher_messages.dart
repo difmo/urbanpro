@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class TeacherMessages extends StatefulWidget {
+  const TeacherMessages({super.key});
+
   @override
   State<TeacherMessages> createState() => _TeacherMessagesState();
 }

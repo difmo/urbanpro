@@ -30,11 +30,19 @@ class OTPScreen extends StatefulWidget {
 class _OTPScreenState extends State<OTPScreen> {
   bool isLoading = false;
 
+
+void initState() {
+  super.initState();
+  print("from otp screen");
+  print(widget.name);
+  print(widget.phone);
+
+}
   // Function to verify OTP
   Future<void> verifyOtp() async {
     final authController = Get.find<AuthController>();
 
-    if (widget.phone.isEmpty || widget.otp == null) {
+    if (widget.phone.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Please enter a valid phone number and OTP")),
       );

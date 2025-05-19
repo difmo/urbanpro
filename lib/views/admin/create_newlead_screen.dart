@@ -5,6 +5,8 @@ import 'package:URBANPRO/views/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
 class CreateNewLeadScreen extends StatefulWidget {
+  const CreateNewLeadScreen({super.key});
+
   @override
   _CreateNewLeadScreenState createState() => _CreateNewLeadScreenState();
 }

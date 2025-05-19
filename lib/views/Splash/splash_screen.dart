@@ -29,13 +29,13 @@ class _SplashScreenState extends State<SplashScreen> {
       var roleData = List<Map<String, dynamic>>.from(data['roleData'] ?? []);
 
       if (roleData.isNotEmpty) {
-        roleData.forEach((role) {
+        for (var role in roleData) {
           print("Role ID: ${role['roleId']}");
           setState(() {
             roleIdd = role['roleId'];
           });
           print("Role Name: ${role['roleName']}");
-        });
+        }
 
         print("roleidd");
         print(roleIdd);

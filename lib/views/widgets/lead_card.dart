@@ -7,7 +7,7 @@ import 'package:URBANPRO/models/leads/lead_model.dart';
 class LeadCard extends StatelessWidget {
   final Lead lead;
 
-  const LeadCard({Key? key, required this.lead}) : super(key: key);
+  const LeadCard({super.key, required this.lead});
 
   // Helper to launch URLs (phone/email)
   Future<void> _launchUrl(String url, BuildContext context) async {

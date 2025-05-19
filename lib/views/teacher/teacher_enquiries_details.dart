@@ -10,8 +10,7 @@ import 'package:URBANPRO/utils/theme_constants.dart';
 class TeacherEnquiriesDetails extends StatefulWidget {
   final Lead lead;
 
-  const TeacherEnquiriesDetails({Key? key, required this.lead})
-      : super(key: key);
+  const TeacherEnquiriesDetails({super.key, required this.lead});
 
   @override
   State<TeacherEnquiriesDetails> createState() =>

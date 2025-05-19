@@ -1,6 +1,5 @@
 import 'package:URBANPRO/views/student/study_meterial_details_screen.dart';
 import 'package:URBANPRO/views/widgets/custom_button.dart';
-import 'package:URBANPRO/views/widgets/custom_status_bar.dart';
 import 'package:URBANPRO/views/widgets/custom_tab_bar.dart';
 import 'package:flutter/material.dart';
 

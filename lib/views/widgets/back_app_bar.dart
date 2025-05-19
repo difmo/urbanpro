@@ -34,12 +34,12 @@ class BackAppBar extends StatelessWidget implements PreferredSizeWidget {
   final TabController? tabController; // Make tabController nullable
 
   const BackAppBar({
-    Key? key,
+    super.key,
     required this.title,
     this.backgroundColor,
     this.tabs, // Nullable tabs
     this.tabController, // Nullable TabController
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

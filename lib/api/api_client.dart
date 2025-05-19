@@ -4,7 +4,6 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:http/http.dart' as http;
 
 class ApiClient {
-  // static const String baseUrl = "https://shikshaappservice.kalln.com/";
   static const String baseUrl = "https://solutiontechs.in/";
 
   Future<void> _checkInternetConnection() async {
@@ -23,20 +22,57 @@ class ApiClient {
     }
   }
 
+  /// Generic POST method with optional token
   Future<T> post<T>(
     String endpoint,
     Map<String, dynamic> body,
-    T Function(Map<String, dynamic> json) fromJson,
-  ) async {
+    T Function(Map<String, dynamic> json) fromJson, {
+    String? token,
+  }) async {
     await _checkInternetConnection();
 
     try {
       final response = await http.post(
         Uri.parse('$baseUrl$endpoint'),
-        headers: {'Content-Type': 'application/json'},
+        headers: {
+          'Content-Type': 'application/json',
+          if (token != null) 'Authorization': 'Bearer $token',
+        },
         body: jsonEncode(body),
       );
+
       print('Response body: ${response.body}');
+
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> jsonResponse = jsonDecode(response.body);
+        return fromJson(jsonResponse);
+      } else {
+        throw Exception('Failed to load data: ${response.reasonPhrase}');
+      }
+    } catch (e) {
+      throw Exception('Network error: Unable to complete POST request. $e');
+    }
+  }
+  Future<T> postwithoutdata<T>(
+    String endpoint,
+    Map<String, dynamic> body,
+    T Function(Map<String, dynamic> json) fromJson, {
+    String? token,
+  }) async {
+    await _checkInternetConnection();
+
+    try {
+      final response = await http.post(
+        Uri.parse('$baseUrl$endpoint'),
+        headers: {
+          'Content-Type': 'application/json',
+          if (token != null) 'Authorization': 'Bearer $token',
+        },
+        body: jsonEncode(body),
+      );
+
+      print('Response body: ${response.body}');
+
       if (response.statusCode == 200) {
         final Map<String, dynamic> jsonResponse = jsonDecode(response.body);
         return fromJson(jsonResponse);
@@ -49,8 +85,9 @@ class ApiClient {
   }
 
   Future<dynamic> get(String endpoint,
-      {Map<String, String>? queryParameters}) async {
+      {Map<String, String>? queryParameters, String? token}) async {
     await _checkInternetConnection();
+
     try {
       Uri uri = Uri.parse('$baseUrl$endpoint');
       if (queryParameters != null) {
@@ -59,7 +96,10 @@ class ApiClient {
 
       final response = await http.get(
         uri,
-        headers: {'Content-Type': 'application/json'},
+        headers: {
+          'Content-Type': 'application/json',
+          if (token != null) 'Authorization': 'Bearer $token',
+        },
       );
 
       return _handleResponse(response);
@@ -68,6 +108,7 @@ class ApiClient {
     }
   }
 
+  /// Handles API response status codes
   dynamic _handleResponse(http.Response response) {
     switch (response.statusCode) {
       case 200:

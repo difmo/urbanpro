@@ -1,7 +1,7 @@
 import 'package:URBANPRO/models/admin/feedback_model.dart';
 
 class FeedbackService {
-  List<FeedbackModel> _feedbacks = [
+  final List<FeedbackModel> _feedbacks = [
     FeedbackModel(
       id: "1",
       userName: "Alice Johnson",
